@@ -1,0 +1,689 @@
+---
+layout: default
+title: Add Bike
+---
+
+<div class="add-page" style="overflow-y:auto;height:100%">
+  <h1>Add Bike Geometry</h1>
+  <p class="subtitle">Fill in the geometry chart from the manufacturer's website, download the YAML file, then submit a pull request.</p>
+
+  <!-- Import tools -->
+  <div class="form-section">
+    <h2>Import Geometry</h2>
+
+    <!-- Shared status -->
+    <div id="import-status" style="font-size:12px;min-height:18px;margin-bottom:8px;color:var(--text-muted)"></div>
+
+    <!-- URL fetch -->
+    <details open>
+      <summary style="font-size:12px;font-weight:600;color:var(--text);cursor:pointer;user-select:none;margin-bottom:8px">From URL</summary>
+      <div style="display:flex;gap:6px;margin-bottom:4px">
+        <input type="url" id="import-url" placeholder="https://www.litespeed.com/flint" style="flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:var(--radius);font-size:13px;outline:none">
+        <button type="button" class="btn btn-primary" id="btn-import">Fetch &amp; Extract</button>
+      </div>
+      <span style="font-size:10px;color:var(--text-muted)">Attempts multiple CORS proxies. JS-rendered pages may need the paste option below.</span>
+    </details>
+
+    <!-- Table paste -->
+    <details style="margin-top:10px">
+      <summary style="font-size:12px;font-weight:600;color:var(--text);cursor:pointer;user-select:none;margin-bottom:8px">Paste table (text or HTML)</summary>
+      <textarea id="paste-table" rows="5" style="width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:var(--radius);font-size:12px;font-family:monospace;resize:vertical" placeholder="Paste a geometry table here — tab-separated text from a spreadsheet, HTML source, or any delimited format…"></textarea>
+      <button type="button" class="btn btn-secondary" style="margin-top:6px;font-size:12px" id="btn-import-table">Extract from Table</button>
+    </details>
+
+    <!-- Image OCR -->
+    <details id="details-image" style="margin-top:10px">
+      <summary style="font-size:12px;font-weight:600;color:var(--text);cursor:pointer;user-select:none;margin-bottom:8px">Import geometry chart image (OCR)</summary>
+      <div id="paste-image-area" style="width:100%;min-height:90px;background:var(--surface2);border:2px dashed var(--border);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.15s">
+        <div id="paste-image-hint" style="display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-muted);opacity:0.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span style="font-size:12px;color:var(--text-muted);text-align:center">Drop image here, click to browse, or paste anywhere (Ctrl+V)</span>
+        </div>
+        <img id="paste-image-preview" style="display:none;max-width:100%;max-height:320px;border-radius:var(--radius)" alt="geometry chart">
+      </div>
+      <input type="file" id="image-file-input" accept="image/*" style="display:none">
+      <div style="display:flex;gap:6px;margin-top:6px">
+        <button type="button" class="btn btn-primary" style="font-size:12px" id="btn-import-image">Extract from Image</button>
+        <button type="button" class="btn btn-secondary" style="font-size:12px" id="btn-clear-image">Clear</button>
+      </div>
+      <div id="ocr-progress" style="margin-top:4px;font-size:11px;color:var(--text-muted)"></div>
+    </details>
+  </div>
+
+  <!-- Bike info -->
+  <div class="form-section">
+    <h2>Bike Info</h2>
+    <div class="form-grid">
+      <div class="form-field">
+        <label>Brand</label>
+        <input type="text" id="f-brand" placeholder="e.g. Specialized">
+      </div>
+      <div class="form-field">
+        <label>Model</label>
+        <input type="text" id="f-model" placeholder="e.g. Crux Comp">
+      </div>
+      <div class="form-field">
+        <label>Year</label>
+        <input type="number" id="f-year" min="2010" max="2030" placeholder="2024">
+      </div>
+      <div class="form-field">
+        <label>Type</label>
+        <select id="f-type">
+          <option value="gravel">Gravel</option>
+          <option value="road">Road</option>
+          <option value="cx">Cyclocross</option>
+          <option value="adventure">Adventure</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Size entries -->
+  <div class="form-section">
+    <h2>Geometry by Size</h2>
+    <div id="sizes-container"></div>
+    <button class="btn btn-secondary" id="btn-add-size" style="margin-top:8px">+ Add Size</button>
+  </div>
+
+  <!-- Actions -->
+  <div class="form-section">
+    <h2>Export</h2>
+    <div class="actions-row" style="margin-bottom:14px">
+      <button class="btn btn-primary" id="btn-download">Download YAML</button>
+      <button class="btn btn-secondary" id="btn-preview">Preview YAML</button>
+    </div>
+    <pre id="yaml-output" class="yaml-preview" style="display:none"></pre>
+  </div>
+
+  <!-- PR instructions -->
+  <div class="pr-instructions">
+    <strong>Submitting to MoveMyBikeFit</strong>
+    <ol style="margin-top:8px">
+      <li>Fork the <a href="https://github.com/your-username/mmbf" style="color:var(--accent)">MoveMyBikeFit repository</a> on GitHub.</li>
+      <li>Add your downloaded YAML file to <code>_data/bikes/</code></li>
+      <li>Name the file: <code>{brand}-{model}-{year}.yml</code> (all lowercase, spaces as hyphens)</li>
+      <li>Open a Pull Request. Include the source URL for the geometry data in your PR description.</li>
+    </ol>
+    <p style="margin-top:10px;font-size:12px;color:var(--text-muted)">
+      Geometry data should come from the official manufacturer website or press kit. Please double-check values before submitting.
+    </p>
+  </div>
+</div>
+
+<script>
+const FIELD_DEFS = [
+  { key: 'label',        label: 'Size label',    placeholder: '54',   type: 'text' },
+  { key: 'stack',        label: 'Stack (mm)',     placeholder: '560',  type: 'number' },
+  { key: 'reach',        label: 'Reach (mm)',     placeholder: '388',  type: 'number' },
+  { key: 'ht_length',    label: 'HT length (mm)', placeholder: '130',  type: 'number' },
+  { key: 'ht_angle',     label: 'HT angle (°)',   placeholder: '71.0', type: 'number', step: '0.5' },
+  { key: 'st_length',    label: 'ST length (mm)', placeholder: '510',  type: 'number' },
+  { key: 'st_angle',     label: 'ST angle (°)',   placeholder: '73.5', type: 'number', step: '0.5' },
+  { key: 'tt_length',    label: 'ETT (mm)',        placeholder: '580',  type: 'number' },
+  { key: 'cs_length',    label: 'Chainstay (mm)', placeholder: '425',  type: 'number' },
+  { key: 'bb_drop',      label: 'BB drop (mm)',   placeholder: '68',   type: 'number' },
+  { key: 'wheelbase',    label: 'Wheelbase (mm)', placeholder: '1013', type: 'number' },
+  { key: 'front_center', label: 'Front center (mm)', placeholder: '597', type: 'number' },
+  { key: 'fork_length',  label: 'Fork length (mm)', placeholder: '374', type: 'number' },
+  { key: 'fork_offset',  label: 'Fork offset (mm)', placeholder: '50',  type: 'number' },
+  { key: 'standover',    label: 'Standover (mm)', placeholder: '805',  type: 'number' },
+];
+
+let sizeCount = 0;
+
+function addSize() {
+  sizeCount++;
+  const idx = sizeCount;
+  const container = document.getElementById('sizes-container');
+
+  const entry = document.createElement('div');
+  entry.className = 'size-entry';
+  entry.id = `size-entry-${idx}`;
+
+  entry.innerHTML = `
+    <div class="size-entry-header">
+      <span class="size-entry-title">Size ${idx}</span>
+      <button class="btn-remove" onclick="removeSize(${idx})" title="Remove">&times;</button>
+    </div>
+    <div class="form-grid">
+      ${FIELD_DEFS.map(f => `
+        <div class="form-field">
+          <label>${f.label}</label>
+          <input type="${f.type}" data-size="${idx}" data-key="${f.key}"
+            placeholder="${f.placeholder}" ${f.step ? `step="${f.step}"` : ''}>
+        </div>`).join('')}
+    </div>`;
+
+  container.appendChild(entry);
+}
+
+function removeSize(idx) {
+  const el = document.getElementById(`size-entry-${idx}`);
+  if (el) el.remove();
+}
+
+function collectData() {
+  const brand = document.getElementById('f-brand').value.trim();
+  const model = document.getElementById('f-model').value.trim();
+  const year  = document.getElementById('f-year').value.trim();
+  const type  = document.getElementById('f-type').value;
+
+  const sizeEntries = document.querySelectorAll('.size-entry');
+  const sizes = [];
+
+  sizeEntries.forEach(entry => {
+    const idx = entry.id.replace('size-entry-', '');
+    const size = {};
+    FIELD_DEFS.forEach(f => {
+      const input = entry.querySelector(`[data-key="${f.key}"]`);
+      if (!input || input.value === '') return;
+      size[f.key] = f.type === 'number' ? Number(input.value) : input.value;
+    });
+    if (Object.keys(size).length > 0) sizes.push(size);
+  });
+
+  return { brand, model, year: Number(year), type, sizes };
+}
+
+function generateYaml(data) {
+  let out = '';
+  out += `brand: ${data.brand}\n`;
+  out += `model: ${data.model}\n`;
+  out += `year: ${data.year}\n`;
+  out += `type: ${data.type}\n`;
+  out += `sizes:\n`;
+
+  data.sizes.forEach(s => {
+    out += `  - label: "${s.label}"\n`;
+    FIELD_DEFS.filter(f => f.key !== 'label').forEach(f => {
+      if (s[f.key] != null) {
+        out += `    ${f.key}: ${s[f.key]}\n`;
+      }
+    });
+    out += '\n';
+  });
+
+  return out.trimEnd() + '\n';
+}
+
+function slugify(str) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+document.getElementById('btn-add-size').addEventListener('click', addSize);
+
+document.getElementById('btn-preview').addEventListener('click', () => {
+  const data = collectData();
+  const yaml = generateYaml(data);
+  const pre = document.getElementById('yaml-output');
+  pre.textContent = yaml;
+  pre.style.display = 'block';
+});
+
+document.getElementById('btn-download').addEventListener('click', () => {
+  const data = collectData();
+  if (!data.brand || !data.model || !data.year) {
+    alert('Please fill in brand, model, and year first.');
+    return;
+  }
+  if (!data.sizes.length) {
+    alert('Please add at least one size.');
+    return;
+  }
+
+  const yaml = generateYaml(data);
+  const filename = `${slugify(data.brand)}-${slugify(data.model)}-${data.year}.yml`;
+
+  const blob = new Blob([yaml], { type: 'text/yaml' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+// Start with one empty size
+addSize();
+
+// ── Pure-JS geometry table parser ────────────────────────────────────────────
+
+// Aliases for each geometry field key
+const _GEO_ALIASES = {
+  stack:        ['stack'],
+  reach:        ['reach'],
+  ht_length:    ['head tube length','ht length','head tube len','ht len','head tube'],
+  ht_angle:     ['head tube angle','head angle','ht angle','hta','head-tube angle','head tube angle (°)'],
+  st_length:    ['seat tube length','seat tube len','st length','st len','seat tube (c-t)','seat tube c-t'],
+  st_angle:     ['seat tube angle','seat angle','st angle','sta','effective seat angle','eff seat angle','effective seat tube angle'],
+  tt_length:    ['top tube','effective top tube','top tube length','horizontal top tube','ett','tt','top tube (horizontal)'],
+  cs_length:    ['chainstay','chain stay','chainstay length','c-stay','cs'],
+  bb_drop:      ['bb drop','bb offset','bottom bracket drop','b.b. drop','bb drop (mm)'],
+  wheelbase:    ['wheelbase','wheel base'],
+  front_center: ['front center','front centre','front center length','front-center'],
+  fork_length:  ['fork length','fork len','axle to crown'],
+  fork_offset:  ['fork offset','fork rake','rake','offset','fork reach'],
+  standover:    ['standover','standover height','stand over','stand over height'],
+};
+
+// Build reverse map: normalized alias → field key
+const _aliasMap = new Map();
+for (const [key, aliases] of Object.entries(_GEO_ALIASES))
+  for (const a of aliases) _aliasMap.set(a, key);
+
+const _ANGLE_FIELDS = new Set(['ht_angle','st_angle']);
+
+function _normLabel(s) {
+  return s.toLowerCase()
+    .replace(/[()[\]]/g,' ').replace(/\b(mm|cm|in|°|deg|degrees?)\b/g,' ')
+    .replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
+}
+
+function _matchField(label) {
+  const n = _normLabel(label);
+  if (_aliasMap.has(n)) return _aliasMap.get(n);
+  for (const [alias, key] of _aliasMap) if (n.includes(alias)) return key;
+  return null;
+}
+
+function _numVal(s) {
+  const m = String(s || '').replace(/,/g,'.').match(/-?[\d.]+/);
+  return m ? parseFloat(m[0]) : null;
+}
+
+// Convert to mm: small values likely in cm → ×10
+function _toMM(val, key) {
+  if (val == null || _ANGLE_FIELDS.has(key)) return val;
+  const thresholds = {
+    stack:150, reach:150, ht_length:30, st_length:150, tt_length:150,
+    cs_length:200, bb_drop:20, wheelbase:400, front_center:200,
+    fork_length:100, fork_offset:20, standover:300,
+  };
+  return val < (thresholds[key] ?? 100) ? val * 10 : val;
+}
+
+function _isSizeLabel(s) {
+  if (!s || s.length > 7) return false;
+  const t = s.trim().toUpperCase();
+  if (/^(2?XS|XS|S\/M|M\/L|S|M|L|XL|2?XL|3XL)$/.test(t)) return true;
+  const n = parseFloat(t);
+  return (n >= 43 && n <= 67) || (n >= 430 && n <= 670);
+}
+
+function _cellText(el) { return el ? el.textContent.replace(/\s+/g,' ').trim() : ''; }
+
+// Orientation A: field names in col 0, size labels in header row
+function _parseFieldsAsRows(table) {
+  const rows = [...table.querySelectorAll('tr')];
+  if (rows.length < 4) return null;
+
+  // Find header row (contains size labels in non-first cells)
+  let headerIdx = -1, sizeLabels = [];
+  for (let i = 0; i < Math.min(rows.length, 3); i++) {
+    const cells = [...rows[i].querySelectorAll('th,td')].map(_cellText);
+    const cands = cells.slice(1).filter(_isSizeLabel);
+    if (cands.length >= 2) { headerIdx = i; sizeLabels = cells.slice(1); break; }
+  }
+  if (headerIdx < 0 || sizeLabels.length < 2) return null;
+
+  const sizes = sizeLabels.map(l => ({ label: l }));
+  let fieldCount = 0;
+  rows.slice(headerIdx + 1).forEach(row => {
+    const cells = [...row.querySelectorAll('th,td')].map(_cellText);
+    const field = _matchField(cells[0] || '');
+    if (!field) return;
+    fieldCount++;
+    sizeLabels.forEach((_, j) => {
+      const v = _numVal(cells[j + 1]);
+      if (v != null) sizes[j][field] = _toMM(v, field);
+    });
+  });
+  return fieldCount >= 3 ? { sizes, score: fieldCount } : null;
+}
+
+// Orientation B: size labels in col 0, field names in header row
+function _parseFieldsAsCols(table) {
+  const rows = [...table.querySelectorAll('tr')];
+  if (rows.length < 3) return null;
+
+  const headerCells = [...rows[0].querySelectorAll('th,td')].map(_cellText);
+  const fieldKeys   = headerCells.slice(1).map(_matchField);
+  if (fieldKeys.filter(Boolean).length < 3) return null;
+
+  const sizes = [];
+  rows.slice(1).forEach(row => {
+    const cells = [...row.querySelectorAll('th,td')].map(_cellText);
+    const label = cells[0]?.trim();
+    if (!label) return;
+    const size = { label };
+    fieldKeys.forEach((key, j) => {
+      if (!key) return;
+      const v = _numVal(cells[j + 1]);
+      if (v != null) size[key] = _toMM(v, key);
+    });
+    if (Object.keys(size).length > 1) sizes.push(size);
+  });
+  return sizes.length >= 2 ? { sizes, score: fieldKeys.filter(Boolean).length } : null;
+}
+
+function _extractMeta(doc, url) {
+  let brand = '', model = '', year = new Date().getFullYear(), type = 'gravel';
+
+  try {
+    const host = new URL(url).hostname.replace(/^www\./,'');
+    brand = host.split('.')[0].replace(/^\w/, c => c.toUpperCase());
+  } catch (_) {}
+
+  const h1    = doc.querySelector('h1')?.textContent?.trim() || '';
+  const og    = doc.querySelector('meta[property="og:title"]')?.content?.trim() || '';
+  const title = doc.title?.trim() || '';
+  const text  = h1 || og || title;
+
+  // Model: take the first meaningful chunk
+  model = text.split(/[|–—·\-]/)[0].trim();
+  // Remove brand prefix if it appears
+  if (brand && model.toLowerCase().startsWith(brand.toLowerCase()))
+    model = model.slice(brand.length).trim();
+
+  const yearM = (text + ' ' + url).match(/\b(20\d{2})\b/);
+  if (yearM) year = parseInt(yearM[1]);
+
+  const lower = (text + ' ' + url).toLowerCase();
+  if (!lower.includes('gravel')) {
+    if (lower.includes('road'))              type = 'road';
+    if (lower.includes('cyclocross') || /\bcx\b/.test(lower)) type = 'cx';
+    if (lower.includes('adventure'))         type = 'adventure';
+  }
+
+  return { brand, model, year, type };
+}
+
+function parseGeometryFromHTML(html, url) {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const meta = _extractMeta(doc, url);
+
+  ['nav','header','footer','script','style','noscript'].forEach(t =>
+    doc.querySelectorAll(t).forEach(el => el.remove())
+  );
+
+  let best = null;
+  doc.querySelectorAll('table').forEach(table => {
+    const a = _parseFieldsAsRows(table);
+    const b = _parseFieldsAsCols(table);
+    const c = !a && !b ? null : !a ? b : !b ? a : a.score >= b.score ? a : b;
+    if (c && (!best || c.score > best.score)) best = c;
+  });
+
+  if (!best) return null;
+
+  const sizes = best.sizes.filter(s => s.label && (s.stack || s.reach));
+  return sizes.length ? { ...meta, sizes } : null;
+}
+
+// ── Import UI wiring ──────────────────────────────────────────────────────────
+
+function setImportStatus(msg, type = 'info') {
+  const el = document.getElementById('import-status');
+  el.textContent = msg;
+  el.style.color = type === 'error' ? 'var(--accent2)' : type === 'success' ? 'var(--success)' : 'var(--text-muted)';
+}
+
+// Multi-proxy URL fetch with fallbacks
+const CORS_PROXIES = [
+  async u => {
+    const r = await fetch(`https://corsproxy.io/?${encodeURIComponent(u)}`, { signal: AbortSignal.timeout(12000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.text();
+  },
+  async u => {
+    const r = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`, { signal: AbortSignal.timeout(12000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.text();
+  },
+  async u => {
+    const r = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`, { signal: AbortSignal.timeout(12000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const d = await r.json();
+    if (!d.contents) throw new Error('empty response');
+    return d.contents;
+  },
+  async u => {
+    const r = await fetch(`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`, { signal: AbortSignal.timeout(12000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.text();
+  },
+];
+
+async function fetchPageContent(url) {
+  const errs = [];
+  for (const proxy of CORS_PROXIES) {
+    try { return await proxy(url); } catch (e) { errs.push(e.message); }
+  }
+  throw new Error(errs[0] || 'all proxies failed');
+}
+
+function populateFormFromData(data) {
+  if (data.brand) document.getElementById('f-brand').value = data.brand;
+  if (data.model) document.getElementById('f-model').value = data.model;
+  if (data.year)  document.getElementById('f-year').value  = data.year;
+  if (data.type) {
+    const sel = document.getElementById('f-type');
+    if ([...sel.options].some(o => o.value === data.type)) sel.value = data.type;
+  }
+  document.getElementById('sizes-container').innerHTML = '';
+  sizeCount = 0;
+  (data.sizes || []).forEach(sd => {
+    addSize();
+    const idx = sizeCount;
+    FIELD_DEFS.forEach(f => {
+      const inp = document.querySelector(`[data-size="${idx}"][data-key="${f.key}"]`);
+      if (inp && sd[f.key] != null) inp.value = sd[f.key];
+    });
+  });
+}
+
+function applyResult(data, label) {
+  if (!data || !data.sizes?.length) {
+    setImportStatus(`No geometry table found in ${label}.`, 'error');
+    return;
+  }
+  populateFormFromData(data);
+  setImportStatus(`Extracted: ${data.brand || '?'} ${data.model || '?'} — ${data.sizes.length} size(s). Review before downloading.`, 'success');
+}
+
+// Plain-text table parser (tab-separated, space-aligned, CSV, markdown)
+function parseTextTable(text) {
+  const lines = text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').split('\n').map(l => l.trim()).filter(l => l);
+  if (lines.length < 3) return null;
+
+  // Detect separator: tabs first, then 2+ spaces, then comma
+  const hasTabs   = lines.some(l => l.includes('\t'));
+  const hasComma  = !hasTabs && lines[0].includes(',');
+  const splitRow  = hasTabs ? l => l.split('\t').map(c => c.trim())
+                 : hasComma ? l => l.split(',').map(c => c.trim().replace(/^"|"$/g,''))
+                 :            l => l.split(/\s{2,}|\|/).map(c => c.trim()).filter(c => c);
+
+  // Build a real DOM table and pass to existing parsers
+  const table = document.createElement('table');
+  lines.forEach(line => {
+    const tr = document.createElement('tr');
+    splitRow(line).forEach(cell => {
+      const td = document.createElement('td');
+      td.textContent = cell;
+      tr.appendChild(td);
+    });
+    table.appendChild(tr);
+  });
+
+  const a = _parseFieldsAsRows(table);
+  const b = _parseFieldsAsCols(table);
+  const best = !a && !b ? null : !a ? b : !b ? a : a.score >= b.score ? a : b;
+  return best ? { brand:'', model:'', year: new Date().getFullYear(), type:'gravel', sizes: best.sizes } : null;
+}
+
+// ── Button handlers ───────────────────────────────────────────────────────────
+
+document.getElementById('btn-import').addEventListener('click', async function () {
+  const url = document.getElementById('import-url').value.trim();
+  if (!url) { setImportStatus('Enter a URL first.', 'error'); return; }
+  this.disabled = true;
+  setImportStatus('Trying proxies…');
+  try {
+    const html = await fetchPageContent(url);
+    applyResult(parseGeometryFromHTML(html, url), 'page');
+  } catch (e) {
+    setImportStatus(`Fetch failed: ${e.message}. Try pasting HTML or table text below.`, 'error');
+  } finally {
+    this.disabled = false;
+  }
+});
+
+document.getElementById('btn-import-table').addEventListener('click', () => {
+  const text = document.getElementById('paste-table').value.trim();
+  if (!text) { setImportStatus('Paste a table first.', 'error'); return; }
+  // Try HTML parse first (user may have pasted raw HTML), then plain text
+  const htmlResult = parseGeometryFromHTML(text, '');
+  const result     = htmlResult || parseTextTable(text);
+  applyResult(result, 'pasted table');
+});
+
+// ── Image OCR via Tesseract.js ────────────────────────────────────────────────
+
+let _pastedImageSrc = null;
+
+function _showImagePreview(file) {
+  const reader = new FileReader();
+  reader.onload = ev => {
+    _pastedImageSrc = ev.target.result;
+    const img  = document.getElementById('paste-image-preview');
+    const hint = document.getElementById('paste-image-hint');
+    img.src = _pastedImageSrc;
+    img.style.display = 'block';
+    hint.style.display = 'none';
+    document.getElementById('details-image').open = true;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Global paste — works anywhere on the page, no need to focus the area first
+document.addEventListener('paste', e => {
+  const item = [...(e.clipboardData?.items || [])].find(i => i.type.startsWith('image/'));
+  if (!item) return;
+  _showImagePreview(item.getAsFile());
+  e.preventDefault();
+});
+
+// Drag and drop onto the image area
+const _imgArea = document.getElementById('paste-image-area');
+_imgArea.addEventListener('dragover', e => {
+  e.preventDefault();
+  _imgArea.style.borderColor = 'var(--accent)';
+});
+_imgArea.addEventListener('dragleave', () => { _imgArea.style.borderColor = ''; });
+_imgArea.addEventListener('drop', e => {
+  e.preventDefault();
+  _imgArea.style.borderColor = '';
+  const file = [...e.dataTransfer.files].find(f => f.type.startsWith('image/'));
+  if (file) _showImagePreview(file);
+});
+
+// Click to open file browser
+const _fileInput = document.getElementById('image-file-input');
+_imgArea.addEventListener('click', () => _fileInput.click());
+_fileInput.addEventListener('change', () => { if (_fileInput.files[0]) _showImagePreview(_fileInput.files[0]); });
+
+document.getElementById('btn-clear-image').addEventListener('click', () => {
+  _pastedImageSrc = null;
+  const img  = document.getElementById('paste-image-preview');
+  const hint = document.getElementById('paste-image-hint');
+  img.src = ''; img.style.display = 'none';
+  hint.style.display = '';
+  document.getElementById('ocr-progress').textContent = '';
+  _fileInput.value = '';
+});
+
+// Parse Tesseract TSV output into word objects with bounding boxes
+function _parseTSVWords(tsv) {
+  const words = [];
+  const lines = tsv.trim().split('\n').slice(1); // skip header row
+  for (const line of lines) {
+    const p = line.split('\t');
+    if (p.length < 12 || parseInt(p[0]) !== 5) continue; // level 5 = word
+    const conf = parseFloat(p[10]);
+    const text = p.slice(11).join(' ').trim();
+    if (conf < 20 || !text || text === ' ') continue;
+    words.push({ left: +p[6], top: +p[7], width: +p[8], height: +p[9], text });
+  }
+  return words;
+}
+
+// Reconstruct tab-separated table text from word bounding boxes
+function _wordsToTableText(words) {
+  if (!words.length) return '';
+  words.sort((a, b) => a.top - b.top || a.left - b.left);
+
+  // Cluster into rows by Y proximity
+  const heights = words.map(w => w.height).sort((a, b) => a - b);
+  const medH = heights[Math.floor(heights.length / 2)] || 20;
+  const rowTol = Math.max(medH * 0.6, 6);
+
+  const rows = [[words[0]]];
+  for (let i = 1; i < words.length; i++) {
+    const last = rows[rows.length - 1];
+    if (Math.abs(words[i].top - last[0].top) <= rowTol) last.push(words[i]);
+    else rows.push([words[i]]);
+  }
+
+  return rows.map(row => {
+    row.sort((a, b) => a.left - b.left);
+    const avgW = row.reduce((s, w) => s + w.width, 0) / row.length;
+    let out = row[0].text;
+    for (let i = 1; i < row.length; i++) {
+      const gap = row[i].left - (row[i - 1].left + row[i - 1].width);
+      out += gap > avgW * 0.9 ? '\t' : ' ';
+      out += row[i].text;
+    }
+    return out;
+  }).join('\n');
+}
+
+document.getElementById('btn-import-image').addEventListener('click', async () => {
+  if (!_pastedImageSrc) { setImportStatus('Drop, paste, or browse an image first.', 'error'); return; }
+
+  const prog = document.getElementById('ocr-progress');
+  prog.textContent = 'Loading OCR engine…';
+  setImportStatus('Running OCR — this may take ~15 s on first run…');
+
+  try {
+    if (!window.Tesseract) {
+      await new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+        s.onload = res; s.onerror = () => rej(new Error('Failed to load Tesseract.js'));
+        document.head.appendChild(s);
+      });
+    }
+
+    const worker = await Tesseract.createWorker('eng', 1, {
+      logger: m => { if (m.progress) prog.textContent = `OCR: ${Math.round(m.progress * 100)}%`; },
+    });
+
+    // Request both text and TSV (TSV gives word-level bounding boxes for column reconstruction)
+    const { data } = await worker.recognize(_pastedImageSrc, {}, { tsv: true });
+    await worker.terminate();
+    prog.textContent = '';
+
+    // TSV path: reconstruct table from bounding boxes → much better column alignment
+    const words = _parseTSVWords(data.tsv || '');
+    const tsvTable = _wordsToTableText(words);
+
+    // Fallback: raw text line-by-line
+    const rawText = data.text || '';
+
+    const result = parseTextTable(tsvTable) || parseTextTable(rawText);
+    applyResult(result, 'image OCR');
+  } catch (e) {
+    prog.textContent = '';
+    setImportStatus(`OCR failed: ${e.message}`, 'error');
+  }
+});
+</script>

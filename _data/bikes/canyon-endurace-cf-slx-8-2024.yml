@@ -1,0 +1,89 @@
+brand: Canyon
+model: Endurace CF SLX 8
+year: 2024
+type: road
+sizes:
+  - label: "2XS"
+    stack: 527
+    reach: 363
+    ht_length: 115
+    ht_angle: 70.5
+    st_length: 430
+    st_angle: 74.0
+    tt_length: 533
+    cs_length: 408
+    bb_drop: 76
+    wheelbase: 981
+    fork_offset: 47
+  - label: "XS"
+    stack: 543
+    reach: 374
+    ht_length: 133
+    ht_angle: 71.0
+    st_length: 455
+    st_angle: 74.0
+    tt_length: 546
+    cs_length: 408
+    bb_drop: 74
+    wheelbase: 993
+    fork_offset: 47
+  - label: "S"
+    stack: 558
+    reach: 385
+    ht_length: 150
+    ht_angle: 71.5
+    st_length: 480
+    st_angle: 74.0
+    tt_length: 558
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 1005
+    fork_offset: 47
+  - label: "M"
+    stack: 572
+    reach: 395
+    ht_length: 167
+    ht_angle: 72.0
+    st_length: 505
+    st_angle: 73.5
+    tt_length: 569
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 1015
+    fork_offset: 47
+  - label: "L"
+    stack: 590
+    reach: 406
+    ht_length: 189
+    ht_angle: 72.5
+    st_length: 530
+    st_angle: 73.5
+    tt_length: 582
+    cs_length: 408
+    bb_drop: 68
+    wheelbase: 1028
+    fork_offset: 47
+  - label: "XL"
+    stack: 612
+    reach: 418
+    ht_length: 217
+    ht_angle: 73.0
+    st_length: 555
+    st_angle: 73.0
+    tt_length: 598
+    cs_length: 408
+    bb_drop: 66
+    wheelbase: 1043
+    fork_offset: 47
+  - label: "2XL"
+    stack: 640
+    reach: 431
+    ht_length: 252
+    ht_angle: 73.0
+    st_length: 580
+    st_angle: 73.0
+    tt_length: 617
+    cs_length: 408
+    bb_drop: 64
+    wheelbase: 1060
+    fork_offset: 47

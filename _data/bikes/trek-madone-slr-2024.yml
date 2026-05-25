@@ -1,0 +1,101 @@
+brand: Trek
+model: Madone SLR
+year: 2024
+type: road
+sizes:
+  - label: "47"
+    stack: 507
+    reach: 367
+    ht_length: 95
+    ht_angle: 71.0
+    st_length: 415
+    st_angle: 75.0
+    tt_length: 526
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 974
+    fork_offset: 53
+  - label: "50"
+    stack: 519
+    reach: 377
+    ht_length: 106
+    ht_angle: 71.5
+    st_length: 445
+    st_angle: 75.0
+    tt_length: 537
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 983
+    fork_offset: 53
+  - label: "52"
+    stack: 529
+    reach: 385
+    ht_length: 118
+    ht_angle: 72.0
+    st_length: 462
+    st_angle: 74.5
+    tt_length: 547
+    cs_length: 408
+    bb_drop: 68
+    wheelbase: 991
+    fork_offset: 53
+  - label: "54"
+    stack: 540
+    reach: 393
+    ht_length: 132
+    ht_angle: 72.5
+    st_length: 487
+    st_angle: 74.5
+    tt_length: 557
+    cs_length: 408
+    bb_drop: 67
+    wheelbase: 999
+    fork_offset: 53
+  - label: "56"
+    stack: 554
+    reach: 401
+    ht_length: 149
+    ht_angle: 73.0
+    st_length: 512
+    st_angle: 74.0
+    tt_length: 567
+    cs_length: 408
+    bb_drop: 65
+    wheelbase: 1007
+    fork_offset: 53
+  - label: "58"
+    stack: 571
+    reach: 410
+    ht_length: 169
+    ht_angle: 73.5
+    st_length: 537
+    st_angle: 74.0
+    tt_length: 579
+    cs_length: 408
+    bb_drop: 63
+    wheelbase: 1018
+    fork_offset: 53
+  - label: "60"
+    stack: 591
+    reach: 419
+    ht_length: 192
+    ht_angle: 73.5
+    st_length: 562
+    st_angle: 74.0
+    tt_length: 593
+    cs_length: 408
+    bb_drop: 61
+    wheelbase: 1029
+    fork_offset: 53
+  - label: "62"
+    stack: 615
+    reach: 428
+    ht_length: 220
+    ht_angle: 74.0
+    st_length: 587
+    st_angle: 73.5
+    tt_length: 607
+    cs_length: 408
+    bb_drop: 59
+    wheelbase: 1040
+    fork_offset: 53

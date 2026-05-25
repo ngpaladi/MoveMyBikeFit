@@ -1,0 +1,89 @@
+brand: Specialized
+model: Roubaix SL8
+year: 2024
+type: road
+sizes:
+  - label: "44"
+    stack: 516
+    reach: 358
+    ht_length: 100
+    ht_angle: 70.5
+    st_length: 430
+    st_angle: 74.5
+    tt_length: 524
+    cs_length: 410
+    bb_drop: 70
+    wheelbase: 976
+    fork_offset: 47
+  - label: "49"
+    stack: 527
+    reach: 368
+    ht_length: 110
+    ht_angle: 71.0
+    st_length: 465
+    st_angle: 74.5
+    tt_length: 541
+    cs_length: 410
+    bb_drop: 68
+    wheelbase: 985
+    fork_offset: 47
+  - label: "52"
+    stack: 543
+    reach: 381
+    ht_length: 125
+    ht_angle: 71.5
+    st_length: 490
+    st_angle: 74.0
+    tt_length: 556
+    cs_length: 410
+    bb_drop: 66
+    wheelbase: 998
+    fork_offset: 47
+  - label: "54"
+    stack: 555
+    reach: 390
+    ht_length: 140
+    ht_angle: 72.0
+    st_length: 520
+    st_angle: 74.0
+    tt_length: 566
+    cs_length: 410
+    bb_drop: 66
+    wheelbase: 1007
+    fork_offset: 47
+  - label: "56"
+    stack: 573
+    reach: 399
+    ht_length: 160
+    ht_angle: 72.5
+    st_length: 545
+    st_angle: 73.5
+    tt_length: 578
+    cs_length: 410
+    bb_drop: 64
+    wheelbase: 1017
+    fork_offset: 47
+  - label: "58"
+    stack: 591
+    reach: 408
+    ht_length: 180
+    ht_angle: 73.0
+    st_length: 570
+    st_angle: 73.5
+    tt_length: 590
+    cs_length: 410
+    bb_drop: 62
+    wheelbase: 1027
+    fork_offset: 47
+  - label: "61"
+    stack: 620
+    reach: 421
+    ht_length: 215
+    ht_angle: 73.0
+    st_length: 600
+    st_angle: 73.0
+    tt_length: 608
+    cs_length: 410
+    bb_drop: 60
+    wheelbase: 1044
+    fork_offset: 47

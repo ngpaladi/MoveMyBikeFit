@@ -1,0 +1,77 @@
+brand: Litespeed
+model: T5
+year: 2024
+type: road
+sizes:
+  - label: "49"
+    stack: 520
+    reach: 368
+    ht_length: 108
+    ht_angle: 71.5
+    st_length: 450
+    st_angle: 74.5
+    tt_length: 527
+    cs_length: 407
+    bb_drop: 70
+    wheelbase: 966
+    fork_offset: 45
+  - label: "52"
+    stack: 533
+    reach: 378
+    ht_length: 122
+    ht_angle: 72.0
+    st_length: 478
+    st_angle: 74.5
+    tt_length: 538
+    cs_length: 407
+    bb_drop: 68
+    wheelbase: 975
+    fork_offset: 45
+  - label: "55"
+    stack: 545
+    reach: 388
+    ht_length: 137
+    ht_angle: 72.5
+    st_length: 507
+    st_angle: 74.0
+    tt_length: 549
+    cs_length: 407
+    bb_drop: 66
+    wheelbase: 985
+    fork_offset: 45
+  - label: "57"
+    stack: 558
+    reach: 397
+    ht_length: 153
+    ht_angle: 73.0
+    st_length: 527
+    st_angle: 74.0
+    tt_length: 559
+    cs_length: 407
+    bb_drop: 64
+    wheelbase: 993
+    fork_offset: 45
+  - label: "59"
+    stack: 574
+    reach: 407
+    ht_length: 172
+    ht_angle: 73.5
+    st_length: 552
+    st_angle: 73.5
+    tt_length: 571
+    cs_length: 407
+    bb_drop: 63
+    wheelbase: 1003
+    fork_offset: 45
+  - label: "61"
+    stack: 594
+    reach: 418
+    ht_length: 197
+    ht_angle: 73.5
+    st_length: 577
+    st_angle: 73.5
+    tt_length: 586
+    cs_length: 407
+    bb_drop: 61
+    wheelbase: 1016
+    fork_offset: 45

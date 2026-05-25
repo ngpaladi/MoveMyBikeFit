@@ -1,0 +1,65 @@
+brand: Canyon
+model: Inflite CF SLX 8
+year: 2024
+type: cx
+sizes:
+  - label: "XS"
+    stack: 533
+    reach: 371
+    ht_length: 108
+    ht_angle: 71.5
+    st_length: 430
+    st_angle: 74.5
+    tt_length: 539
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 984
+    fork_offset: 45
+  - label: "S"
+    stack: 547
+    reach: 381
+    ht_length: 122
+    ht_angle: 72.0
+    st_length: 455
+    st_angle: 74.5
+    tt_length: 550
+    cs_length: 425
+    bb_drop: 63
+    wheelbase: 994
+    fork_offset: 45
+  - label: "M"
+    stack: 561
+    reach: 391
+    ht_length: 138
+    ht_angle: 72.5
+    st_length: 480
+    st_angle: 74.0
+    tt_length: 561
+    cs_length: 425
+    bb_drop: 61
+    wheelbase: 1004
+    fork_offset: 45
+  - label: "L"
+    stack: 578
+    reach: 402
+    ht_length: 158
+    ht_angle: 73.0
+    st_length: 505
+    st_angle: 74.0
+    tt_length: 573
+    cs_length: 425
+    bb_drop: 59
+    wheelbase: 1015
+    fork_offset: 45
+  - label: "XL"
+    stack: 599
+    reach: 414
+    ht_length: 183
+    ht_angle: 73.0
+    st_length: 530
+    st_angle: 73.5
+    tt_length: 589
+    cs_length: 425
+    bb_drop: 57
+    wheelbase: 1029
+    fork_offset: 45

@@ -1,0 +1,15 @@
+# Bikes to keep up-to-date from bikeinsights.com.
+# Each entry is scraped when its output file doesn't exist yet.
+# Run the "Add bike" workflow to add a new entry and immediately scrape it.
+#
+# Fields:
+#   url:     bikeinsights.com /bikes/... URL
+#   type:    gravel | road | cx | adventure
+#   version: (optional) year override, e.g. 2024
+#   build:   (optional) build slug override, e.g. cf-sl-70
+
+bikes:
+  - url: https://bikeinsights.com/bikes/5cb22fd9f3e7180017975481-canyon-bicycles-grail
+    type: gravel
+  - url: https://bikeinsights.com/bikes/609a678f9fed2b001c027a44-canyon-bicycles-grizl
+    type: gravel

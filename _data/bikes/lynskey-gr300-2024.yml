@@ -1,0 +1,77 @@
+brand: Lynskey
+model: GR300
+year: 2024
+type: gravel
+sizes:
+  - label: "49"
+    stack: 543
+    reach: 366
+    ht_length: 112
+    ht_angle: 70.0
+    st_length: 450
+    st_angle: 73.5
+    tt_length: 551
+    cs_length: 430
+    bb_drop: 78
+    wheelbase: 1012
+    fork_offset: 51
+  - label: "52"
+    stack: 561
+    reach: 378
+    ht_length: 130
+    ht_angle: 70.5
+    st_length: 478
+    st_angle: 73.5
+    tt_length: 564
+    cs_length: 430
+    bb_drop: 76
+    wheelbase: 1025
+    fork_offset: 51
+  - label: "54"
+    stack: 575
+    reach: 388
+    ht_length: 146
+    ht_angle: 71.0
+    st_length: 498
+    st_angle: 73.5
+    tt_length: 575
+    cs_length: 430
+    bb_drop: 74
+    wheelbase: 1036
+    fork_offset: 51
+  - label: "56"
+    stack: 590
+    reach: 399
+    ht_length: 164
+    ht_angle: 71.5
+    st_length: 523
+    st_angle: 73.0
+    tt_length: 587
+    cs_length: 430
+    bb_drop: 72
+    wheelbase: 1048
+    fork_offset: 51
+  - label: "58"
+    stack: 608
+    reach: 411
+    ht_length: 185
+    ht_angle: 72.0
+    st_length: 548
+    st_angle: 73.0
+    tt_length: 600
+    cs_length: 430
+    bb_drop: 70
+    wheelbase: 1062
+    fork_offset: 51
+  - label: "60"
+    stack: 630
+    reach: 423
+    ht_length: 210
+    ht_angle: 72.0
+    st_length: 573
+    st_angle: 73.0
+    tt_length: 618
+    cs_length: 430
+    bb_drop: 68
+    wheelbase: 1078
+    fork_offset: 51

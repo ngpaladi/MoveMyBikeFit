@@ -1,0 +1,89 @@
+brand: Specialized
+model: Tarmac SL8
+year: 2024
+type: road
+sizes:
+  - label: "44"
+    stack: 502
+    reach: 358
+    ht_length: 90
+    ht_angle: 71.0
+    st_length: 410
+    st_angle: 75.0
+    tt_length: 515
+    cs_length: 405
+    bb_drop: 68
+    wheelbase: 960
+    fork_offset: 50
+  - label: "49"
+    stack: 512
+    reach: 368
+    ht_length: 100
+    ht_angle: 71.5
+    st_length: 455
+    st_angle: 74.5
+    tt_length: 526
+    cs_length: 405
+    bb_drop: 68
+    wheelbase: 968
+    fork_offset: 50
+  - label: "52"
+    stack: 526
+    reach: 378
+    ht_length: 115
+    ht_angle: 72.0
+    st_length: 480
+    st_angle: 74.5
+    tt_length: 539
+    cs_length: 405
+    bb_drop: 66
+    wheelbase: 979
+    fork_offset: 50
+  - label: "54"
+    stack: 536
+    reach: 386
+    ht_length: 130
+    ht_angle: 73.0
+    st_length: 510
+    st_angle: 74.0
+    tt_length: 548
+    cs_length: 405
+    bb_drop: 66
+    wheelbase: 987
+    fork_offset: 50
+  - label: "56"
+    stack: 549
+    reach: 396
+    ht_length: 150
+    ht_angle: 73.5
+    st_length: 535
+    st_angle: 74.0
+    tt_length: 558
+    cs_length: 405
+    bb_drop: 64
+    wheelbase: 996
+    fork_offset: 50
+  - label: "58"
+    stack: 567
+    reach: 405
+    ht_length: 170
+    ht_angle: 74.0
+    st_length: 560
+    st_angle: 73.5
+    tt_length: 570
+    cs_length: 405
+    bb_drop: 62
+    wheelbase: 1006
+    fork_offset: 50
+  - label: "61"
+    stack: 594
+    reach: 417
+    ht_length: 200
+    ht_angle: 74.0
+    st_length: 590
+    st_angle: 73.5
+    tt_length: 587
+    cs_length: 405
+    bb_drop: 60
+    wheelbase: 1022
+    fork_offset: 50

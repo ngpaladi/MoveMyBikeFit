@@ -1,0 +1,77 @@
+brand: Giant
+model: Revolt Advanced 1
+year: 2024
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 542
+    reach: 363
+    ht_length: 110
+    ht_angle: 69.5
+    st_length: 430
+    st_angle: 73.5
+    tt_length: 551
+    cs_length: 428
+    bb_drop: 75
+    wheelbase: 1015
+    fork_offset: 51
+  - label: "S"
+    stack: 558
+    reach: 376
+    ht_length: 125
+    ht_angle: 70.0
+    st_length: 467
+    st_angle: 73.5
+    tt_length: 567
+    cs_length: 428
+    bb_drop: 73
+    wheelbase: 1028
+    fork_offset: 51
+  - label: "M"
+    stack: 575
+    reach: 390
+    ht_length: 145
+    ht_angle: 70.5
+    st_length: 499
+    st_angle: 73.5
+    tt_length: 582
+    cs_length: 428
+    bb_drop: 71
+    wheelbase: 1042
+    fork_offset: 51
+  - label: "ML"
+    stack: 591
+    reach: 402
+    ht_length: 163
+    ht_angle: 71.0
+    st_length: 524
+    st_angle: 73.5
+    tt_length: 594
+    cs_length: 428
+    bb_drop: 69
+    wheelbase: 1054
+    fork_offset: 51
+  - label: "L"
+    stack: 609
+    reach: 414
+    ht_length: 183
+    ht_angle: 71.5
+    st_length: 549
+    st_angle: 73.0
+    tt_length: 607
+    cs_length: 428
+    bb_drop: 67
+    wheelbase: 1068
+    fork_offset: 51
+  - label: "XL"
+    stack: 632
+    reach: 428
+    ht_length: 210
+    ht_angle: 71.5
+    st_length: 574
+    st_angle: 73.0
+    tt_length: 626
+    cs_length: 428
+    bb_drop: 65
+    wheelbase: 1085
+    fork_offset: 51

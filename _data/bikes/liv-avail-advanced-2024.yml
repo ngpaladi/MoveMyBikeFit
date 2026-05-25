@@ -1,0 +1,65 @@
+brand: Liv
+model: Avail Advanced
+year: 2024
+type: road
+sizes:
+  - label: "XS"
+    stack: 527
+    reach: 351
+    ht_length: 112
+    ht_angle: 70.5
+    st_length: 415
+    st_angle: 73.0
+    tt_length: 516
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 965
+    fork_offset: 47
+  - label: "S"
+    stack: 543
+    reach: 363
+    ht_length: 130
+    ht_angle: 71.0
+    st_length: 445
+    st_angle: 73.0
+    tt_length: 529
+    cs_length: 410
+    bb_drop: 70
+    wheelbase: 977
+    fork_offset: 47
+  - label: "M"
+    stack: 558
+    reach: 375
+    ht_length: 148
+    ht_angle: 71.5
+    st_length: 470
+    st_angle: 73.0
+    tt_length: 541
+    cs_length: 410
+    bb_drop: 68
+    wheelbase: 988
+    fork_offset: 47
+  - label: "ML"
+    stack: 573
+    reach: 386
+    ht_length: 165
+    ht_angle: 72.0
+    st_length: 495
+    st_angle: 73.0
+    tt_length: 553
+    cs_length: 410
+    bb_drop: 66
+    wheelbase: 999
+    fork_offset: 47
+  - label: "L"
+    stack: 591
+    reach: 397
+    ht_length: 185
+    ht_angle: 72.5
+    st_length: 520
+    st_angle: 72.5
+    tt_length: 566
+    cs_length: 410
+    bb_drop: 64
+    wheelbase: 1011
+    fork_offset: 47

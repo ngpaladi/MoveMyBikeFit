@@ -1,0 +1,75 @@
+brand: Lauf
+model: Seigla
+year: 2024
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 523
+    reach: 378
+    ht_length: 84
+    ht_angle: 70.5
+    st_length: 461
+    st_angle: 72.9
+    tt_length: 532
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1009
+    fork_offset: 47
+    fork_length: 419
+    standover: 731
+  - label: "S"
+    stack: 537
+    reach: 383
+    ht_length: 99
+    ht_angle: 70.5
+    st_length: 500
+    st_angle: 72.7
+    tt_length: 544
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1020
+    fork_offset: 47
+    fork_length: 419
+    standover: 763
+  - label: "M"
+    stack: 564
+    reach: 394
+    ht_length: 129
+    ht_angle: 70.5
+    st_length: 528
+    st_angle: 72.5
+    tt_length: 563
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1040
+    fork_offset: 47
+    fork_length: 419
+    standover: 789
+  - label: "L"
+    stack: 593
+    reach: 405
+    ht_length: 159
+    ht_angle: 70.5
+    st_length: 548
+    st_angle: 72.4
+    tt_length: 584
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1061
+    fork_offset: 47
+    fork_length: 419
+    standover: 811
+  - label: "XL"
+    stack: 623
+    reach: 416
+    ht_length: 191
+    ht_angle: 70.5
+    st_length: 575
+    st_angle: 72.3
+    tt_length: 607
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1084
+    fork_offset: 47
+    fork_length: 419
+    standover: 840

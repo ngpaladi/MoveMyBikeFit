@@ -1,0 +1,70 @@
+brand: Winspace
+model: G3
+year: 2024
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 539
+    reach: 363
+    ht_length: 120
+    ht_angle: 69.5
+    st_length: 440
+    st_angle: 73.5
+    tt_length: 523
+    cs_length: 430
+    bb_drop: 75
+    wheelbase: 1018
+    fork_offset: 54
+    standover: 756
+  - label: "S"
+    stack: 551
+    reach: 370
+    ht_length: 130
+    ht_angle: 70.0
+    st_length: 460
+    st_angle: 73.5
+    tt_length: 533
+    cs_length: 430
+    bb_drop: 75
+    wheelbase: 1024
+    fork_offset: 54
+    standover: 773
+  - label: "M"
+    stack: 568
+    reach: 377
+    ht_length: 145
+    ht_angle: 70.5
+    st_length: 480
+    st_angle: 73.5
+    tt_length: 545
+    cs_length: 430
+    bb_drop: 75
+    wheelbase: 1029
+    fork_offset: 51
+    standover: 790
+  - label: "L"
+    stack: 582
+    reach: 388
+    ht_length: 160
+    ht_angle: 70.5
+    st_length: 510
+    st_angle: 73.5
+    tt_length: 560
+    cs_length: 430
+    bb_drop: 75
+    wheelbase: 1045
+    fork_offset: 51
+    standover: 815
+  - label: "XL"
+    stack: 601
+    reach: 399
+    ht_length: 180
+    ht_angle: 70.5
+    st_length: 540
+    st_angle: 73.5
+    tt_length: 577
+    cs_length: 430
+    bb_drop: 75
+    wheelbase: 1063
+    fork_offset: 51
+    standover: 838

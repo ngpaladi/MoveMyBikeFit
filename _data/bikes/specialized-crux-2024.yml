@@ -1,0 +1,84 @@
+brand: Specialized
+model: Crux
+year: 2024
+type: gravel
+sizes:
+  - label: "49"
+    stack: 524
+    reach: 365
+    ht_length: 95
+    ht_angle: 70.5
+    st_length: 450
+    st_angle: 73.0
+    tt_length: 545
+    cs_length: 420
+    bb_drop: 65
+    wheelbase: 982
+    front_center: 567
+    fork_length: 374
+    fork_offset: 47
+    standover: 763
+
+  - label: "52"
+    stack: 543
+    reach: 378
+    ht_length: 110
+    ht_angle: 71.0
+    st_length: 490
+    st_angle: 73.5
+    tt_length: 565
+    cs_length: 420
+    bb_drop: 65
+    wheelbase: 996
+    front_center: 580
+    fork_length: 374
+    fork_offset: 47
+    standover: 795
+
+  - label: "54"
+    stack: 560
+    reach: 388
+    ht_length: 130
+    ht_angle: 71.0
+    st_length: 510
+    st_angle: 74.0
+    tt_length: 580
+    cs_length: 420
+    bb_drop: 65
+    wheelbase: 1004
+    front_center: 589
+    fork_length: 374
+    fork_offset: 47
+    standover: 810
+
+  - label: "56"
+    stack: 577
+    reach: 399
+    ht_length: 150
+    ht_angle: 71.5
+    st_length: 530
+    st_angle: 74.0
+    tt_length: 596
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1018
+    front_center: 603
+    fork_length: 374
+    fork_offset: 47
+    standover: 830
+
+  - label: "58"
+    stack: 597
+    reach: 410
+    ht_length: 175
+    ht_angle: 72.0
+    st_length: 550
+    st_angle: 74.5
+    tt_length: 612
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1030
+    front_center: 616
+    fork_length: 374
+    fork_offset: 47
+    standover: 852

@@ -1,0 +1,116 @@
+brand: Trek
+model: Checkpoint SL 7
+year: 2024
+type: gravel
+sizes:
+  - label: "47"
+    stack: 532
+    reach: 362
+    ht_length: 100
+    ht_angle: 70.0
+    st_length: 440
+    st_angle: 72.5
+    tt_length: 540
+    cs_length: 428
+    bb_drop: 70
+    wheelbase: 986
+    front_center: 563
+    fork_length: 375
+    fork_offset: 51
+    standover: 766
+
+  - label: "50"
+    stack: 550
+    reach: 372
+    ht_length: 115
+    ht_angle: 70.5
+    st_length: 470
+    st_angle: 72.5
+    tt_length: 554
+    cs_length: 428
+    bb_drop: 70
+    wheelbase: 999
+    front_center: 576
+    fork_length: 375
+    fork_offset: 51
+    standover: 786
+
+  - label: "52"
+    stack: 565
+    reach: 379
+    ht_length: 125
+    ht_angle: 70.5
+    st_length: 490
+    st_angle: 73.0
+    tt_length: 564
+    cs_length: 428
+    bb_drop: 70
+    wheelbase: 1006
+    front_center: 583
+    fork_length: 375
+    fork_offset: 51
+    standover: 799
+
+  - label: "54"
+    stack: 573
+    reach: 386
+    ht_length: 140
+    ht_angle: 71.0
+    st_length: 510
+    st_angle: 73.0
+    tt_length: 574
+    cs_length: 428
+    bb_drop: 70
+    wheelbase: 1014
+    front_center: 591
+    fork_length: 375
+    fork_offset: 51
+    standover: 815
+
+  - label: "56"
+    stack: 585
+    reach: 396
+    ht_length: 160
+    ht_angle: 71.0
+    st_length: 530
+    st_angle: 73.0
+    tt_length: 586
+    cs_length: 428
+    bb_drop: 70
+    wheelbase: 1024
+    front_center: 601
+    fork_length: 375
+    fork_offset: 51
+    standover: 832
+
+  - label: "58"
+    stack: 598
+    reach: 407
+    ht_length: 180
+    ht_angle: 71.5
+    st_length: 550
+    st_angle: 73.5
+    tt_length: 598
+    cs_length: 428
+    bb_drop: 70
+    wheelbase: 1036
+    front_center: 613
+    fork_length: 375
+    fork_offset: 51
+    standover: 854
+
+  - label: "60"
+    stack: 614
+    reach: 419
+    ht_length: 205
+    ht_angle: 72.0
+    st_length: 570
+    st_angle: 74.0
+    tt_length: 612
+    cs_length: 428
+    bb_drop: 70
+    wheelbase: 1049
+    front_center: 626
+    fork_length: 375
+    fork_offset: 51
+    standover: 871

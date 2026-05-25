@@ -1,0 +1,65 @@
+brand: Liv
+model: Devote Advanced
+year: 2024
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 545
+    reach: 353
+    ht_length: 115
+    ht_angle: 69.5
+    st_length: 415
+    st_angle: 73.0
+    tt_length: 531
+    cs_length: 425
+    bb_drop: 78
+    wheelbase: 988
+    fork_offset: 51
+  - label: "S"
+    stack: 562
+    reach: 366
+    ht_length: 135
+    ht_angle: 70.0
+    st_length: 445
+    st_angle: 73.0
+    tt_length: 545
+    cs_length: 425
+    bb_drop: 76
+    wheelbase: 1001
+    fork_offset: 51
+  - label: "M"
+    stack: 578
+    reach: 378
+    ht_length: 153
+    ht_angle: 70.5
+    st_length: 470
+    st_angle: 73.0
+    tt_length: 558
+    cs_length: 425
+    bb_drop: 74
+    wheelbase: 1013
+    fork_offset: 51
+  - label: "ML"
+    stack: 595
+    reach: 390
+    ht_length: 173
+    ht_angle: 71.0
+    st_length: 495
+    st_angle: 72.5
+    tt_length: 571
+    cs_length: 425
+    bb_drop: 72
+    wheelbase: 1026
+    fork_offset: 51
+  - label: "L"
+    stack: 615
+    reach: 402
+    ht_length: 196
+    ht_angle: 71.5
+    st_length: 520
+    st_angle: 72.5
+    tt_length: 585
+    cs_length: 425
+    bb_drop: 70
+    wheelbase: 1040
+    fork_offset: 51

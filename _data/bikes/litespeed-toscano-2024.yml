@@ -1,0 +1,89 @@
+brand: Litespeed
+model: Toscano
+year: 2024
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 535
+    reach: 370
+    ht_length: 88
+    ht_angle: 70.0
+    st_length: 430
+    st_angle: 74.5
+    tt_length: 517
+    cs_length: 425
+    bb_drop: 78
+    wheelbase: 1008
+    fork_offset: 50
+    front_center: 596
+    standover: 717
+  - label: "S"
+    stack: 535
+    reach: 380
+    ht_length: 88
+    ht_angle: 71.0
+    st_length: 445
+    st_angle: 74.0
+    tt_length: 532
+    cs_length: 425
+    bb_drop: 78
+    wheelbase: 1009
+    fork_offset: 50
+    front_center: 596
+    standover: 727
+  - label: "M"
+    stack: 560
+    reach: 390
+    ht_length: 116
+    ht_angle: 71.5
+    st_length: 470
+    st_angle: 73.5
+    tt_length: 555
+    cs_length: 425
+    bb_drop: 74
+    wheelbase: 1024
+    fork_offset: 50
+    front_center: 610
+    standover: 757
+  - label: "M/L"
+    stack: 585
+    reach: 395
+    ht_length: 143
+    ht_angle: 71.5
+    st_length: 495
+    st_angle: 73.5
+    tt_length: 568
+    cs_length: 425
+    bb_drop: 71
+    wheelbase: 1037
+    fork_offset: 50
+    front_center: 623
+    standover: 790
+  - label: "L"
+    stack: 615
+    reach: 405
+    ht_length: 168
+    ht_angle: 72.0
+    st_length: 520
+    st_angle: 73.0
+    tt_length: 590
+    cs_length: 425
+    bb_drop: 68
+    wheelbase: 1051
+    fork_offset: 50
+    front_center: 636
+    standover: 813
+  - label: "XL"
+    stack: 640
+    reach: 415
+    ht_length: 205
+    ht_angle: 72.0
+    st_length: 550
+    st_angle: 73.0
+    tt_length: 610
+    cs_length: 425
+    bb_drop: 68
+    wheelbase: 1073
+    fork_offset: 50
+    front_center: 657
+    standover: 845

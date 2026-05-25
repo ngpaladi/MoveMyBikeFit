@@ -1,0 +1,77 @@
+brand: Lynskey
+model: R340
+year: 2024
+type: road
+sizes:
+  - label: "49"
+    stack: 522
+    reach: 368
+    ht_length: 110
+    ht_angle: 72.0
+    st_length: 450
+    st_angle: 74.5
+    tt_length: 528
+    cs_length: 407
+    bb_drop: 68
+    wheelbase: 965
+    fork_offset: 45
+  - label: "52"
+    stack: 535
+    reach: 378
+    ht_length: 124
+    ht_angle: 72.5
+    st_length: 478
+    st_angle: 74.5
+    tt_length: 539
+    cs_length: 407
+    bb_drop: 66
+    wheelbase: 974
+    fork_offset: 45
+  - label: "54"
+    stack: 546
+    reach: 387
+    ht_length: 137
+    ht_angle: 73.0
+    st_length: 498
+    st_angle: 74.5
+    tt_length: 549
+    cs_length: 407
+    bb_drop: 65
+    wheelbase: 983
+    fork_offset: 45
+  - label: "56"
+    stack: 559
+    reach: 397
+    ht_length: 153
+    ht_angle: 73.5
+    st_length: 523
+    st_angle: 74.0
+    tt_length: 560
+    cs_length: 407
+    bb_drop: 63
+    wheelbase: 992
+    fork_offset: 45
+  - label: "58"
+    stack: 575
+    reach: 407
+    ht_length: 172
+    ht_angle: 74.0
+    st_length: 548
+    st_angle: 74.0
+    tt_length: 572
+    cs_length: 407
+    bb_drop: 61
+    wheelbase: 1002
+    fork_offset: 45
+  - label: "60"
+    stack: 594
+    reach: 418
+    ht_length: 194
+    ht_angle: 74.0
+    st_length: 573
+    st_angle: 73.5
+    tt_length: 586
+    cs_length: 407
+    bb_drop: 59
+    wheelbase: 1015
+    fork_offset: 45

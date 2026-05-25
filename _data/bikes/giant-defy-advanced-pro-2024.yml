@@ -1,0 +1,77 @@
+brand: Giant
+model: Defy Advanced Pro
+year: 2024
+type: road
+sizes:
+  - label: "XS"
+    stack: 545
+    reach: 364
+    ht_length: 115
+    ht_angle: 70.0
+    st_length: 425
+    st_angle: 73.5
+    tt_length: 535
+    cs_length: 415
+    bb_drop: 75
+    wheelbase: 987
+    fork_offset: 47
+  - label: "S"
+    stack: 561
+    reach: 376
+    ht_length: 133
+    ht_angle: 70.5
+    st_length: 460
+    st_angle: 73.5
+    tt_length: 548
+    cs_length: 415
+    bb_drop: 73
+    wheelbase: 999
+    fork_offset: 47
+  - label: "M"
+    stack: 578
+    reach: 389
+    ht_length: 153
+    ht_angle: 71.0
+    st_length: 490
+    st_angle: 73.5
+    tt_length: 562
+    cs_length: 415
+    bb_drop: 71
+    wheelbase: 1012
+    fork_offset: 47
+  - label: "ML"
+    stack: 595
+    reach: 400
+    ht_length: 173
+    ht_angle: 71.5
+    st_length: 515
+    st_angle: 73.0
+    tt_length: 575
+    cs_length: 415
+    bb_drop: 69
+    wheelbase: 1024
+    fork_offset: 47
+  - label: "L"
+    stack: 613
+    reach: 411
+    ht_length: 195
+    ht_angle: 72.0
+    st_length: 540
+    st_angle: 73.0
+    tt_length: 588
+    cs_length: 415
+    bb_drop: 67
+    wheelbase: 1037
+    fork_offset: 47
+  - label: "XL"
+    stack: 637
+    reach: 424
+    ht_length: 225
+    ht_angle: 72.0
+    st_length: 565
+    st_angle: 73.0
+    tt_length: 606
+    cs_length: 415
+    bb_drop: 65
+    wheelbase: 1054
+    fork_offset: 47

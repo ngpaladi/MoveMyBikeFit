@@ -1,0 +1,101 @@
+brand: Trek
+model: Émonda SLR
+year: 2024
+type: road
+sizes:
+  - label: "47"
+    stack: 502
+    reach: 362
+    ht_length: 90
+    ht_angle: 71.5
+    st_length: 415
+    st_angle: 75.0
+    tt_length: 520
+    cs_length: 405
+    bb_drop: 68
+    wheelbase: 960
+    fork_offset: 51
+  - label: "50"
+    stack: 515
+    reach: 372
+    ht_length: 100
+    ht_angle: 72.0
+    st_length: 445
+    st_angle: 75.0
+    tt_length: 531
+    cs_length: 405
+    bb_drop: 66
+    wheelbase: 969
+    fork_offset: 51
+  - label: "52"
+    stack: 525
+    reach: 380
+    ht_length: 112
+    ht_angle: 72.5
+    st_length: 462
+    st_angle: 74.5
+    tt_length: 540
+    cs_length: 405
+    bb_drop: 65
+    wheelbase: 977
+    fork_offset: 51
+  - label: "54"
+    stack: 536
+    reach: 388
+    ht_length: 125
+    ht_angle: 73.0
+    st_length: 487
+    st_angle: 74.5
+    tt_length: 549
+    cs_length: 405
+    bb_drop: 64
+    wheelbase: 984
+    fork_offset: 51
+  - label: "56"
+    stack: 549
+    reach: 396
+    ht_length: 142
+    ht_angle: 73.5
+    st_length: 512
+    st_angle: 74.5
+    tt_length: 559
+    cs_length: 405
+    bb_drop: 63
+    wheelbase: 993
+    fork_offset: 51
+  - label: "58"
+    stack: 565
+    reach: 405
+    ht_length: 160
+    ht_angle: 74.0
+    st_length: 537
+    st_angle: 74.0
+    tt_length: 571
+    cs_length: 405
+    bb_drop: 61
+    wheelbase: 1003
+    fork_offset: 51
+  - label: "60"
+    stack: 584
+    reach: 414
+    ht_length: 182
+    ht_angle: 74.0
+    st_length: 562
+    st_angle: 74.0
+    tt_length: 584
+    cs_length: 405
+    bb_drop: 59
+    wheelbase: 1014
+    fork_offset: 51
+  - label: "62"
+    stack: 607
+    reach: 423
+    ht_length: 208
+    ht_angle: 74.0
+    st_length: 587
+    st_angle: 74.0
+    tt_length: 598
+    cs_length: 405
+    bb_drop: 57
+    wheelbase: 1025
+    fork_offset: 51

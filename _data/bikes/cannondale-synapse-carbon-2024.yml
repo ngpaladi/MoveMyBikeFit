@@ -1,0 +1,89 @@
+brand: Cannondale
+model: Synapse Carbon
+year: 2024
+type: road
+sizes:
+  - label: "44"
+    stack: 531
+    reach: 356
+    ht_length: 110
+    ht_angle: 70.5
+    st_length: 400
+    st_angle: 73.5
+    tt_length: 519
+    cs_length: 410
+    bb_drop: 75
+    wheelbase: 974
+    fork_offset: 51
+  - label: "48"
+    stack: 548
+    reach: 369
+    ht_length: 128
+    ht_angle: 71.0
+    st_length: 435
+    st_angle: 73.5
+    tt_length: 534
+    cs_length: 410
+    bb_drop: 73
+    wheelbase: 987
+    fork_offset: 51
+  - label: "51"
+    stack: 562
+    reach: 379
+    ht_length: 144
+    ht_angle: 71.5
+    st_length: 462
+    st_angle: 73.5
+    tt_length: 545
+    cs_length: 410
+    bb_drop: 71
+    wheelbase: 997
+    fork_offset: 51
+  - label: "54"
+    stack: 574
+    reach: 390
+    ht_length: 159
+    ht_angle: 72.0
+    st_length: 489
+    st_angle: 73.5
+    tt_length: 557
+    cs_length: 410
+    bb_drop: 69
+    wheelbase: 1007
+    fork_offset: 51
+  - label: "56"
+    stack: 590
+    reach: 400
+    ht_length: 180
+    ht_angle: 72.5
+    st_length: 514
+    st_angle: 73.0
+    tt_length: 569
+    cs_length: 410
+    bb_drop: 67
+    wheelbase: 1018
+    fork_offset: 51
+  - label: "58"
+    stack: 608
+    reach: 410
+    ht_length: 203
+    ht_angle: 73.0
+    st_length: 539
+    st_angle: 73.0
+    tt_length: 581
+    cs_length: 410
+    bb_drop: 65
+    wheelbase: 1029
+    fork_offset: 51
+  - label: "61"
+    stack: 636
+    reach: 424
+    ht_length: 238
+    ht_angle: 73.0
+    st_length: 577
+    st_angle: 73.0
+    tt_length: 601
+    cs_length: 410
+    bb_drop: 63
+    wheelbase: 1048
+    fork_offset: 51

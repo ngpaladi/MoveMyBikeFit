@@ -1,0 +1,75 @@
+brand: Lauf
+model: Úthald
+year: 2024
+type: road
+sizes:
+  - label: "XS"
+    stack: 514
+    reach: 373
+    ht_length: 105
+    ht_angle: 71.5
+    st_length: 492
+    st_angle: 73.0
+    cs_length: 405
+    bb_drop: 73
+    wheelbase: 970
+    fork_offset: 48
+    front_center: 572
+    fork_length: 377
+    standover: 720
+  - label: "S"
+    stack: 537
+    reach: 378
+    ht_length: 130
+    ht_angle: 71.5
+    st_length: 529
+    st_angle: 72.8
+    cs_length: 405
+    bb_drop: 73
+    wheelbase: 983
+    fork_offset: 48
+    front_center: 585
+    fork_length: 377
+    standover: 753
+  - label: "M"
+    stack: 564
+    reach: 389
+    ht_length: 158
+    ht_angle: 71.5
+    st_length: 556
+    st_angle: 72.6
+    cs_length: 405
+    bb_drop: 73
+    wheelbase: 1003
+    fork_offset: 48
+    front_center: 605
+    fork_length: 377
+    standover: 779
+  - label: "L"
+    stack: 593
+    reach: 400
+    ht_length: 189
+    ht_angle: 71.5
+    st_length: 585
+    st_angle: 72.5
+    cs_length: 405
+    bb_drop: 73
+    wheelbase: 1023
+    fork_offset: 48
+    front_center: 625
+    fork_length: 377
+    standover: 808
+  - label: "XL"
+    stack: 623
+    reach: 411
+    ht_length: 220
+    ht_angle: 71.5
+    st_length: 611
+    st_angle: 72.4
+    cs_length: 405
+    bb_drop: 73
+    wheelbase: 1044
+    fork_offset: 48
+    front_center: 646
+    fork_length: 377
+    standover: 835

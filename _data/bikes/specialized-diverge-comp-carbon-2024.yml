@@ -1,0 +1,77 @@
+brand: Specialized
+model: Diverge Comp Carbon
+year: 2024
+type: gravel
+sizes:
+  - label: "49"
+    stack: 533
+    reach: 365
+    ht_length: 110
+    ht_angle: 70.0
+    st_length: 465
+    st_angle: 74.0
+    tt_length: 554
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1017
+    fork_offset: 51
+  - label: "52"
+    stack: 549
+    reach: 377
+    ht_length: 120
+    ht_angle: 70.5
+    st_length: 490
+    st_angle: 74.0
+    tt_length: 568
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1028
+    fork_offset: 51
+  - label: "54"
+    stack: 565
+    reach: 390
+    ht_length: 135
+    ht_angle: 71.0
+    st_length: 520
+    st_angle: 74.0
+    tt_length: 580
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1042
+    fork_offset: 51
+  - label: "56"
+    stack: 583
+    reach: 403
+    ht_length: 155
+    ht_angle: 71.5
+    st_length: 545
+    st_angle: 74.0
+    tt_length: 594
+    cs_length: 425
+    bb_drop: 73
+    wheelbase: 1054
+    fork_offset: 51
+  - label: "58"
+    stack: 601
+    reach: 415
+    ht_length: 175
+    ht_angle: 72.0
+    st_length: 570
+    st_angle: 73.5
+    tt_length: 607
+    cs_length: 425
+    bb_drop: 71
+    wheelbase: 1067
+    fork_offset: 51
+  - label: "61"
+    stack: 630
+    reach: 430
+    ht_length: 210
+    ht_angle: 72.0
+    st_length: 600
+    st_angle: 73.5
+    tt_length: 625
+    cs_length: 425
+    bb_drop: 68
+    wheelbase: 1085
+    fork_offset: 51

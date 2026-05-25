@@ -1,0 +1,77 @@
+brand: Giant
+model: TCR Advanced SL
+year: 2024
+type: road
+sizes:
+  - label: "XS"
+    stack: 509
+    reach: 367
+    ht_length: 95
+    ht_angle: 72.0
+    st_length: 410
+    st_angle: 74.5
+    tt_length: 522
+    cs_length: 405
+    bb_drop: 68
+    wheelbase: 965
+    fork_offset: 43
+  - label: "S"
+    stack: 523
+    reach: 379
+    ht_length: 110
+    ht_angle: 72.5
+    st_length: 445
+    st_angle: 74.5
+    tt_length: 536
+    cs_length: 405
+    bb_drop: 66
+    wheelbase: 975
+    fork_offset: 43
+  - label: "M"
+    stack: 538
+    reach: 391
+    ht_length: 128
+    ht_angle: 73.0
+    st_length: 475
+    st_angle: 74.0
+    tt_length: 549
+    cs_length: 405
+    bb_drop: 64
+    wheelbase: 985
+    fork_offset: 43
+  - label: "ML"
+    stack: 553
+    reach: 402
+    ht_length: 148
+    ht_angle: 73.5
+    st_length: 500
+    st_angle: 74.0
+    tt_length: 561
+    cs_length: 405
+    bb_drop: 62
+    wheelbase: 995
+    fork_offset: 43
+  - label: "L"
+    stack: 570
+    reach: 413
+    ht_length: 170
+    ht_angle: 74.0
+    st_length: 525
+    st_angle: 74.0
+    tt_length: 573
+    cs_length: 405
+    bb_drop: 60
+    wheelbase: 1006
+    fork_offset: 43
+  - label: "XL"
+    stack: 592
+    reach: 426
+    ht_length: 198
+    ht_angle: 74.0
+    st_length: 550
+    st_angle: 73.5
+    tt_length: 590
+    cs_length: 405
+    bb_drop: 58
+    wheelbase: 1021
+    fork_offset: 43

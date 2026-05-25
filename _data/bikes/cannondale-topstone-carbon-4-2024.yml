@@ -1,0 +1,77 @@
+brand: Cannondale
+model: Topstone Carbon 4
+year: 2024
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 548
+    reach: 363
+    ht_length: 115
+    ht_angle: 69.5
+    st_length: 430
+    st_angle: 73.5
+    tt_length: 551
+    cs_length: 425
+    bb_drop: 82
+    wheelbase: 1011
+    fork_offset: 51
+  - label: "SM"
+    stack: 568
+    reach: 378
+    ht_length: 135
+    ht_angle: 70.0
+    st_length: 464
+    st_angle: 73.5
+    tt_length: 567
+    cs_length: 425
+    bb_drop: 80
+    wheelbase: 1027
+    fork_offset: 51
+  - label: "MD"
+    stack: 588
+    reach: 392
+    ht_length: 158
+    ht_angle: 70.5
+    st_length: 493
+    st_angle: 73.5
+    tt_length: 582
+    cs_length: 425
+    bb_drop: 78
+    wheelbase: 1042
+    fork_offset: 51
+  - label: "LG"
+    stack: 608
+    reach: 406
+    ht_length: 182
+    ht_angle: 71.0
+    st_length: 518
+    st_angle: 73.0
+    tt_length: 597
+    cs_length: 425
+    bb_drop: 76
+    wheelbase: 1057
+    fork_offset: 51
+  - label: "XL"
+    stack: 633
+    reach: 420
+    ht_length: 211
+    ht_angle: 71.5
+    st_length: 543
+    st_angle: 73.0
+    tt_length: 614
+    cs_length: 425
+    bb_drop: 74
+    wheelbase: 1073
+    fork_offset: 51
+  - label: "2XL"
+    stack: 661
+    reach: 435
+    ht_length: 245
+    ht_angle: 71.5
+    st_length: 568
+    st_angle: 73.0
+    tt_length: 633
+    cs_length: 425
+    bb_drop: 72
+    wheelbase: 1091
+    fork_offset: 51

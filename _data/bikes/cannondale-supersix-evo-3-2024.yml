@@ -1,0 +1,89 @@
+brand: Cannondale
+model: SuperSix EVO 3
+year: 2024
+type: road
+sizes:
+  - label: "48"
+    stack: 510
+    reach: 363
+    ht_length: 98
+    ht_angle: 71.5
+    st_length: 420
+    st_angle: 74.5
+    tt_length: 519
+    cs_length: 407
+    bb_drop: 70
+    wheelbase: 964
+    fork_offset: 47
+  - label: "51"
+    stack: 523
+    reach: 372
+    ht_length: 111
+    ht_angle: 72.0
+    st_length: 447
+    st_angle: 74.5
+    tt_length: 530
+    cs_length: 407
+    bb_drop: 68
+    wheelbase: 973
+    fork_offset: 47
+  - label: "54"
+    stack: 534
+    reach: 383
+    ht_length: 124
+    ht_angle: 72.5
+    st_length: 474
+    st_angle: 74.5
+    tt_length: 542
+    cs_length: 407
+    bb_drop: 66
+    wheelbase: 983
+    fork_offset: 47
+  - label: "56"
+    stack: 546
+    reach: 392
+    ht_length: 140
+    ht_angle: 73.0
+    st_length: 494
+    st_angle: 74.0
+    tt_length: 553
+    cs_length: 407
+    bb_drop: 64
+    wheelbase: 991
+    fork_offset: 47
+  - label: "58"
+    stack: 562
+    reach: 401
+    ht_length: 160
+    ht_angle: 73.5
+    st_length: 519
+    st_angle: 74.0
+    tt_length: 564
+    cs_length: 407
+    bb_drop: 62
+    wheelbase: 1001
+    fork_offset: 47
+  - label: "61"
+    stack: 586
+    reach: 414
+    ht_length: 190
+    ht_angle: 74.0
+    st_length: 557
+    st_angle: 73.5
+    tt_length: 580
+    cs_length: 407
+    bb_drop: 60
+    wheelbase: 1016
+    fork_offset: 47
+  - label: "64"
+    stack: 614
+    reach: 427
+    ht_length: 225
+    ht_angle: 74.0
+    st_length: 594
+    st_angle: 73.5
+    tt_length: 598
+    cs_length: 407
+    bb_drop: 58
+    wheelbase: 1032
+    fork_offset: 47

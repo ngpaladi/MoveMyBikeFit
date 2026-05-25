@@ -1,0 +1,89 @@
+brand: Canyon
+model: Aeroad CF SLX 8
+year: 2024
+type: road
+sizes:
+  - label: "2XS"
+    stack: 511
+    reach: 371
+    ht_length: 98
+    ht_angle: 71.5
+    st_length: 420
+    st_angle: 74.5
+    tt_length: 528
+    cs_length: 405
+    bb_drop: 72
+    wheelbase: 970
+    fork_offset: 45
+  - label: "XS"
+    stack: 524
+    reach: 382
+    ht_length: 112
+    ht_angle: 72.0
+    st_length: 445
+    st_angle: 74.5
+    tt_length: 540
+    cs_length: 405
+    bb_drop: 70
+    wheelbase: 980
+    fork_offset: 45
+  - label: "S"
+    stack: 537
+    reach: 392
+    ht_length: 127
+    ht_angle: 72.5
+    st_length: 470
+    st_angle: 74.0
+    tt_length: 551
+    cs_length: 405
+    bb_drop: 68
+    wheelbase: 990
+    fork_offset: 45
+  - label: "M"
+    stack: 550
+    reach: 402
+    ht_length: 143
+    ht_angle: 73.0
+    st_length: 495
+    st_angle: 74.0
+    tt_length: 562
+    cs_length: 405
+    bb_drop: 66
+    wheelbase: 1000
+    fork_offset: 45
+  - label: "L"
+    stack: 567
+    reach: 413
+    ht_length: 163
+    ht_angle: 73.5
+    st_length: 520
+    st_angle: 73.5
+    tt_length: 574
+    cs_length: 405
+    bb_drop: 64
+    wheelbase: 1011
+    fork_offset: 45
+  - label: "XL"
+    stack: 588
+    reach: 425
+    ht_length: 188
+    ht_angle: 73.5
+    st_length: 545
+    st_angle: 73.5
+    tt_length: 590
+    cs_length: 405
+    bb_drop: 62
+    wheelbase: 1025
+    fork_offset: 45
+  - label: "2XL"
+    stack: 614
+    reach: 438
+    ht_length: 220
+    ht_angle: 74.0
+    st_length: 570
+    st_angle: 73.0
+    tt_length: 607
+    cs_length: 405
+    bb_drop: 60
+    wheelbase: 1040
+    fork_offset: 45

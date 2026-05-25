@@ -1,0 +1,89 @@
+brand: Litespeed
+model: Flint
+year: 2024
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 535
+    reach: 360
+    ht_length: 101
+    ht_angle: 69.0
+    st_length: 430
+    st_angle: 75.0
+    tt_length: 503
+    cs_length: 437
+    bb_drop: 78
+    wheelbase: 1019
+    fork_offset: 50
+    front_center: 594
+    standover: 714
+  - label: "S"
+    stack: 550
+    reach: 370
+    ht_length: 115
+    ht_angle: 69.5
+    st_length: 445
+    st_angle: 74.5
+    tt_length: 523
+    cs_length: 437
+    bb_drop: 78
+    wheelbase: 1030
+    fork_offset: 50
+    front_center: 605
+    standover: 730
+  - label: "M"
+    stack: 575
+    reach: 380
+    ht_length: 141
+    ht_angle: 70.0
+    st_length: 470
+    st_angle: 74.0
+    tt_length: 545
+    cs_length: 437
+    bb_drop: 76
+    wheelbase: 1045
+    fork_offset: 50
+    front_center: 620
+    standover: 758
+  - label: "M/L"
+    stack: 600
+    reach: 390
+    ht_length: 166
+    ht_angle: 70.5
+    st_length: 495
+    st_angle: 73.5
+    tt_length: 568
+    cs_length: 437
+    bb_drop: 76
+    wheelbase: 1059
+    fork_offset: 50
+    front_center: 633
+    standover: 784
+  - label: "L"
+    stack: 625
+    reach: 395
+    ht_length: 192
+    ht_angle: 71.0
+    st_length: 520
+    st_angle: 73.5
+    tt_length: 580
+    cs_length: 437
+    bb_drop: 74
+    wheelbase: 1068
+    fork_offset: 50
+    front_center: 642
+    standover: 812
+  - label: "XL"
+    stack: 650
+    reach: 400
+    ht_length: 214
+    ht_angle: 71.5
+    st_length: 550
+    st_angle: 73.0
+    tt_length: 600
+    cs_length: 437
+    bb_drop: 74
+    wheelbase: 1075
+    fork_offset: 50
+    front_center: 649
+    standover: 838

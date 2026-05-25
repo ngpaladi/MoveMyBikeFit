@@ -1,0 +1,101 @@
+brand: Trek
+model: Domane SL 6
+year: 2024
+type: road
+sizes:
+  - label: "47"
+    stack: 521
+    reach: 361
+    ht_length: 105
+    ht_angle: 70.5
+    st_length: 430
+    st_angle: 74.0
+    tt_length: 531
+    cs_length: 408
+    bb_drop: 74
+    wheelbase: 983
+    fork_offset: 49
+  - label: "50"
+    stack: 536
+    reach: 372
+    ht_length: 120
+    ht_angle: 71.0
+    st_length: 458
+    st_angle: 74.0
+    tt_length: 543
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 994
+    fork_offset: 49
+  - label: "52"
+    stack: 547
+    reach: 380
+    ht_length: 133
+    ht_angle: 71.5
+    st_length: 476
+    st_angle: 74.0
+    tt_length: 553
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 1003
+    fork_offset: 49
+  - label: "54"
+    stack: 559
+    reach: 388
+    ht_length: 148
+    ht_angle: 72.0
+    st_length: 499
+    st_angle: 74.0
+    tt_length: 562
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 1012
+    fork_offset: 49
+  - label: "56"
+    stack: 572
+    reach: 396
+    ht_length: 165
+    ht_angle: 72.5
+    st_length: 524
+    st_angle: 73.5
+    tt_length: 573
+    cs_length: 408
+    bb_drop: 68
+    wheelbase: 1021
+    fork_offset: 49
+  - label: "58"
+    stack: 588
+    reach: 404
+    ht_length: 183
+    ht_angle: 73.0
+    st_length: 549
+    st_angle: 73.5
+    tt_length: 584
+    cs_length: 408
+    bb_drop: 66
+    wheelbase: 1031
+    fork_offset: 49
+  - label: "60"
+    stack: 610
+    reach: 414
+    ht_length: 210
+    ht_angle: 73.5
+    st_length: 574
+    st_angle: 73.0
+    tt_length: 598
+    cs_length: 408
+    bb_drop: 64
+    wheelbase: 1044
+    fork_offset: 49
+  - label: "62"
+    stack: 635
+    reach: 423
+    ht_length: 240
+    ht_angle: 73.5
+    st_length: 599
+    st_angle: 73.0
+    tt_length: 612
+    cs_length: 408
+    bb_drop: 62
+    wheelbase: 1057
+    fork_offset: 49

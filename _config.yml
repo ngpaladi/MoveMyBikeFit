@@ -1,0 +1,15 @@
+title: MoveMyBikeFit
+description: Gravel bike geometry comparison and fit tool
+baseurl: "/MoveMyBikeFit"
+url: "https://noahpaladino.com"
+
+plugins:
+  - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
+  - scrape_bikeinsights.py
+  - .scraped_urls

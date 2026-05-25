@@ -1,0 +1,89 @@
+brand: Canyon
+model: Ultimate CF SLX 9
+year: 2024
+type: road
+sizes:
+  - label: "2XS"
+    stack: 505
+    reach: 365
+    ht_length: 93
+    ht_angle: 72.0
+    st_length: 420
+    st_angle: 75.0
+    tt_length: 519
+    cs_length: 405
+    bb_drop: 67
+    wheelbase: 957
+    fork_offset: 45
+  - label: "XS"
+    stack: 518
+    reach: 375
+    ht_length: 107
+    ht_angle: 72.5
+    st_length: 445
+    st_angle: 74.5
+    tt_length: 530
+    cs_length: 405
+    bb_drop: 65
+    wheelbase: 967
+    fork_offset: 45
+  - label: "S"
+    stack: 531
+    reach: 385
+    ht_length: 122
+    ht_angle: 73.0
+    st_length: 470
+    st_angle: 74.5
+    tt_length: 541
+    cs_length: 405
+    bb_drop: 64
+    wheelbase: 976
+    fork_offset: 45
+  - label: "M"
+    stack: 543
+    reach: 395
+    ht_length: 137
+    ht_angle: 73.5
+    st_length: 495
+    st_angle: 74.0
+    tt_length: 552
+    cs_length: 405
+    bb_drop: 62
+    wheelbase: 985
+    fork_offset: 45
+  - label: "L"
+    stack: 559
+    reach: 405
+    ht_length: 157
+    ht_angle: 74.0
+    st_length: 520
+    st_angle: 74.0
+    tt_length: 563
+    cs_length: 405
+    bb_drop: 61
+    wheelbase: 996
+    fork_offset: 45
+  - label: "XL"
+    stack: 580
+    reach: 417
+    ht_length: 182
+    ht_angle: 74.0
+    st_length: 545
+    st_angle: 73.5
+    tt_length: 579
+    cs_length: 405
+    bb_drop: 59
+    wheelbase: 1010
+    fork_offset: 45
+  - label: "2XL"
+    stack: 607
+    reach: 430
+    ht_length: 215
+    ht_angle: 74.0
+    st_length: 570
+    st_angle: 73.5
+    tt_length: 597
+    cs_length: 405
+    bb_drop: 57
+    wheelbase: 1026
+    fork_offset: 45

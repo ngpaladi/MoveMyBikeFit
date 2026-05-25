@@ -1,0 +1,95 @@
+brand: Cannondale
+model: SuperX
+year: 2025
+type: gravel
+sizes:
+  - label: "46"
+    stack: 515
+    reach: 365
+    ht_length: 86
+    ht_angle: 70.0
+    st_length: 449
+    st_angle: 74.3
+    tt_length: 510
+    cs_length: 422
+    bb_drop: 77
+    wheelbase: 998
+    front_center: 588
+    fork_length: 400
+    fork_offset: 55
+    standover: 746
+  - label: "51"
+    stack: 535
+    reach: 371
+    ht_length: 108
+    ht_angle: 71.0
+    st_length: 488
+    st_angle: 74.3
+    tt_length: 521
+    cs_length: 422
+    bb_drop: 72
+    wheelbase: 1005
+    front_center: 593
+    fork_length: 400
+    fork_offset: 55
+    standover: 782
+  - label: "54"
+    stack: 555
+    reach: 378
+    ht_length: 132
+    ht_angle: 71.0
+    st_length: 524
+    st_angle: 73.7
+    tt_length: 540
+    cs_length: 422
+    bb_drop: 69
+    wheelbase: 1020
+    front_center: 607
+    fork_length: 400
+    fork_offset: 55
+    standover: 812
+  - label: "56"
+    stack: 575
+    reach: 385
+    ht_length: 153
+    ht_angle: 71.0
+    st_length: 546
+    st_angle: 73.3
+    tt_length: 558
+    cs_length: 422
+    bb_drop: 69
+    wheelbase: 1034
+    front_center: 621
+    fork_length: 400
+    fork_offset: 55
+    standover: 832
+  - label: "58"
+    stack: 595
+    reach: 392
+    ht_length: 177
+    ht_angle: 71.0
+    st_length: 566
+    st_angle: 72.9
+    tt_length: 575
+    cs_length: 422
+    bb_drop: 67
+    wheelbase: 1049
+    front_center: 636
+    fork_length: 400
+    fork_offset: 55
+    standover: 836
+  - label: "61"
+    stack: 615
+    reach: 398
+    ht_length: 198
+    ht_angle: 71.0
+    st_length: 589
+    st_angle: 72.3
+    tt_length: 594
+    cs_length: 422
+    bb_drop: 67
+    wheelbase: 1062
+    front_center: 648
+    fork_length: 400
+    fork_offset: 55
+    standover: 849

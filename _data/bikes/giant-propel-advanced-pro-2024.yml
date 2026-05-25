@@ -1,0 +1,65 @@
+brand: Giant
+model: Propel Advanced Pro
+year: 2024
+type: road
+sizes:
+  - label: "S"
+    stack: 519
+    reach: 382
+    ht_length: 107
+    ht_angle: 71.5
+    st_length: 445
+    st_angle: 74.5
+    tt_length: 543
+    cs_length: 408
+    bb_drop: 73
+    wheelbase: 991
+    fork_offset: 43
+  - label: "M"
+    stack: 534
+    reach: 394
+    ht_length: 124
+    ht_angle: 72.0
+    st_length: 475
+    st_angle: 74.0
+    tt_length: 556
+    cs_length: 408
+    bb_drop: 71
+    wheelbase: 1001
+    fork_offset: 43
+  - label: "ML"
+    stack: 549
+    reach: 405
+    ht_length: 142
+    ht_angle: 72.5
+    st_length: 500
+    st_angle: 74.0
+    tt_length: 568
+    cs_length: 408
+    bb_drop: 69
+    wheelbase: 1011
+    fork_offset: 43
+  - label: "L"
+    stack: 567
+    reach: 416
+    ht_length: 162
+    ht_angle: 73.0
+    st_length: 525
+    st_angle: 74.0
+    tt_length: 580
+    cs_length: 408
+    bb_drop: 67
+    wheelbase: 1022
+    fork_offset: 43
+  - label: "XL"
+    stack: 589
+    reach: 428
+    ht_length: 187
+    ht_angle: 73.0
+    st_length: 550
+    st_angle: 73.5
+    tt_length: 596
+    cs_length: 408
+    bb_drop: 65
+    wheelbase: 1036
+    fork_offset: 43

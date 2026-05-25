@@ -1,0 +1,84 @@
+brand: Canyon
+model: Grail CF SL
+year: 2024
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 552
+    reach: 370
+    ht_length: 100
+    ht_angle: 70.0
+    st_length: 420
+    st_angle: 73.0
+    tt_length: 550
+    cs_length: 432
+    bb_drop: 78
+    wheelbase: 997
+    front_center: 573
+    fork_length: 374
+    fork_offset: 50
+    standover: 762
+
+  - label: "S"
+    stack: 566
+    reach: 381
+    ht_length: 113
+    ht_angle: 70.0
+    st_length: 450
+    st_angle: 73.5
+    tt_length: 563
+    cs_length: 432
+    bb_drop: 78
+    wheelbase: 1009
+    front_center: 585
+    fork_length: 374
+    fork_offset: 50
+    standover: 778
+
+  - label: "M"
+    stack: 583
+    reach: 392
+    ht_length: 128
+    ht_angle: 70.5
+    st_length: 480
+    st_angle: 73.5
+    tt_length: 576
+    cs_length: 432
+    bb_drop: 78
+    wheelbase: 1021
+    front_center: 597
+    fork_length: 374
+    fork_offset: 50
+    standover: 796
+
+  - label: "L"
+    stack: 600
+    reach: 404
+    ht_length: 145
+    ht_angle: 71.0
+    st_length: 510
+    st_angle: 74.0
+    tt_length: 591
+    cs_length: 432
+    bb_drop: 78
+    wheelbase: 1035
+    front_center: 611
+    fork_length: 374
+    fork_offset: 50
+    standover: 816
+
+  - label: "XL"
+    stack: 620
+    reach: 417
+    ht_length: 170
+    ht_angle: 71.0
+    st_length: 545
+    st_angle: 74.0
+    tt_length: 607
+    cs_length: 432
+    bb_drop: 78
+    wheelbase: 1049
+    front_center: 625
+    fork_length: 374
+    fork_offset: 50
+    standover: 835
