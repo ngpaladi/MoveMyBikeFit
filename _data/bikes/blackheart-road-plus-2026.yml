@@ -1,0 +1,148 @@
+brand: BlackHeart
+model: Road Plus
+year: 2026
+type: road
+sizes:
+  - label: "46"
+    stack: 530
+    reach: 378
+    ht_length: 120
+    ht_angle: 71.0
+    st_length: 440
+    st_angle: 75.5
+    tt_length: 510
+    cs_length: 422
+    bb_drop: 73
+    wheelbase: 1000
+    front_center: 589
+    fork_length: 380
+    fork_offset: 51
+    standover: 675
+
+  - label: "49"
+    stack: 541
+    reach: 380
+    ht_length: 130
+    ht_angle: 71.5
+    st_length: 460
+    st_angle: 75.0
+    tt_length: 520
+    cs_length: 422
+    bb_drop: 73
+    wheelbase: 1001
+    front_center: 590
+    fork_length: 380
+    fork_offset: 51
+    standover: 700
+
+  - label: "52"
+    stack: 550
+    reach: 383
+    ht_length: 140
+    ht_angle: 71.5
+    st_length: 480
+    st_angle: 74.5
+    tt_length: 530
+    cs_length: 422
+    bb_drop: 72
+    wheelbase: 1007
+    front_center: 596
+    fork_length: 380
+    fork_offset: 51
+    standover: 725
+
+  - label: "54"
+    stack: 567
+    reach: 387
+    ht_length: 155
+    ht_angle: 72.0
+    st_length: 500
+    st_angle: 74.0
+    tt_length: 545
+    cs_length: 422
+    bb_drop: 72
+    wheelbase: 1009
+    front_center: 597
+    fork_length: 380
+    fork_offset: 47
+    standover: 750
+
+  - label: "56"
+    stack: 581
+    reach: 394
+    ht_length: 170
+    ht_angle: 72.0
+    st_length: 515
+    st_angle: 73.5
+    tt_length: 555
+    cs_length: 422
+    bb_drop: 71
+    wheelbase: 1020
+    front_center: 608
+    fork_length: 380
+    fork_offset: 47
+    standover: 775
+
+  - label: "58"
+    stack: 597
+    reach: 399
+    ht_length: 185
+    ht_angle: 72.5
+    st_length: 530
+    st_angle: 73.5
+    tt_length: 565
+    cs_length: 422
+    bb_drop: 71
+    wheelbase: 1025
+    front_center: 613
+    fork_length: 380
+    fork_offset: 47
+    standover: 800
+
+  - label: "60"
+    stack: 610
+    reach: 409
+    ht_length: 200
+    ht_angle: 72.5
+    st_length: 545
+    st_angle: 73.5
+    tt_length: 585
+    cs_length: 422
+    bb_drop: 70
+    wheelbase: 1040
+    front_center: 628
+    fork_length: 380
+    fork_offset: 47
+    standover: 825
+
+  - label: "62"
+    stack: 629
+    reach: 419
+    ht_length: 220
+    ht_angle: 72.5
+    st_length: 565
+    st_angle: 73.0
+    tt_length: 600
+    cs_length: 422
+    bb_drop: 70
+    wheelbase: 1055
+    front_center: 643
+    fork_length: 380
+    fork_offset: 47
+    standover: 850
+
+  - label: "64"
+    stack: 648
+    reach: 427
+    ht_length: 240
+    ht_angle: 72.5
+    st_length: 585
+    st_angle: 73.0
+    tt_length: 620
+    cs_length: 422
+    bb_drop: 70
+    wheelbase: 1070
+    front_center: 657
+    fork_length: 380
+    fork_offset: 47
+    standover: 875

@@ -1,0 +1,148 @@
+brand: BlackHeart
+model: Gravel
+year: 2026
+type: gravel
+sizes:
+  - label: "46"
+    stack: 531
+    reach: 388
+    ht_length: 110
+    ht_angle: 71.0
+    st_length: 440
+    st_angle: 74.5
+    tt_length: 535
+    cs_length: 427
+    bb_drop: 74
+    wheelbase: 1024
+    front_center: 608
+    fork_length: 395
+    fork_offset: 55
+    standover: 725
+
+  - label: "49"
+    stack: 540
+    reach: 390
+    ht_length: 120
+    ht_angle: 71.0
+    st_length: 460
+    st_angle: 74.5
+    tt_length: 540
+    cs_length: 427
+    bb_drop: 74
+    wheelbase: 1029
+    front_center: 613
+    fork_length: 395
+    fork_offset: 55
+    standover: 740
+
+  - label: "52"
+    stack: 550
+    reach: 393
+    ht_length: 130
+    ht_angle: 71.0
+    st_length: 480
+    st_angle: 74.5
+    tt_length: 545
+    cs_length: 427
+    bb_drop: 74
+    wheelbase: 1035
+    front_center: 619
+    fork_length: 395
+    fork_offset: 55
+    standover: 755
+
+  - label: "54"
+    stack: 564
+    reach: 398
+    ht_length: 145
+    ht_angle: 71.25
+    st_length: 500
+    st_angle: 74.0
+    tt_length: 560
+    cs_length: 427
+    bb_drop: 73
+    wheelbase: 1044
+    front_center: 627
+    fork_length: 395
+    fork_offset: 55
+    standover: 770
+
+  - label: "56"
+    stack: 579
+    reach: 404
+    ht_length: 160
+    ht_angle: 71.25
+    st_length: 515
+    st_angle: 74.0
+    tt_length: 570
+    cs_length: 427
+    bb_drop: 73
+    wheelbase: 1052
+    front_center: 636
+    fork_length: 395
+    fork_offset: 53
+    standover: 785
+
+  - label: "58"
+    stack: 594
+    reach: 410
+    ht_length: 175
+    ht_angle: 71.5
+    st_length: 530
+    st_angle: 74.0
+    tt_length: 580
+    cs_length: 427
+    bb_drop: 73
+    wheelbase: 1061
+    front_center: 644
+    fork_length: 395
+    fork_offset: 53
+    standover: 800
+
+  - label: "60"
+    stack: 608
+    reach: 420
+    ht_length: 190
+    ht_angle: 71.5
+    st_length: 545
+    st_angle: 73.5
+    tt_length: 600
+    cs_length: 427
+    bb_drop: 72
+    wheelbase: 1076
+    front_center: 659
+    fork_length: 395
+    fork_offset: 53
+    standover: 815
+
+  - label: "62"
+    stack: 627
+    reach: 429
+    ht_length: 210
+    ht_angle: 71.5
+    st_length: 565
+    st_angle: 73.5
+    tt_length: 615
+    cs_length: 427
+    bb_drop: 72
+    wheelbase: 1092
+    front_center: 675
+    fork_length: 395
+    fork_offset: 53
+    standover: 830
+
+  - label: "64"
+    stack: 645
+    reach: 444
+    ht_length: 230
+    ht_angle: 71.5
+    st_length: 585
+    st_angle: 73.5
+    tt_length: 635
+    cs_length: 427
+    bb_drop: 72
+    wheelbase: 1113
+    front_center: 695
+    fork_length: 395
+    fork_offset: 53
+    standover: 845

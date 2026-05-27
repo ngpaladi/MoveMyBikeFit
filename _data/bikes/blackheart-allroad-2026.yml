@@ -1,0 +1,148 @@
+brand: BlackHeart
+model: Allroad
+year: 2026
+type: adventure
+sizes:
+  - label: "46"
+    stack: 533
+    reach: 377
+    ht_length: 100
+    ht_angle: 71.5
+    st_length: 460
+    st_angle: 73.5
+    tt_length: 535
+    cs_length: 422
+    bb_drop: 73
+    wheelbase: 996
+    front_center: 585
+    fork_length: 400
+    fork_offset: 47
+    standover: 685
+
+  - label: "49"
+    stack: 542
+    reach: 379
+    ht_length: 110
+    ht_angle: 71.5
+    st_length: 490
+    st_angle: 73.0
+    tt_length: 545
+    cs_length: 422
+    bb_drop: 73
+    wheelbase: 1001
+    front_center: 590
+    fork_length: 400
+    fork_offset: 47
+    standover: 710
+
+  - label: "52"
+    stack: 551
+    reach: 381
+    ht_length: 120
+    ht_angle: 71.5
+    st_length: 520
+    st_angle: 72.5
+    tt_length: 555
+    cs_length: 422
+    bb_drop: 72
+    wheelbase: 1007
+    front_center: 595
+    fork_length: 400
+    fork_offset: 47
+    standover: 735
+
+  - label: "54"
+    stack: 567
+    reach: 386
+    ht_length: 135
+    ht_angle: 72.0
+    st_length: 540
+    st_angle: 72.5
+    tt_length: 565
+    cs_length: 422
+    bb_drop: 72
+    wheelbase: 1012
+    front_center: 601
+    fork_length: 400
+    fork_offset: 47
+    standover: 760
+
+  - label: "56"
+    stack: 580
+    reach: 392
+    ht_length: 150
+    ht_angle: 72.0
+    st_length: 560
+    st_angle: 72.5
+    tt_length: 575
+    cs_length: 422
+    bb_drop: 71
+    wheelbase: 1023
+    front_center: 611
+    fork_length: 400
+    fork_offset: 47
+    standover: 785
+
+  - label: "58"
+    stack: 596
+    reach: 397
+    ht_length: 165
+    ht_angle: 72.5
+    st_length: 580
+    st_angle: 72.5
+    tt_length: 585
+    cs_length: 422
+    bb_drop: 71
+    wheelbase: 1028
+    front_center: 616
+    fork_length: 400
+    fork_offset: 47
+    standover: 810
+
+  - label: "60"
+    stack: 610
+    reach: 403
+    ht_length: 180
+    ht_angle: 72.5
+    st_length: 600
+    st_angle: 72.5
+    tt_length: 595
+    cs_length: 422
+    bb_drop: 70
+    wheelbase: 1039
+    front_center: 626
+    fork_length: 400
+    fork_offset: 47
+    standover: 835
+
+  - label: "62"
+    stack: 624
+    reach: 413
+    ht_length: 195
+    ht_angle: 72.5
+    st_length: 620
+    st_angle: 72.5
+    tt_length: 610
+    cs_length: 422
+    bb_drop: 70
+    wheelbase: 1055
+    front_center: 641
+    fork_length: 400
+    fork_offset: 47
+    standover: 860
+
+  - label: "64"
+    stack: 638
+    reach: 424
+    ht_length: 210
+    ht_angle: 72.5
+    st_length: 640
+    st_angle: 72.5
+    tt_length: 625
+    cs_length: 422
+    bb_drop: 70
+    wheelbase: 1071
+    front_center: 656
+    fork_length: 400
+    fork_offset: 47
+    standover: 885
