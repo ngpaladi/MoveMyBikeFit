@@ -107,6 +107,28 @@ const FitCalculator = {
     );
   },
 
+  // Estimate rider CoG using a two-segment body model:
+  //   legs    (~35%): CoG at midpoint of hip (saddle) and average pedal (BB = origin)
+  //   upper   (~65%): CoG at midpoint of hip (saddle) and hands (hood), proxy for torso lean
+  riderCoG(saddlePos, hoodPos) {
+    const legCoG   = { x: saddlePos.x / 2,                        y: saddlePos.y / 2 };
+    const upperCoG = { x: (saddlePos.x + hoodPos.x) / 2,          y: (saddlePos.y + hoodPos.y) / 2 };
+    const LEG_FRAC = 0.35;
+    return {
+      x: LEG_FRAC * legCoG.x + (1 - LEG_FRAC) * upperCoG.x,
+      y: LEG_FRAC * legCoG.y + (1 - LEG_FRAC) * upperCoG.y,
+    };
+  },
+
+  // Fore-aft weight distribution from rider CoG projected onto the wheelbase.
+  // Returns { front, rear } as percentages rounded to one decimal.
+  weightDistribution(size, cogPos) {
+    const rearX  = -Math.sqrt(size.cs_length ** 2 - size.bb_drop ** 2);
+    const frontX = rearX + size.wheelbase;
+    const front  = Math.round((cogPos.x - rearX) / (frontX - rearX) * 1000) / 10;
+    return { front, rear: Math.round((100 - front) * 10) / 10 };
+  },
+
   _circleIntersections(p1, r1, p2, r2) {
     const dx = p2.x - p1.x, dy = p2.y - p1.y;
     const d  = Math.sqrt(dx * dx + dy * dy);

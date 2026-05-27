@@ -602,10 +602,13 @@ function _fitCombos(b, fit) {
             const actual = FitCalculator.triangleDistances(saddle, hood);
             const dSth   = actual.seatToHood - fit.seatToHood;
             const dHtb   = actual.hoodToBB   - fit.hoodToBB;
-            // Least sum of squares; spacers 0–10mm are equal, penalise above 10mm
+            // Least sum of squares; spacers 0–10mm are equal, penalise above 10mm;
+            // also prefer lower hood positions (scale ~same as spacer penalty)
             const spacerPenalty = Math.max(0, sp - 10) * 0.5;
-            const score  = dSth * dSth + dHtb * dHtb + spacerPenalty;
-            out.push({ sh, shOff, setback, sp, len, ang, dSth, dHtb, score });
+            const score    = dSth * dSth + dHtb * dHtb + spacerPenalty + hood.y * 0.1;
+            const coG      = FitCalculator.riderCoG(saddle, hood);
+            const wdist    = FitCalculator.weightDistribution(b.size, coG);
+            out.push({ sh, shOff, setback, sp, len, ang, dSth, dHtb, score, frontPct: wdist.front });
           }
         }
       }
@@ -663,6 +666,7 @@ function renderFitPanel(bikes) {
       <th style="${thS}">Stem</th>
       <th style="${thS}">Angle</th>
       <th style="${thS}" class="fit-adj-spacers">Spacers</th>
+      <th style="${thS}">Front%</th>
       <th style="${thS}">Δ</th>
     </tr></thead>`;
 
@@ -691,12 +695,14 @@ function renderFitPanel(bikes) {
         const deltaColor = _dColor(totalDelta);
         const deltaStr   = totalDelta < 0.5 ? '✓' : `±${totalDelta.toFixed(1)}`;
 
+        const frontColor = c.frontPct < 38 ? 'var(--accent2)' : c.frontPct > 52 ? '#e3b341' : 'var(--text-muted)';
         tr.innerHTML = `
           <td style="${tdS}color:${shColor}">${Math.round(c.sh)}</td>
           <td style="${tdS}color:var(--text)">${setbackStr}</td>
           <td style="${tdS}color:var(--text)">${c.len}mm</td>
           <td style="${tdS}color:var(--text)">${angStr}</td>
           <td class="fit-adj-spacers" style="${tdS}color:var(--text-muted)">${c.sp}mm</td>
+          <td style="${tdS}color:${frontColor}">${c.frontPct}%</td>
           <td style="${tdS}color:${deltaColor}">${deltaStr}</td>`;
 
         tr.addEventListener('click', () => {
