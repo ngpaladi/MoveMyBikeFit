@@ -1,0 +1,94 @@
+brand: State Bicycle Co.
+model: 4130
+year: 2024
+type: road
+sizes:
+  - label: "46"
+    stack: 537
+    reach: 393
+    ht_length: 95
+    ht_angle: 72.0
+    st_length: 460
+    st_angle: 74.5
+    tt_length: 542
+    cs_length: 434
+    bb_drop: 65
+    wheelbase: 1023
+    fork_length: 408
+    fork_offset: 45
+    standover: 755
+
+  - label: "49"
+    stack: 537
+    reach: 395
+    ht_length: 95
+    ht_angle: 72.0
+    st_length: 490
+    st_angle: 74.5
+    tt_length: 550
+    cs_length: 434
+    bb_drop: 65
+    wheelbase: 1025
+    fork_length: 408
+    fork_offset: 45
+    standover: 769
+
+  - label: "52"
+    stack: 537
+    reach: 390
+    ht_length: 95
+    ht_angle: 72.0
+    st_length: 520
+    st_angle: 74.0
+    tt_length: 555
+    cs_length: 434
+    bb_drop: 65
+    wheelbase: 1028
+    fork_length: 408
+    fork_offset: 45
+    standover: 801
+
+  - label: "55"
+    stack: 551
+    reach: 391
+    ht_length: 105
+    ht_angle: 73.5
+    st_length: 550
+    st_angle: 73.0
+    tt_length: 565
+    cs_length: 434
+    bb_drop: 65
+    wheelbase: 1011
+    fork_length: 408
+    fork_offset: 45
+    standover: 823
+
+  - label: "59"
+    stack: 585
+    reach: 418
+    ht_length: 140
+    ht_angle: 73.5
+    st_length: 590
+    st_angle: 73.0
+    tt_length: 597
+    cs_length: 434
+    bb_drop: 65
+    wheelbase: 1048
+    fork_length: 408
+    fork_offset: 45
+    standover: 838
+
+  - label: "62"
+    stack: 604
+    reach: 421
+    ht_length: 160
+    ht_angle: 73.5
+    st_length: 620
+    st_angle: 73.0
+    tt_length: 600
+    cs_length: 434
+    bb_drop: 65
+    wheelbase: 1050
+    fork_length: 408
+    fork_offset: 45
+    standover: 863

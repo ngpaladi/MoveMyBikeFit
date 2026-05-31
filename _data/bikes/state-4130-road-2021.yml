@@ -1,0 +1,79 @@
+brand: State Bicycle Co.
+model: 4130 Road
+year: 2021
+type: road
+sizes:
+  - label: "49"
+    stack: 520
+    reach: 396
+    ht_length: 95
+    ht_angle: 72.0
+    st_length: 490
+    st_angle: 74.5
+    tt_length: 540
+    cs_length: 405
+    bb_drop: 65
+    wheelbase: 996
+    fork_length: 400
+    fork_offset: 45
+    standover: 746
+
+  - label: "52"
+    stack: 520
+    reach: 392
+    ht_length: 95
+    ht_angle: 72.0
+    st_length: 520
+    st_angle: 74.0
+    tt_length: 540
+    cs_length: 405
+    bb_drop: 65
+    wheelbase: 992
+    fork_length: 400
+    fork_offset: 45
+    standover: 760
+
+  - label: "55"
+    stack: 536
+    reach: 392
+    ht_length: 105
+    ht_angle: 73.5
+    st_length: 550
+    st_angle: 73.0
+    tt_length: 555
+    cs_length: 405
+    bb_drop: 65
+    wheelbase: 977
+    fork_length: 400
+    fork_offset: 45
+    standover: 782
+
+  - label: "59"
+    stack: 570
+    reach: 416
+    ht_length: 140
+    ht_angle: 73.5
+    st_length: 590
+    st_angle: 73.0
+    tt_length: 590
+    cs_length: 405
+    bb_drop: 65
+    wheelbase: 1012
+    fork_length: 400
+    fork_offset: 45
+    standover: 817
+
+  - label: "62"
+    stack: 589
+    reach: 410
+    ht_length: 160
+    ht_angle: 73.5
+    st_length: 620
+    st_angle: 73.0
+    tt_length: 590
+    cs_length: 405
+    bb_drop: 65
+    wheelbase: 1012
+    fork_length: 400
+    fork_offset: 45
+    standover: 841

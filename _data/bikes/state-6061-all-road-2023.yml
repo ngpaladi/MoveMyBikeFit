@@ -1,0 +1,60 @@
+brand: State Bicycle Co.
+model: 6061 All-Road
+year: 2023
+type: gravel
+sizes:
+  - label: "48"
+    stack: 538
+    reach: 371
+    ht_length: 120
+    ht_angle: 70.5
+    st_length: 480
+    st_angle: 74.5
+    tt_length: 520
+    cs_length: 435
+    bb_drop: 68
+    wheelbase: 1015
+    fork_offset: 45
+    standover: 755
+
+  - label: "51"
+    stack: 559
+    reach: 375
+    ht_length: 140
+    ht_angle: 71.0
+    st_length: 510
+    st_angle: 74.0
+    tt_length: 535
+    cs_length: 435
+    bb_drop: 68
+    wheelbase: 1021
+    fork_offset: 45
+    standover: 780
+
+  - label: "54"
+    stack: 572
+    reach: 381
+    ht_length: 150
+    ht_angle: 71.5
+    st_length: 540
+    st_angle: 73.0
+    tt_length: 555
+    cs_length: 435
+    bb_drop: 68
+    wheelbase: 1026
+    fork_offset: 45
+    standover: 797
+
+  - label: "58"
+    stack: 609
+    reach: 383
+    ht_length: 190
+    ht_angle: 72.0
+    st_length: 580
+    st_angle: 72.5
+    tt_length: 575
+    cs_length: 435
+    bb_drop: 68
+    wheelbase: 1037
+    fork_offset: 45
+    standover: 834

@@ -1,0 +1,74 @@
+brand: State Bicycle Co.
+model: Carbon All-Road V2
+year: 2026
+type: gravel
+sizes:
+  - label: "49"
+    stack: 527
+    reach: 391
+    ht_length: 90
+    ht_angle: 71.2
+    st_length: 490
+    st_angle: 74.1
+    tt_length: 541
+    cs_length: 435
+    bb_drop: 78
+    wheelbase: 1025
+    fork_offset: 50
+    standover: 759
+
+  - label: "52"
+    stack: 542
+    reach: 396
+    ht_length: 105
+    ht_angle: 71.6
+    st_length: 520
+    st_angle: 73.7
+    tt_length: 555
+    cs_length: 435
+    bb_drop: 78
+    wheelbase: 1032
+    fork_offset: 50
+    standover: 786
+
+  - label: "54"
+    stack: 562
+    reach: 400
+    ht_length: 125
+    ht_angle: 71.8
+    st_length: 540
+    st_angle: 73.2
+    tt_length: 570
+    cs_length: 435
+    bb_drop: 78
+    wheelbase: 1040
+    fork_offset: 50
+    standover: 803
+
+  - label: "56"
+    stack: 582
+    reach: 404
+    ht_length: 145
+    ht_angle: 72.2
+    st_length: 560
+    st_angle: 72.8
+    tt_length: 584
+    cs_length: 435
+    bb_drop: 78
+    wheelbase: 1046
+    fork_offset: 50
+    standover: 823
+
+  - label: "58"
+    stack: 602
+    reach: 407
+    ht_length: 165
+    ht_angle: 72.3
+    st_length: 580
+    st_angle: 72.5
+    tt_length: 597
+    cs_length: 435
+    bb_drop: 78
+    wheelbase: 1055
+    fork_offset: 50
+    standover: 843

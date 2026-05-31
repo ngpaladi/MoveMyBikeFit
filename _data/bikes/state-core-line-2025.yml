@@ -1,0 +1,64 @@
+brand: State Bicycle Co.
+model: Core-Line
+year: 2025
+type: road
+sizes:
+  - label: "46"
+    stack: 508
+    reach: 368
+    ht_length: 105
+    ht_angle: 71.5
+    st_length: 460
+    st_angle: 74.0
+    tt_length: 513
+    cs_length: 405
+    bb_drop: 50
+    wheelbase: 975
+    fork_length: 402
+    fork_offset: 45
+    standover: 733
+
+  - label: "50"
+    stack: 522
+    reach: 374
+    ht_length: 105
+    ht_angle: 72.0
+    st_length: 500
+    st_angle: 74.0
+    tt_length: 522
+    cs_length: 405
+    bb_drop: 50
+    wheelbase: 985
+    fork_length: 402
+    fork_offset: 45
+    standover: 751
+
+  - label: "54"
+    stack: 536
+    reach: 380
+    ht_length: 105
+    ht_angle: 71.0
+    st_length: 540
+    st_angle: 73.0
+    tt_length: 538
+    cs_length: 405
+    bb_drop: 50
+    wheelbase: 989
+    fork_length: 402
+    fork_offset: 45
+    standover: 775
+
+  - label: "58"
+    stack: 570
+    reach: 386
+    ht_length: 135
+    ht_angle: 73.0
+    st_length: 580
+    st_angle: 73.0
+    tt_length: 555
+    cs_length: 405
+    bb_drop: 50
+    wheelbase: 1003
+    fork_length: 402
+    fork_offset: 45
+    standover: 811

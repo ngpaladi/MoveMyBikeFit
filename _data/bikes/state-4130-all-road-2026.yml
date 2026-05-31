@@ -1,0 +1,64 @@
+brand: State Bicycle Co.
+model: 4130 All-Road
+year: 2026
+type: gravel
+sizes:
+  - label: "43"
+    stack: 578
+    reach: 355
+    ht_length: 125
+    ht_angle: 70.5
+    st_length: 430
+    st_angle: 75.0
+    tt_length: 510
+    cs_length: 450
+    bb_drop: 75
+    wheelbase: 1030
+    fork_length: 423
+    fork_offset: 50
+    standover: 772
+
+  - label: "47"
+    stack: 598
+    reach: 369
+    ht_length: 145
+    ht_angle: 71.0
+    st_length: 470
+    st_angle: 74.5
+    tt_length: 535
+    cs_length: 450
+    bb_drop: 75
+    wheelbase: 1046
+    fork_length: 423
+    fork_offset: 50
+    standover: 799
+
+  - label: "51"
+    stack: 620
+    reach: 367
+    ht_length: 165
+    ht_angle: 71.5
+    st_length: 510
+    st_angle: 73.5
+    tt_length: 550
+    cs_length: 450
+    bb_drop: 75
+    wheelbase: 1045
+    fork_length: 423
+    fork_offset: 50
+    standover: 826
+
+  - label: "55"
+    stack: 639
+    reach: 380
+    ht_length: 185
+    ht_angle: 71.5
+    st_length: 550
+    st_angle: 73.0
+    tt_length: 575
+    cs_length: 450
+    bb_drop: 75
+    wheelbase: 1064
+    fork_length: 423
+    fork_offset: 50
+    standover: 854

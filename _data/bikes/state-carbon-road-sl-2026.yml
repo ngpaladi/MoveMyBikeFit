@@ -1,0 +1,74 @@
+brand: State Bicycle Co.
+model: Carbon Road SL
+year: 2026
+type: road
+sizes:
+  - label: "45"
+    stack: 510
+    reach: 378
+    ht_length: 105
+    ht_angle: 71.5
+    st_length: 450
+    st_angle: 75.0
+    tt_length: 515
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 975
+    fork_length: 370
+    fork_offset: 46
+
+  - label: "48"
+    stack: 526
+    reach: 382
+    ht_length: 120
+    ht_angle: 72.0
+    st_length: 480
+    st_angle: 74.5
+    tt_length: 528
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 980
+    fork_length: 370
+    fork_offset: 46
+
+  - label: "51"
+    stack: 540
+    reach: 388
+    ht_length: 135
+    ht_angle: 72.5
+    st_length: 510
+    st_angle: 74.0
+    tt_length: 542
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 986
+    fork_length: 370
+    fork_offset: 46
+
+  - label: "54"
+    stack: 559
+    reach: 399
+    ht_length: 155
+    ht_angle: 72.5
+    st_length: 535
+    st_angle: 73.5
+    tt_length: 565
+    cs_length: 410
+    bb_drop: 70
+    wheelbase: 1005
+    fork_length: 370
+    fork_offset: 46
+
+  - label: "56"
+    stack: 583
+    reach: 406
+    ht_length: 180
+    ht_angle: 72.5
+    st_length: 560
+    st_angle: 73.0
+    tt_length: 584
+    cs_length: 410
+    bb_drop: 70
+    wheelbase: 1020
+    fork_length: 370
+    fork_offset: 46

@@ -1,0 +1,74 @@
+brand: State Bicycle Co.
+model: Titanium All-Road
+year: 2024
+type: gravel
+sizes:
+  - label: "46"
+    stack: 560
+    reach: 367
+    ht_length: 125
+    ht_angle: 70.25
+    st_length: 460
+    st_angle: 75.0
+    tt_length: 517
+    cs_length: 437
+    bb_drop: 71
+    wheelbase: 1021
+    fork_offset: 45
+    standover: 749
+
+  - label: "48"
+    stack: 580
+    reach: 364
+    ht_length: 145
+    ht_angle: 70.25
+    st_length: 480
+    st_angle: 74.0
+    tt_length: 527
+    cs_length: 437
+    bb_drop: 71
+    wheelbase: 1025
+    fork_offset: 45
+    standover: 781
+
+  - label: "52"
+    stack: 597
+    reach: 376
+    ht_length: 165
+    ht_angle: 70.5
+    st_length: 520
+    st_angle: 73.5
+    tt_length: 552
+    cs_length: 437
+    bb_drop: 69
+    wheelbase: 1042
+    fork_offset: 45
+    standover: 813
+
+  - label: "55"
+    stack: 627
+    reach: 392
+    ht_length: 195
+    ht_angle: 71.0
+    st_length: 550
+    st_angle: 73.0
+    tt_length: 583
+    cs_length: 437
+    bb_drop: 69
+    wheelbase: 1063
+    fork_offset: 45
+    standover: 832
+
+  - label: "57"
+    stack: 647
+    reach: 403
+    ht_length: 215
+    ht_angle: 71.5
+    st_length: 570
+    st_angle: 72.5
+    tt_length: 604
+    cs_length: 437
+    bb_drop: 68
+    wheelbase: 1077
+    fork_offset: 45
+    standover: 851

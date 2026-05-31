@@ -1,0 +1,79 @@
+brand: State Bicycle Co.
+model: 6061 Black Label V3
+year: 2024
+type: road
+sizes:
+  - label: "49"
+    stack: 511
+    reach: 392
+    ht_length: 115
+    ht_angle: 72.5
+    st_length: 490
+    st_angle: 74.5
+    tt_length: 534
+    cs_length: 415
+    bb_drop: 68
+    wheelbase: 999
+    fork_length: 388
+    fork_offset: 45
+    standover: 765
+
+  - label: "52"
+    stack: 511
+    reach: 402
+    ht_length: 115
+    ht_angle: 72.5
+    st_length: 520
+    st_angle: 74.0
+    tt_length: 544
+    cs_length: 415
+    bb_drop: 68
+    wheelbase: 1009
+    fork_length: 388
+    fork_offset: 45
+    standover: 779
+
+  - label: "55"
+    stack: 526
+    reach: 399
+    ht_length: 130
+    ht_angle: 72.5
+    st_length: 550
+    st_angle: 73.5
+    tt_length: 555
+    cs_length: 415
+    bb_drop: 68
+    wheelbase: 1010
+    fork_length: 388
+    fork_offset: 45
+    standover: 799
+
+  - label: "58"
+    stack: 561
+    reach: 404
+    ht_length: 160
+    ht_angle: 74.5
+    st_length: 580
+    st_angle: 73.5
+    tt_length: 570
+    cs_length: 415
+    bb_drop: 68
+    wheelbase: 1006
+    fork_length: 388
+    fork_offset: 45
+    standover: 832
+
+  - label: "61"
+    stack: 590
+    reach: 410
+    ht_length: 190
+    ht_angle: 74.5
+    st_length: 610
+    st_angle: 73.5
+    tt_length: 585
+    cs_length: 415
+    bb_drop: 68
+    wheelbase: 1020
+    fork_length: 388
+    fork_offset: 45
+    standover: 861

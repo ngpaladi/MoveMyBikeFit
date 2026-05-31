@@ -1,0 +1,79 @@
+brand: State Bicycle Co.
+model: Undefeated Disc Road
+year: 2023
+type: road
+sizes:
+  - label: "49"
+    stack: 523
+    reach: 380
+    ht_length: 120
+    ht_angle: 72.0
+    st_length: 490
+    st_angle: 74.5
+    tt_length: 525
+    cs_length: 425
+    bb_drop: 73
+    wheelbase: 992
+    fork_length: 370
+    fork_offset: 45
+    standover: 738
+
+  - label: "52"
+    stack: 544
+    reach: 384
+    ht_length: 140
+    ht_angle: 72.5
+    st_length: 520
+    st_angle: 74.0
+    tt_length: 540
+    cs_length: 425
+    bb_drop: 73
+    wheelbase: 998
+    fork_length: 370
+    fork_offset: 45
+    standover: 762
+
+  - label: "55"
+    stack: 565
+    reach: 388
+    ht_length: 160
+    ht_angle: 72.5
+    st_length: 550
+    st_angle: 74.0
+    tt_length: 555
+    cs_length: 425
+    bb_drop: 73
+    wheelbase: 1004
+    fork_length: 370
+    fork_offset: 45
+    standover: 786
+
+  - label: "58"
+    stack: 584
+    reach: 397
+    ht_length: 180
+    ht_angle: 73.0
+    st_length: 580
+    st_angle: 73.5
+    tt_length: 570
+    cs_length: 425
+    bb_drop: 73
+    wheelbase: 1019
+    fork_length: 370
+    fork_offset: 45
+    standover: 809
+
+  - label: "62"
+    stack: 605
+    reach: 406
+    ht_length: 200
+    ht_angle: 73.5
+    st_length: 620
+    st_angle: 73.5
+    tt_length: 585
+    cs_length: 425
+    bb_drop: 73
+    wheelbase: 1029
+    fork_length: 370
+    fork_offset: 45
+    standover: 839
