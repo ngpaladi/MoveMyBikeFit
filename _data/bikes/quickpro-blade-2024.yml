@@ -1,0 +1,94 @@
+brand: QuickPro
+model: Blade
+year: 2024
+type: road
+sizes:
+  - label: "XS"
+    stack: 509
+    reach: 360
+    ht_length: 101.7
+    ht_angle: 71.0
+    st_length: 456
+    st_angle: 74.3
+    tt_length: 505
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 963
+    fork_length: 375
+    fork_offset: 45
+    standover: 745
+
+  - label: "S"
+    stack: 525
+    reach: 373
+    ht_length: 117
+    ht_angle: 71.5
+    st_length: 486
+    st_angle: 74.0
+    tt_length: 524
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 976
+    fork_length: 375
+    fork_offset: 45
+    standover: 764
+
+  - label: "M"
+    stack: 547
+    reach: 380
+    ht_length: 138
+    ht_angle: 72.0
+    st_length: 514
+    st_angle: 73.5
+    tt_length: 542
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 985
+    fork_length: 375
+    fork_offset: 45
+    standover: 786
+
+  - label: "L"
+    stack: 567
+    reach: 391
+    ht_length: 157
+    ht_angle: 72.5
+    st_length: 536
+    st_angle: 73.5
+    tt_length: 559
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 998
+    fork_length: 375
+    fork_offset: 45
+    standover: 806
+
+  - label: "XL"
+    stack: 585
+    reach: 400
+    ht_length: 175
+    ht_angle: 72.8
+    st_length: 558
+    st_angle: 73.3
+    tt_length: 575
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 1010
+    fork_length: 375
+    fork_offset: 45
+    standover: 824
+
+  - label: "XXL"
+    stack: 602
+    reach: 409
+    ht_length: 192
+    ht_angle: 73.0
+    st_length: 576
+    st_angle: 73.0
+    tt_length: 593
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 1022
+    fork_length: 375
+    fork_offset: 45
+    standover: 841

@@ -1,0 +1,79 @@
+brand: Winspace
+model: T1600
+year: 2025
+type: road
+sizes:
+  - label: "XS"
+    stack: 498
+    reach: 365
+    ht_length: 100
+    ht_angle: 70.7
+    st_length: 440
+    st_angle: 74.8
+    tt_length: 500
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 967
+    fork_length: 368
+    fork_offset: 50
+    standover: 731
+
+  - label: "S"
+    stack: 510
+    reach: 372
+    ht_length: 110
+    ht_angle: 71.5
+    st_length: 470
+    st_angle: 74.3
+    tt_length: 515
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 971
+    fork_length: 368
+    fork_offset: 50
+    standover: 757
+
+  - label: "M"
+    stack: 524
+    reach: 382
+    ht_length: 120
+    ht_angle: 72.0
+    st_length: 490
+    st_angle: 74.0
+    tt_length: 532
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 975
+    fork_length: 368
+    fork_offset: 44
+    standover: 773
+
+  - label: "L"
+    stack: 544
+    reach: 392
+    ht_length: 140
+    ht_angle: 72.5
+    st_length: 510
+    st_angle: 73.8
+    tt_length: 550
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 987
+    fork_length: 368
+    fork_offset: 44
+    standover: 803
+
+  - label: "XL"
+    stack: 565
+    reach: 407
+    ht_length: 160
+    ht_angle: 72.9
+    st_length: 540
+    st_angle: 73.4
+    tt_length: 575
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 1004
+    fork_length: 368
+    fork_offset: 44
+    standover: 832

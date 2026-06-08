@@ -1,0 +1,94 @@
+brand: Winspace
+model: M6
+year: 2026
+type: road
+sizes:
+  - label: "XS"
+    stack: 507
+    reach: 365
+    ht_length: 107
+    ht_angle: 70.8
+    st_length: 430
+    st_angle: 74.9
+    tt_length: 502
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 972
+    fork_length: 369
+    fork_offset: 49
+    standover: 729
+
+  - label: "S"
+    stack: 521
+    reach: 374
+    ht_length: 120
+    ht_angle: 71.5
+    st_length: 460
+    st_angle: 74.9
+    tt_length: 514
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 981
+    fork_length: 369
+    fork_offset: 49
+    standover: 752
+
+  - label: "M"
+    stack: 535
+    reach: 383
+    ht_length: 130
+    ht_angle: 72.2
+    st_length: 480
+    st_angle: 74.0
+    tt_length: 536
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 980
+    fork_length: 369
+    fork_offset: 43
+    standover: 769
+
+  - label: "L"
+    stack: 550
+    reach: 391
+    ht_length: 145
+    ht_angle: 72.3
+    st_length: 510
+    st_angle: 73.5
+    tt_length: 554
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 992
+    fork_length: 369
+    fork_offset: 43
+    standover: 791
+
+  - label: "XL"
+    stack: 564
+    reach: 400
+    ht_length: 160
+    ht_angle: 72.3
+    st_length: 530
+    st_angle: 73.1
+    tt_length: 571
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 1006
+    fork_length: 369
+    fork_offset: 43
+    standover: 808
+
+  - label: "XXL"
+    stack: 593
+    reach: 407
+    ht_length: 187
+    ht_angle: 73.2
+    st_length: 560
+    st_angle: 73.1
+    tt_length: 587
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 1013
+    fork_length: 369
+    fork_offset: 43
+    standover: 837

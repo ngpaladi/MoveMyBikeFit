@@ -1,0 +1,88 @@
+brand: QuickPro
+model: UR:ONE
+year: 2024
+type: road
+sizes:
+  - label: "XXS"
+    stack: 502
+    reach: 367
+    ht_length: 99
+    ht_angle: 70.7
+    st_length: 432
+    st_angle: 75.5
+    tt_length: 497
+    cs_length: 408
+    bb_drop: 74
+    wheelbase: 968
+    fork_offset: 47
+    standover: 710
+
+  - label: "XS"
+    stack: 514
+    reach: 376
+    ht_length: 108
+    ht_angle: 71.8
+    st_length: 446
+    st_angle: 75.2
+    tt_length: 512
+    cs_length: 408
+    bb_drop: 74
+    wheelbase: 971.5
+    fork_offset: 47
+    standover: 724
+
+  - label: "S"
+    stack: 529
+    reach: 381
+    ht_length: 121
+    ht_angle: 72.5
+    st_length: 470
+    st_angle: 74.2
+    tt_length: 531
+    cs_length: 408
+    bb_drop: 74
+    wheelbase: 975
+    fork_offset: 47
+    standover: 745
+
+  - label: "M"
+    stack: 553
+    reach: 390
+    ht_length: 146
+    ht_angle: 73.8
+    st_length: 495
+    st_angle: 73.8
+    tt_length: 551
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 987
+    fork_offset: 44
+    standover: 770
+
+  - label: "L"
+    stack: 578
+    reach: 399
+    ht_length: 172
+    ht_angle: 73.0
+    st_length: 518
+    st_angle: 73.5
+    tt_length: 570
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 1002
+    fork_offset: 44
+    standover: 794
+
+  - label: "XL"
+    stack: 603
+    reach: 408
+    ht_length: 197
+    ht_angle: 73.2
+    st_length: 542
+    st_angle: 73.0
+    tt_length: 592
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 1015
+    fork_offset: 44
+    standover: 818

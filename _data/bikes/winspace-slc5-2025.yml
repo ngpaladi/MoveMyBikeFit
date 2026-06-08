@@ -1,0 +1,79 @@
+brand: Winspace
+model: SLC5
+year: 2025
+type: road
+sizes:
+  - label: "XS"
+    stack: 508
+    reach: 366
+    ht_length: 108
+    ht_angle: 70.7
+    st_length: 440
+    st_angle: 74.9
+    tt_length: 503
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 970
+    fork_length: 370
+    fork_offset: 49
+    standover: 725
+
+  - label: "S"
+    stack: 520
+    reach: 372
+    ht_length: 118
+    ht_angle: 71.3
+    st_length: 460
+    st_angle: 74.4
+    tt_length: 517
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 975
+    fork_length: 370
+    fork_offset: 49
+    standover: 741
+
+  - label: "M"
+    stack: 535
+    reach: 382
+    ht_length: 130
+    ht_angle: 72.0
+    st_length: 480
+    st_angle: 74.0
+    tt_length: 535
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 979
+    fork_length: 370
+    fork_offset: 45
+    standover: 765
+
+  - label: "L"
+    stack: 555
+    reach: 389
+    ht_length: 150
+    ht_angle: 72.3
+    st_length: 510
+    st_angle: 73.5
+    tt_length: 553
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 990
+    fork_length: 370
+    fork_offset: 45
+    standover: 784
+
+  - label: "XL"
+    stack: 575
+    reach: 399
+    ht_length: 170
+    ht_angle: 72.6
+    st_length: 540
+    st_angle: 73.0
+    tt_length: 575
+    cs_length: 406
+    bb_drop: 72
+    wheelbase: 1003
+    fork_length: 370
+    fork_offset: 45
+    standover: 805

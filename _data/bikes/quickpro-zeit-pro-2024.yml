@@ -1,0 +1,79 @@
+brand: QuickPro
+model: Zeit Pro
+year: 2024
+type: road
+sizes:
+  - label: "430"
+    stack: 532.8
+    reach: 370.8
+    ht_length: 120
+    ht_angle: 70.8
+    st_length: 430
+    st_angle: 74.8
+    tt_length: 516
+    cs_length: 415
+    bb_drop: 75
+    wheelbase: 986.1
+    fork_length: 380
+    fork_offset: 45
+    standover: 698.8
+
+  - label: "460"
+    stack: 553.1
+    reach: 374.2
+    ht_length: 138
+    ht_angle: 71.7
+    st_length: 460
+    st_angle: 74.3
+    tt_length: 530
+    cs_length: 415
+    bb_drop: 75
+    wheelbase: 987.8
+    fork_length: 380
+    fork_offset: 45
+    standover: 725.5
+
+  - label: "490"
+    stack: 571.2
+    reach: 380.8
+    ht_length: 157
+    ht_angle: 72.0
+    st_length: 490
+    st_angle: 73.9
+    tt_length: 546
+    cs_length: 415
+    bb_drop: 73
+    wheelbase: 998.6
+    fork_length: 380
+    fork_offset: 45
+    standover: 760
+
+  - label: "520"
+    stack: 589.3
+    reach: 385
+    ht_length: 172.6
+    ht_angle: 73.0
+    st_length: 520
+    st_angle: 73.5
+    tt_length: 560
+    cs_length: 415
+    bb_drop: 73
+    wheelbase: 999.4
+    fork_length: 380
+    fork_offset: 45
+    standover: 789
+
+  - label: "550"
+    stack: 610.6
+    reach: 392.9
+    ht_length: 195
+    ht_angle: 73.0
+    st_length: 550
+    st_angle: 73.0
+    tt_length: 580
+    cs_length: 415
+    bb_drop: 73
+    wheelbase: 1012.9
+    fork_length: 380
+    fork_offset: 45
+    standover: 812

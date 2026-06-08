@@ -1,0 +1,79 @@
+brand: Winspace
+model: Agile
+year: 2025
+type: road
+sizes:
+  - label: "XS"
+    stack: 510
+    reach: 367
+    ht_length: 112
+    ht_angle: 71.0
+    st_length: 410
+    st_angle: 75.3
+    tt_length: 500.8
+    cs_length: 408
+    bb_drop: 68
+    wheelbase: 969.1
+    fork_length: 370
+    fork_offset: 45
+    standover: 717
+
+  - label: "S"
+    stack: 517.36
+    reach: 371
+    ht_length: 119
+    ht_angle: 71.2
+    st_length: 440
+    st_angle: 74.2
+    tt_length: 517.4
+    cs_length: 408
+    bb_drop: 68
+    wheelbase: 973.8
+    fork_length: 370
+    fork_offset: 45
+    standover: 740
+
+  - label: "M"
+    stack: 520.11
+    reach: 382
+    ht_length: 119
+    ht_angle: 72.0
+    st_length: 470
+    st_angle: 74.0
+    tt_length: 531.14
+    cs_length: 403
+    bb_drop: 68
+    wheelbase: 973.44
+    fork_length: 370
+    fork_offset: 45
+    standover: 763
+
+  - label: "L"
+    stack: 561.68
+    reach: 390
+    ht_length: 159
+    ht_angle: 73.0
+    st_length: 510
+    st_angle: 74.0
+    tt_length: 551.06
+    cs_length: 408
+    bb_drop: 68
+    wheelbase: 985.21
+    fork_length: 370
+    fork_offset: 42
+    standover: 800
+
+  - label: "XL"
+    stack: 586.55
+    reach: 400
+    ht_length: 185
+    ht_angle: 73.0
+    st_length: 550
+    st_angle: 73.3
+    tt_length: 575.97
+    cs_length: 408
+    bb_drop: 68
+    wheelbase: 1007.89
+    fork_length: 370
+    fork_offset: 42
+    standover: 836

@@ -1,0 +1,79 @@
+brand: Winspace
+model: C5 Aero
+year: 2025
+type: road
+sizes:
+  - label: "XS"
+    stack: 512
+    reach: 365
+    ht_length: 110
+    ht_angle: 70.6
+    st_length: 435
+    st_angle: 75.35
+    tt_length: 499
+    cs_length: 412
+    bb_drop: 72
+    wheelbase: 973
+    fork_length: 371
+    fork_offset: 45
+    standover: 728
+
+  - label: "S"
+    stack: 528
+    reach: 372
+    ht_length: 125
+    ht_angle: 71.3
+    st_length: 465
+    st_angle: 74.9
+    tt_length: 515
+    cs_length: 412
+    bb_drop: 72
+    wheelbase: 980
+    fork_length: 371
+    fork_offset: 45
+    standover: 747
+
+  - label: "M"
+    stack: 542
+    reach: 382
+    ht_length: 135
+    ht_angle: 72.1
+    st_length: 485
+    st_angle: 74.0
+    tt_length: 537
+    cs_length: 412
+    bb_drop: 72
+    wheelbase: 982
+    fork_length: 371
+    fork_offset: 40
+    standover: 767
+
+  - label: "L"
+    stack: 557
+    reach: 387
+    ht_length: 150
+    ht_angle: 72.3
+    st_length: 515
+    st_angle: 73.5
+    tt_length: 552
+    cs_length: 412
+    bb_drop: 72
+    wheelbase: 989
+    fork_length: 371
+    fork_offset: 40
+    standover: 790
+
+  - label: "XL"
+    stack: 571
+    reach: 397
+    ht_length: 165
+    ht_angle: 72.3
+    st_length: 535
+    st_angle: 73.1
+    tt_length: 571
+    cs_length: 412
+    bb_drop: 72
+    wheelbase: 1004
+    fork_length: 371
+    fork_offset: 40
+    standover: 806

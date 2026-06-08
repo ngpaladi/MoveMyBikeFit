@@ -1,0 +1,94 @@
+brand: QuickPro
+model: SR:ONE
+year: 2024
+type: road
+sizes:
+  - label: "480"
+    stack: 510.9
+    reach: 370.3
+    ht_length: 110
+    ht_angle: 71.5
+    st_length: 480
+    st_angle: 74.7
+    tt_length: 510.1
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 971.4
+    fork_length: 368
+    fork_offset: 48
+    standover: 714.6
+
+  - label: "500"
+    stack: 517.5
+    reach: 377.6
+    ht_length: 115
+    ht_angle: 72.0
+    st_length: 500
+    st_angle: 74.4
+    tt_length: 522
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 976.4
+    fork_length: 368
+    fork_offset: 48
+    standover: 725.1
+
+  - label: "520"
+    stack: 526.8
+    reach: 383.9
+    ht_length: 125
+    ht_angle: 72.6
+    st_length: 520
+    st_angle: 74.1
+    tt_length: 534
+    cs_length: 410
+    bb_drop: 69
+    wheelbase: 978.7
+    fork_length: 368
+    fork_offset: 45
+    standover: 749.6
+
+  - label: "540"
+    stack: 542.2
+    reach: 388.9
+    ht_length: 140
+    ht_angle: 72.9
+    st_length: 540
+    st_angle: 73.8
+    tt_length: 547
+    cs_length: 410
+    bb_drop: 69
+    wheelbase: 986.3
+    fork_length: 368
+    fork_offset: 45
+    standover: 768.9
+
+  - label: "560"
+    stack: 557.3
+    reach: 394.6
+    ht_length: 155
+    ht_angle: 73.1
+    st_length: 560
+    st_angle: 73.5
+    tt_length: 559.6
+    cs_length: 410
+    bb_drop: 69
+    wheelbase: 994.1
+    fork_length: 368
+    fork_offset: 45
+    standover: 785.1
+
+  - label: "580"
+    stack: 576.7
+    reach: 400.9
+    ht_length: 175
+    ht_angle: 73.3
+    st_length: 580
+    st_angle: 73.2
+    tt_length: 575
+    cs_length: 410
+    bb_drop: 69
+    wheelbase: 1004.3
+    fork_length: 368
+    fork_offset: 45
+    standover: 799.3

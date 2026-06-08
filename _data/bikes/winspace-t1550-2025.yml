@@ -1,0 +1,79 @@
+brand: Winspace
+model: T1550
+year: 2025
+type: road
+sizes:
+  - label: "XS"
+    stack: 504.72
+    reach: 363
+    ht_length: 105
+    ht_angle: 70.7
+    st_length: 440
+    st_angle: 75.1
+    tt_length: 497.3
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 969.11
+    fork_length: 370
+    fork_offset: 50
+    standover: 731
+
+  - label: "S"
+    stack: 521.76
+    reach: 372
+    ht_length: 120
+    ht_angle: 71.5
+    st_length: 470
+    st_angle: 74.3
+    tt_length: 518.66
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 976.81
+    fork_length: 370
+    fork_offset: 50
+    standover: 757
+
+  - label: "M"
+    stack: 534.88
+    reach: 381
+    ht_length: 130
+    ht_angle: 72.0
+    st_length: 490
+    st_angle: 74.0
+    tt_length: 534.38
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 979.26
+    fork_length: 370
+    fork_offset: 44
+    standover: 775
+
+  - label: "L"
+    stack: 560.42
+    reach: 388
+    ht_length: 155
+    ht_angle: 72.5
+    st_length: 520
+    st_angle: 73.5
+    tt_length: 554.01
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 989.73
+    fork_length: 370
+    fork_offset: 44
+    standover: 803
+
+  - label: "XL"
+    stack: 585.7
+    reach: 397
+    ht_length: 180
+    ht_angle: 72.9
+    st_length: 550
+    st_angle: 73.0
+    tt_length: 576.07
+    cs_length: 408
+    bb_drop: 72
+    wheelbase: 1002.67
+    fork_length: 370
+    fork_offset: 44
+    standover: 832

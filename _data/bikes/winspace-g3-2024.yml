@@ -14,6 +14,7 @@ sizes:
     cs_length: 430
     bb_drop: 75
     wheelbase: 1018
+    fork_length: 395
     fork_offset: 54
     standover: 756
   - label: "S"
@@ -27,6 +28,7 @@ sizes:
     cs_length: 430
     bb_drop: 75
     wheelbase: 1024
+    fork_length: 395
     fork_offset: 54
     standover: 773
   - label: "M"
@@ -40,6 +42,7 @@ sizes:
     cs_length: 430
     bb_drop: 75
     wheelbase: 1029
+    fork_length: 395
     fork_offset: 51
     standover: 790
   - label: "L"
@@ -53,6 +56,7 @@ sizes:
     cs_length: 430
     bb_drop: 75
     wheelbase: 1045
+    fork_length: 395
     fork_offset: 51
     standover: 815
   - label: "XL"
@@ -66,5 +70,6 @@ sizes:
     cs_length: 430
     bb_drop: 75
     wheelbase: 1063
+    fork_length: 395
     fork_offset: 51
     standover: 838

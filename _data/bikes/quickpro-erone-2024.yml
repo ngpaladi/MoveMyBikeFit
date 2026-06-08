@@ -1,0 +1,94 @@
+brand: QuickPro
+model: ER:One
+year: 2024
+type: road
+sizes:
+  - label: "XS"
+    stack: 505
+    reach: 380
+    ht_length: 105
+    ht_angle: 70.0
+    st_length: 430
+    st_angle: 75.0
+    tt_length: 515
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 985
+    fork_length: 373
+    fork_offset: 45
+    standover: 746
+
+  - label: "S"
+    stack: 521
+    reach: 381
+    ht_length: 118
+    ht_angle: 71.0
+    st_length: 460
+    st_angle: 74.5
+    tt_length: 525
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 985
+    fork_length: 373
+    fork_offset: 45
+    standover: 762
+
+  - label: "M"
+    stack: 538
+    reach: 386
+    ht_length: 132
+    ht_angle: 72.0
+    st_length: 490
+    st_angle: 74.0
+    tt_length: 540
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 987
+    fork_length: 373
+    fork_offset: 45
+    standover: 779
+
+  - label: "L"
+    stack: 556
+    reach: 393
+    ht_length: 148
+    ht_angle: 73.0
+    st_length: 520
+    st_angle: 73.5
+    tt_length: 558
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 991
+    fork_length: 373
+    fork_offset: 45
+    standover: 797
+
+  - label: "XL"
+    stack: 572
+    reach: 406
+    ht_length: 165
+    ht_angle: 73.0
+    st_length: 550
+    st_angle: 73.5
+    tt_length: 575
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 1008
+    fork_length: 373
+    fork_offset: 45
+    standover: 813
+
+  - label: "XXL"
+    stack: 593
+    reach: 415
+    ht_length: 185
+    ht_angle: 73.5
+    st_length: 584
+    st_angle: 73.0
+    tt_length: 596
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 1019
+    fork_length: 373
+    fork_offset: 45
+    standover: 846

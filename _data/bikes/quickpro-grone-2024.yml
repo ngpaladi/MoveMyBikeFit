@@ -1,0 +1,79 @@
+brand: QuickPro
+model: GR:ONE
+year: 2024
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 524
+    reach: 370
+    ht_length: 95
+    ht_angle: 70.5
+    st_length: 426
+    st_angle: 74.2
+    tt_length: 518
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1006
+    fork_length: 400
+    fork_offset: 55
+    standover: 723
+
+  - label: "S"
+    stack: 543
+    reach: 379
+    ht_length: 113
+    ht_angle: 71.0
+    st_length: 456
+    st_angle: 74.0
+    tt_length: 535
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1016
+    fork_length: 400
+    fork_offset: 55
+    standover: 742
+
+  - label: "M"
+    stack: 561
+    reach: 388
+    ht_length: 132
+    ht_angle: 71.0
+    st_length: 486
+    st_angle: 73.6
+    tt_length: 553
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1032
+    fork_length: 400
+    fork_offset: 55
+    standover: 760
+
+  - label: "L"
+    stack: 580
+    reach: 398
+    ht_length: 152
+    ht_angle: 71.0
+    st_length: 516
+    st_angle: 73.3
+    tt_length: 572
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1048
+    fork_length: 400
+    fork_offset: 55
+    standover: 779
+
+  - label: "XL"
+    stack: 599
+    reach: 405
+    ht_length: 172
+    ht_angle: 71.0
+    st_length: 546
+    st_angle: 73.8
+    tt_length: 590
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1062
+    fork_length: 400
+    fork_offset: 55
+    standover: 798

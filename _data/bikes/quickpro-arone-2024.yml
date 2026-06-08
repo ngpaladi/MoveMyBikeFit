@@ -1,0 +1,94 @@
+brand: QuickPro
+model: AR:ONE
+year: 2024
+type: road
+sizes:
+  - label: "XS"
+    stack: 503.9
+    reach: 375.37
+    ht_length: 105
+    ht_angle: 70.0
+    st_length: 430
+    st_angle: 75.0
+    tt_length: 510
+    cs_length: 408
+    bb_drop: 71.65
+    wheelbase: 982
+    fork_length: 370
+    fork_offset: 50
+    standover: 710.5
+
+  - label: "S"
+    stack: 516.73
+    reach: 382.17
+    ht_length: 115
+    ht_angle: 71.0
+    st_length: 460
+    st_angle: 74.5
+    tt_length: 525
+    cs_length: 408
+    bb_drop: 71.65
+    wheelbase: 984.5
+    fork_length: 370
+    fork_offset: 50
+    standover: 736
+
+  - label: "M"
+    stack: 534.57
+    reach: 386.71
+    ht_length: 130
+    ht_angle: 72.0
+    st_length: 490
+    st_angle: 74.0
+    tt_length: 540
+    cs_length: 408
+    bb_drop: 71.65
+    wheelbase: 986
+    fork_length: 370
+    fork_offset: 45
+    standover: 761.5
+
+  - label: "L"
+    stack: 552
+    reach: 391.4
+    ht_length: 145
+    ht_angle: 73.0
+    st_length: 520
+    st_angle: 73.5
+    tt_length: 555
+    cs_length: 408
+    bb_drop: 71.65
+    wheelbase: 987
+    fork_length: 370
+    fork_offset: 45
+    standover: 787
+
+  - label: "XL"
+    stack: 566.6
+    reach: 402
+    ht_length: 160
+    ht_angle: 73.0
+    st_length: 550
+    st_angle: 73.5
+    tt_length: 570
+    cs_length: 408
+    bb_drop: 71.65
+    wheelbase: 1002
+    fork_length: 370
+    fork_offset: 45
+    standover: 812.5
+
+  - label: "XXL"
+    stack: 587.7
+    reach: 412.3
+    ht_length: 180
+    ht_angle: 73.5
+    st_length: 580
+    st_angle: 73.5
+    tt_length: 589
+    cs_length: 408
+    bb_drop: 71.65
+    wheelbase: 1013.7
+    fork_length: 370
+    fork_offset: 45
+    standover: 837
