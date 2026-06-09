@@ -35,7 +35,7 @@ const COCKPIT_FIELDS = [
   { key: 'spacers',    label: 'Spacers',        unit: 'mm',         min: 0,   max: 40,  step: 5,  def: 0         },
   { key: 'barReach',   label: 'Bar reach',      unit: 'mm',         min: 50,  max: 110, step: 5,  def: 80        },
   { key: 'hoodLength', label: 'Hood length',    unit: 'mm',         min: 0,   max: 60,  step: 5,  def: 0         },
-  { key: 'setback',    label: 'Saddle setback', unit: 'mm',         min: -40, max: 40,  step: 1,  def: 0         },
+  { key: 'setback',    label: 'Saddle setback', unit: 'mm',         min: -10, max: 35,  step: 1,  def: 0         },
 ];
 
 function defaultCockpit() {
@@ -382,6 +382,7 @@ function renderComparison() {
       geo,
       size,
       sizeIdx:         bs.sizeIdx,
+      colorIdx:        state.colorMap.get(bikeId) ?? 0,
       stemLength:      cockpit.stemLength,
       stemAngle:       cockpit.stemAngle,
       spacers:         cockpit.spacers,
@@ -582,7 +583,7 @@ function syncCockpitInputs() {
 const STEM_LENGTHS  = [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140];
 const STEM_ANGLES   = [-17, -10, -6, 0, 6, 10, 17];
 const SPACER_STACKS = [0, 5, 10, 15, 20, 25, 30];
-const SETBACKS      = [-25, -15, -5, 0, 5, 15, 25];
+const SETBACKS      = [-10, -5, 0, 5, 10, 15, 20, 25, 30, 35];
 const SH_OFFSETS    = [-10, -5, 0, 5, 10];
 
 function _fitCombos(b, fit) {
@@ -604,8 +605,10 @@ function _fitCombos(b, fit) {
             const dHtb   = actual.hoodToBB   - fit.hoodToBB;
             // Least sum of squares; spacers 0–10mm are equal, penalise above 10mm;
             // also prefer lower hood positions (scale ~same as spacer penalty)
-            const spacerPenalty = Math.max(0, sp - 10) * 0.5;
-            const score    = dSth * dSth + dHtb * dHtb + spacerPenalty + hood.y * 0.1;
+            // and prefer non-negative saddle setback (rearward of seat tube axis)
+            const spacerPenalty  = Math.max(0, sp - 10) * 0.5;
+            const setbackPenalty = Math.max(0, -setback) * 0.5;
+            const score    = dSth * dSth + dHtb * dHtb + spacerPenalty + setbackPenalty + hood.y * 0.1;
             const coG      = FitCalculator.riderCoG(saddle, hood);
             const wdist    = FitCalculator.weightDistribution(b.size, coG);
             out.push({ sh, shOff, setback, sp, len, ang, dSth, dHtb, score, frontPct: wdist.front });

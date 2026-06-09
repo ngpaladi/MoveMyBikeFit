@@ -32,7 +32,7 @@ class BikeRenderer {
   destroy() { this._resizeObs.disconnect(); }
 
   setBikes(bikes) {
-    this.bikes = bikes.map((b, i) => ({ ...b, colorIdx: i % BIKE_COLORS.length }));
+    this.bikes = bikes.map((b, i) => ({ ...b, colorIdx: b.colorIdx ?? i % BIKE_COLORS.length }));
     this.render();
   }
 
