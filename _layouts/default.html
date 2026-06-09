@@ -34,7 +34,9 @@
     <nav class="site-nav">
       <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Compare</a>
       <a href="{{ '/add.html' | relative_url }}" {% if page.url contains 'add' %}class="active"{% endif %}>Add Bike</a>
-      <button id="cookie-prefs-btn" class="cookie-prefs-btn" style="display:none" aria-label="Cookie preferences">Cookie settings</button>
+      <button id="settings-btn" class="settings-btn" aria-label="Settings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
     </nav>
   </header>
   <main>
@@ -53,20 +55,65 @@
     </div>
   </div>
 
+  <!-- Settings drawer -->
+  <div id="settings-modal" class="settings-modal" style="display:none" role="dialog" aria-modal="true" aria-label="Settings">
+    <div class="settings-overlay" id="settings-overlay"></div>
+    <div class="settings-drawer">
+      <div class="settings-drawer-header">
+        <span>Settings</span>
+        <button id="settings-close" class="settings-close-btn" aria-label="Close">&#215;</button>
+      </div>
+      <div class="settings-drawer-body">
+        <div class="settings-section" id="settings-components" style="display:none">
+          <div class="settings-section-title">Component Defaults</div>
+          <p class="settings-hint">Default values applied when adding a new bike to the comparison</p>
+          <div class="settings-field-group">
+            <div class="settings-field">
+              <label for="default-stem-height">Stem height</label>
+              <input type="number" id="default-stem-height" min="0" max="40" step="5">
+              <span class="settings-unit">mm</span>
+            </div>
+            <div class="settings-field">
+              <label for="default-bar-reach">Bar reach</label>
+              <input type="number" id="default-bar-reach" min="50" max="110" step="5">
+              <span class="settings-unit">mm</span>
+            </div>
+            <div class="settings-field">
+              <label for="default-hood-length">Hood length</label>
+              <input type="number" id="default-hood-length" min="0" max="60" step="5">
+              <span class="settings-unit">mm</span>
+            </div>
+          </div>
+        </div>
+        <div class="settings-section">
+          <div class="settings-section-title">Analytics</div>
+          <p class="settings-hint">This site uses Google Analytics to count page visits only. No advertising or cross-site tracking.</p>
+          <div class="settings-analytics-row">
+            <span id="settings-analytics-status" class="settings-analytics-status"></span>
+            <div class="settings-analytics-btns">
+              <button id="settings-analytics-accept" class="cookie-btn cookie-btn-accept">Accept</button>
+              <button id="settings-analytics-decline" class="cookie-btn cookie-btn-decline">Decline</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       var CONSENT_KEY = 'mmbf-consent';
-      var banner = document.getElementById('cookie-banner');
-      var prefsBtn = document.getElementById('cookie-prefs-btn');
+      var banner      = document.getElementById('cookie-banner');
+      var modal       = document.getElementById('settings-modal');
 
-      function showBanner() {
-        banner.style.display = '';
-        prefsBtn.style.display = 'none';
-      }
+      function hideBanner() { banner.style.display = 'none'; }
 
-      function hideBanner() {
-        banner.style.display = 'none';
-        prefsBtn.style.display = '';
+      function updateAnalyticsStatus() {
+        var statusEl = document.getElementById('settings-analytics-status');
+        if (!statusEl) return;
+        var c = '';
+        try { c = localStorage.getItem(CONSENT_KEY) || ''; } catch(_) {}
+        statusEl.textContent = c === 'granted' ? 'Analytics: enabled' : c === 'denied' ? 'Analytics: disabled' : 'Not yet set';
       }
 
       function applyConsent(choice) {
@@ -75,30 +122,31 @@
           gtag('consent', 'update', { analytics_storage: 'granted' });
         }
         hideBanner();
+        updateAnalyticsStatus();
       }
 
-      document.getElementById('cookie-accept').addEventListener('click', function () {
-        applyConsent('granted');
-      });
+      // Cookie banner buttons
+      document.getElementById('cookie-accept').addEventListener('click', function () { applyConsent('granted'); });
+      document.getElementById('cookie-decline').addEventListener('click', function () { applyConsent('denied'); });
 
-      document.getElementById('cookie-decline').addEventListener('click', function () {
-        applyConsent('denied');
+      // Settings modal open/close
+      document.getElementById('settings-btn').addEventListener('click', function () {
+        updateAnalyticsStatus();
+        modal.style.display = '';
       });
+      document.getElementById('settings-close').addEventListener('click', function () { modal.style.display = 'none'; });
+      document.getElementById('settings-overlay').addEventListener('click', function () { modal.style.display = 'none'; });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') modal.style.display = 'none'; });
 
-      prefsBtn.addEventListener('click', function () {
-        try { localStorage.removeItem(CONSENT_KEY); } catch(_) {}
-        showBanner();
-      });
+      // Settings modal analytics buttons
+      document.getElementById('settings-analytics-accept').addEventListener('click', function () { applyConsent('granted'); });
+      document.getElementById('settings-analytics-decline').addEventListener('click', function () { applyConsent('denied'); });
 
-      // Show banner only on first visit (no stored choice)
+      // Show banner only on first visit
       try {
-        if (!localStorage.getItem(CONSENT_KEY)) {
-          showBanner();
-        } else {
-          prefsBtn.style.display = '';
-        }
+        if (!localStorage.getItem(CONSENT_KEY)) { banner.style.display = ''; }
       } catch(_) {
-        showBanner();
+        banner.style.display = '';
       }
     })();
   </script>

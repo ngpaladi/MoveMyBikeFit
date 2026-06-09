@@ -33,14 +33,23 @@ const COCKPIT_FIELDS = [
   { key: 'stemLength', label: 'Stem',          unit: 'mm',         min: 40,  max: 140, step: 10, nullable: true },
   { key: 'stemAngle',  label: 'Stem angle',    unit: '° (−=lower)',min: -17, max: 17,  step: 1,  def: 0         },
   { key: 'spacers',    label: 'Spacers',        unit: 'mm',         min: 0,   max: 40,  step: 5,  def: 0         },
-  { key: 'stemHeight', label: 'Stem height',    unit: 'mm',         min: 0,   max: 40,  step: 5,  def: 0         },
+  { key: 'stemHeight', label: 'Stem height',    unit: 'mm',         min: 0,   max: 40,  step: 5,  def: 20        },
   { key: 'barReach',   label: 'Bar reach',      unit: 'mm',         min: 50,  max: 110, step: 5,  def: 80        },
-  { key: 'hoodLength', label: 'Hood length',    unit: 'mm',         min: 0,   max: 60,  step: 5,  def: 0         },
+  { key: 'hoodLength', label: 'Hood length',    unit: 'mm',         min: 0,   max: 60,  step: 5,  def: 10        },
   { key: 'setback',    label: 'Saddle setback', unit: 'mm',         min: -10, max: 35,  step: 1,  def: 0         },
 ];
 
 function defaultCockpit() {
-  return { stemLength: null, stemAngle: 0, spacers: 0, stemHeight: 0, setback: 0, barReach: 80, hoodLength: 0 };
+  return {
+    stemLength: null,
+    stemAngle:  0,
+    spacers:    0,
+    stemHeight: state.settings.defaultStemHeight,
+    setback:    0,
+    barReach:   state.settings.defaultBarReach,
+    hoodLength: state.settings.defaultHoodLength,
+    locked:     {},
+  };
 }
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -58,7 +67,21 @@ const state = {
   fit: { saddleHeight: null, seatToHood: null, hoodToBB: null },
 
   unit: 'cm',  // 'cm' | 'in'
+
+  fitLocks: { saddleHeight: false },
+
+  settings: {
+    defaultStemHeight: 20,
+    defaultBarReach:   80,
+    defaultHoodLength: 10,
+  },
 };
+
+// ── Lock icon SVGs ────────────────────────────────────────────────────────────
+
+const SVG_LOCK_CLOSED = '<svg width="11" height="11" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
+const SVG_LOCK_OPEN   = '<svg width="11" height="11" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+const LOCKABLE_FIELDS = new Set(['stemLength', 'stemAngle', 'spacers', 'setback']);
 
 // ── DOM / base URL ────────────────────────────────────────────────────────────
 
@@ -74,7 +97,18 @@ function $(sel) { return document.querySelector(sel); }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 
+function loadPrefs() {
+  try {
+    const raw = localStorage.getItem('mmbf-state');
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (s.settings) Object.assign(state.settings, s.settings);
+    if (s.fitLocks) Object.assign(state.fitLocks, s.fitLocks);
+  } catch (_) {}
+}
+
 async function init() {
+  loadPrefs();
   const svgEl = $('#bike-svg');
   window._renderer = new BikeRenderer(svgEl);
 
@@ -92,6 +126,8 @@ async function init() {
   bindMobileNav();
   bindResizeHandles();
   bindCanvasControls();
+  bindFitLockToggles();
+  bindSettingsModal();
   restoreState();
 }
 
@@ -342,7 +378,7 @@ function bestSizeIdx(bike, fit) {
   bike.sizes.forEach((size, idx) => {
     const htTop  = { x: size.reach, y: size.stack };
     const result = FitCalculator.findStem(size, htTop,
-      fit.saddleHeight, fit.seatToHood, fit.hoodToBB, 0, 0, 80);
+      fit.saddleHeight, fit.seatToHood, fit.hoodToBB, 0, 0, state.settings.defaultBarReach);
     if (!result) return;
 
     const { stemLength, stemAngleDeg } = result;
@@ -557,6 +593,9 @@ function renderCockpitPanel(bikes) {
     bikes.forEach(b => {
       const cockpit = state.selectedBikes.get(b.id).cockpit;
       const td  = document.createElement('td');
+      const wrap = document.createElement('div');
+      wrap.className = 'cockpit-cell';
+
       const inp = document.createElement('input');
       inp.type  = 'number';
       inp.id    = `c-${b.id}-${field.key}`;
@@ -566,7 +605,7 @@ function renderCockpitPanel(bikes) {
       inp.step  = field.step;
 
       const val = cockpit[field.key];
-      if (val != null)         inp.value       = val;
+      if (val != null)          inp.value       = val;
       else if (!field.nullable) inp.value       = field.def ?? '';
       else                      inp.placeholder = '—';
 
@@ -577,7 +616,25 @@ function renderCockpitPanel(bikes) {
         saveState();
       });
 
-      td.appendChild(inp);
+      wrap.appendChild(inp);
+
+      if (LOCKABLE_FIELDS.has(field.key)) {
+        if (!cockpit.locked) cockpit.locked = {};
+        const isLocked = !!cockpit.locked[field.key];
+        const lockBtn = document.createElement('button');
+        lockBtn.className = 'lock-btn' + (isLocked ? ' lock-active' : '');
+        lockBtn.title     = isLocked ? 'Fixed — click to unlock' : 'Click to fix this value in fit suggestions';
+        lockBtn.innerHTML = isLocked ? SVG_LOCK_CLOSED : SVG_LOCK_OPEN;
+        lockBtn.addEventListener('click', () => {
+          if (!cockpit.locked) cockpit.locked = {};
+          cockpit.locked[field.key] = !cockpit.locked[field.key];
+          renderComparison();
+          saveState();
+        });
+        wrap.appendChild(lockBtn);
+      }
+
+      td.appendChild(wrap);
       row.appendChild(td);
     });
 
@@ -607,20 +664,27 @@ const SPACER_STACKS = [0, 5, 10, 15, 20, 25, 30];
 const SETBACKS      = [-10, -5, 0, 5, 10, 15, 20, 25, 30, 35];
 const SH_OFFSETS    = [-10, -5, 0, 5, 10];
 
-function _fitCombos(b, fit) {
+function _fitCombos(b, fit, cockpit = {}) {
   const htTop      = { x: b.size.reach, y: b.size.stack };
   const barReach   = fit.barReach || 80;
   const stemHeight = fit.stemHeight || 0;
   const out        = [];
 
-  for (const shOff of SH_OFFSETS) {
+  const locked  = cockpit.locked || {};
+  const shOffs  = state.fitLocks.saddleHeight ? [0]                                              : SH_OFFSETS;
+  const setbArr = locked.setback    ? [cockpit.setback    || 0]                                  : SETBACKS;
+  const spacerArr = locked.spacers  ? [cockpit.spacers    || 0]                                  : SPACER_STACKS;
+  const lenArr  = (locked.stemLength && cockpit.stemLength != null) ? [cockpit.stemLength]       : STEM_LENGTHS;
+  const angArr  = locked.stemAngle  ? [cockpit.stemAngle  ?? 0]                                  : STEM_ANGLES;
+
+  for (const shOff of shOffs) {
     const sh = fit.saddleHeight + shOff;
     if (sh <= 0) continue;
-    for (const setback of SETBACKS) {
+    for (const setback of setbArr) {
       const saddle = FitCalculator.saddlePosition(b.size, sh, setback);
-      for (const sp of SPACER_STACKS) {
-        for (const len of STEM_LENGTHS) {
-          for (const ang of STEM_ANGLES) {
+      for (const sp of spacerArr) {
+        for (const len of lenArr) {
+          for (const ang of angArr) {
             const hood   = FitCalculator.hoodPosition(b.size, htTop, len, ang, sp, barReach, stemHeight);
             const actual = FitCalculator.triangleDistances(saddle, hood);
             const dSth   = actual.seatToHood - fit.seatToHood;
@@ -667,7 +731,7 @@ function renderFitPanel(bikes) {
     const fit    = { ...state.fit, barReach: effectiveReach, stemHeight: cockpit.stemHeight || 0 };
     const color  = colors[state.colorMap.get(b.id) ?? 0];
     const name   = `${b.geo.brand} ${b.geo.model} ${b.size.label}`;
-    const combos = _fitCombos(b, fit);
+    const combos = _fitCombos(b, fit, cockpit);
 
     const card = document.createElement('div');
     card.style.cssText = `border-left:3px solid ${color};padding:8px 10px;margin-bottom:8px;background:var(--surface);border-radius:4px;`;
@@ -860,6 +924,8 @@ function saveState() {
     colors:       [...state.colorMap.entries()],
     nextColorIdx: state.nextColorIdx,
     fit:          state.fit,
+    fitLocks:     state.fitLocks,
+    settings:     state.settings,
     unit:         state.unit,
     recentBikes:  state.recentBikes,
   };
@@ -986,6 +1052,55 @@ function setInput(sel, val) {
 function showError(msg) {
   const el = $('#error-msg');
   if (el) { el.textContent = msg; el.style.display = 'block'; }
+}
+
+// ── Fit lock toggles ──────────────────────────────────────────────────────────
+
+function _updateSaddleLockBtn(btn) {
+  const locked = state.fitLocks.saddleHeight;
+  btn.classList.toggle('lock-active', locked);
+  btn.innerHTML = locked ? SVG_LOCK_CLOSED : SVG_LOCK_OPEN;
+  btn.title = locked
+    ? 'Saddle height fixed — click to allow ±10mm adjustment in suggestions'
+    : 'Click to fix saddle height (disable ±10mm offset search)';
+}
+
+function bindFitLockToggles() {
+  const btn = document.getElementById('fit-lock-saddle-height');
+  if (!btn) return;
+  _updateSaddleLockBtn(btn);
+  btn.addEventListener('click', () => {
+    state.fitLocks.saddleHeight = !state.fitLocks.saddleHeight;
+    _updateSaddleLockBtn(btn);
+    renderComparison();
+    saveState();
+  });
+}
+
+// ── Settings modal ────────────────────────────────────────────────────────────
+
+function bindSettingsModal() {
+  const sec     = document.getElementById('settings-components');
+  const shInput = document.getElementById('default-stem-height');
+  const brInput = document.getElementById('default-bar-reach');
+  const hlInput = document.getElementById('default-hood-length');
+
+  if (sec) sec.style.display = '';
+
+  if (shInput) shInput.value = state.settings.defaultStemHeight;
+  if (brInput) brInput.value = state.settings.defaultBarReach;
+  if (hlInput) hlInput.value = state.settings.defaultHoodLength;
+
+  function bindSetting(el, key) {
+    if (!el) return;
+    el.addEventListener('input', () => {
+      const v = parseFloat(el.value);
+      if (!isNaN(v)) { state.settings[key] = v; saveState(); }
+    });
+  }
+  bindSetting(shInput, 'defaultStemHeight');
+  bindSetting(brInput, 'defaultBarReach');
+  bindSetting(hlInput, 'defaultHoodLength');
 }
 
 document.addEventListener('DOMContentLoaded', init);
