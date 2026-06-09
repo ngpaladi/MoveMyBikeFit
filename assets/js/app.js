@@ -280,7 +280,13 @@ function renderSizeSelectors() {
       saveState();
     });
 
-    row.appendChild(label); row.appendChild(sel);
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'size-remove-btn';
+    removeBtn.title = `Remove ${bike.brand} ${bike.model}`;
+    removeBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+    removeBtn.addEventListener('click', () => toggleBike(bike, false));
+
+    row.appendChild(label); row.appendChild(sel); row.appendChild(removeBtn);
     container.appendChild(row);
   });
 }
