@@ -33,13 +33,14 @@ const COCKPIT_FIELDS = [
   { key: 'stemLength', label: 'Stem',          unit: 'mm',         min: 40,  max: 140, step: 10, nullable: true },
   { key: 'stemAngle',  label: 'Stem angle',    unit: '° (−=lower)',min: -17, max: 17,  step: 1,  def: 0         },
   { key: 'spacers',    label: 'Spacers',        unit: 'mm',         min: 0,   max: 40,  step: 5,  def: 0         },
+  { key: 'stemHeight', label: 'Stem height',    unit: 'mm',         min: 0,   max: 40,  step: 5,  def: 0         },
   { key: 'barReach',   label: 'Bar reach',      unit: 'mm',         min: 50,  max: 110, step: 5,  def: 80        },
   { key: 'hoodLength', label: 'Hood length',    unit: 'mm',         min: 0,   max: 60,  step: 5,  def: 0         },
   { key: 'setback',    label: 'Saddle setback', unit: 'mm',         min: -10, max: 35,  step: 1,  def: 0         },
 ];
 
 function defaultCockpit() {
-  return { stemLength: null, stemAngle: 0, spacers: 0, setback: 0, barReach: 80, hoodLength: 0 };
+  return { stemLength: null, stemAngle: 0, spacers: 0, stemHeight: 0, setback: 0, barReach: 80, hoodLength: 0 };
 }
 
 // ── State ─────────────────────────────────────────────────────────────────────
@@ -48,7 +49,7 @@ const MAX_SELECTED = 2;
 const MAX_RECENT   = 8;
 
 const state = {
-  selectedBikes: new Map(), // bikeId → { sizeIdx, cockpit: { stemLength, stemAngle, spacers, setback, barReach, hoodLength } }
+  selectedBikes: new Map(), // bikeId → { sizeIdx, cockpit: { stemLength, stemAngle, spacers, stemHeight, setback, barReach, hoodLength } }
   colorMap:      new Map(), // bikeId → colorIdx
   nextColorIdx:  0,
   recentBikes:   [],        // [bikeId, ...] most-recent-first
@@ -90,6 +91,7 @@ async function init() {
   bindUnitToggle();
   bindMobileNav();
   bindResizeHandles();
+  bindCanvasControls();
   restoreState();
 }
 
@@ -264,6 +266,23 @@ function bindFitInputs() {
   });
 }
 
+// ── Canvas overlay controls ───────────────────────────────────────────────────
+
+function bindCanvasControls() {
+  const btn = $('#btn-stack-reach');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const active = btn.classList.toggle('active');
+    window._renderer.setShowStackReach(active);
+  });
+}
+
+// Show/hide the canvas controls bar depending on whether bikes are selected.
+function updateCanvasControls() {
+  const el = $('#canvas-controls');
+  if (el) el.style.display = state.selectedBikes.size ? '' : 'none';
+}
+
 // ── Unit toggle ───────────────────────────────────────────────────────────────
 
 function bindUnitToggle() {
@@ -372,7 +391,7 @@ function renderComparison() {
       const result = FitCalculator.findStem(
         size, htTop,
         state.fit.saddleHeight, state.fit.seatToHood, state.fit.hoodToBB,
-        0, cockpit.setback || 0, effectiveReach
+        0, cockpit.setback || 0, effectiveReach, cockpit.stemHeight || 0
       );
       recommendedHood = result ? result.hoodPos : null;
     }
@@ -386,6 +405,7 @@ function renderComparison() {
       stemLength:      cockpit.stemLength,
       stemAngle:       cockpit.stemAngle,
       spacers:         cockpit.spacers,
+      stemHeight:      cockpit.stemHeight || 0,
       setback:         cockpit.setback || 0,
       barReach:        effectiveReach,
       recommendedHood,
@@ -401,6 +421,7 @@ function renderComparison() {
 
   const ph = $('#canvas-placeholder');
   if (ph) ph.style.display = bikeList.length ? 'none' : 'flex';
+  updateCanvasControls();
 }
 
 // ── Comparison table ──────────────────────────────────────────────────────────
@@ -587,9 +608,10 @@ const SETBACKS      = [-10, -5, 0, 5, 10, 15, 20, 25, 30, 35];
 const SH_OFFSETS    = [-10, -5, 0, 5, 10];
 
 function _fitCombos(b, fit) {
-  const htTop    = { x: b.size.reach, y: b.size.stack };
-  const barReach = fit.barReach || 80;
-  const out      = [];
+  const htTop      = { x: b.size.reach, y: b.size.stack };
+  const barReach   = fit.barReach || 80;
+  const stemHeight = fit.stemHeight || 0;
+  const out        = [];
 
   for (const shOff of SH_OFFSETS) {
     const sh = fit.saddleHeight + shOff;
@@ -599,7 +621,7 @@ function _fitCombos(b, fit) {
       for (const sp of SPACER_STACKS) {
         for (const len of STEM_LENGTHS) {
           for (const ang of STEM_ANGLES) {
-            const hood   = FitCalculator.hoodPosition(b.size, htTop, len, ang, sp, barReach);
+            const hood   = FitCalculator.hoodPosition(b.size, htTop, len, ang, sp, barReach, stemHeight);
             const actual = FitCalculator.triangleDistances(saddle, hood);
             const dSth   = actual.seatToHood - fit.seatToHood;
             const dHtb   = actual.hoodToBB   - fit.hoodToBB;
@@ -642,7 +664,7 @@ function renderFitPanel(bikes) {
   bikes.forEach(b => {
     const cockpit = state.selectedBikes.get(b.id).cockpit;
     const effectiveReach = (cockpit.barReach || 80) + (cockpit.hoodLength || 0);
-    const fit    = { ...state.fit, barReach: effectiveReach };
+    const fit    = { ...state.fit, barReach: effectiveReach, stemHeight: cockpit.stemHeight || 0 };
     const color  = colors[state.colorMap.get(b.id) ?? 0];
     const name   = `${b.geo.brand} ${b.geo.model} ${b.size.label}`;
     const combos = _fitCombos(b, fit);
@@ -902,10 +924,11 @@ function restoreFromURL(params) {
   const legacyCockpit = {};
   if (params.has('sl')) legacyCockpit.stemLength = +params.get('sl');
   if (params.has('sa')) legacyCockpit.stemAngle  = +params.get('sa');
-  if (params.has('sp')) legacyCockpit.spacers    = +params.get('sp');
-  if (params.has('sb')) legacyCockpit.setback    = +params.get('sb');
-  if (params.has('br')) legacyCockpit.barReach   = +params.get('br');
-  if (params.has('hl')) legacyCockpit.hoodLength = +params.get('hl');
+  if (params.has('sp'))  legacyCockpit.spacers    = +params.get('sp');
+  if (params.has('sb'))  legacyCockpit.setback    = +params.get('sb');
+  if (params.has('br'))  legacyCockpit.barReach   = +params.get('br');
+  if (params.has('hl'))  legacyCockpit.hoodLength = +params.get('hl');
+  if (params.has('sth')) legacyCockpit.stemHeight = +params.get('sth');
   if (Object.keys(legacyCockpit).length) {
     state.selectedBikes.forEach(bs => Object.assign(bs.cockpit, legacyCockpit));
   }

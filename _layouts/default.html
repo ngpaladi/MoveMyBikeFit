@@ -6,6 +6,27 @@
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   {% seo %}
+  <!-- GA4 Consent Mode v2 – all consent denied by default until user accepts -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage:  'denied',
+      ad_storage:         'denied',
+      ad_user_data:       'denied',
+      ad_personalization: 'denied',
+      wait_for_update:    500,
+    });
+    // Restore previously accepted consent within the wait_for_update window
+    try {
+      if (localStorage.getItem('mmbf-consent') === 'granted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
+    } catch(_) {}
+    gtag('js', new Date());
+    gtag('config', 'G-LLS2F5KZE0');
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LLS2F5KZE0"></script>
 </head>
 <body>
   <header class="site-header">
@@ -13,10 +34,73 @@
     <nav class="site-nav">
       <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Compare</a>
       <a href="{{ '/add.html' | relative_url }}" {% if page.url contains 'add' %}class="active"{% endif %}>Add Bike</a>
+      <button id="cookie-prefs-btn" class="cookie-prefs-btn" style="display:none" aria-label="Cookie preferences">Cookie settings</button>
     </nav>
   </header>
   <main>
     {{ content }}
   </main>
+
+  <!-- Cookie consent banner -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" style="display:none">
+    <p class="cookie-banner-text">
+      This site uses Google Analytics to count page visits. No advertising or cross-site tracking is enabled.
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="cookie-banner-link">Google Privacy Policy</a>
+    </p>
+    <div class="cookie-banner-actions">
+      <button id="cookie-decline" class="cookie-btn cookie-btn-decline">Decline</button>
+      <button id="cookie-accept"  class="cookie-btn cookie-btn-accept">Accept analytics</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var CONSENT_KEY = 'mmbf-consent';
+      var banner = document.getElementById('cookie-banner');
+      var prefsBtn = document.getElementById('cookie-prefs-btn');
+
+      function showBanner() {
+        banner.style.display = '';
+        prefsBtn.style.display = 'none';
+      }
+
+      function hideBanner() {
+        banner.style.display = 'none';
+        prefsBtn.style.display = '';
+      }
+
+      function applyConsent(choice) {
+        try { localStorage.setItem(CONSENT_KEY, choice); } catch(_) {}
+        if (choice === 'granted') {
+          gtag('consent', 'update', { analytics_storage: 'granted' });
+        }
+        hideBanner();
+      }
+
+      document.getElementById('cookie-accept').addEventListener('click', function () {
+        applyConsent('granted');
+      });
+
+      document.getElementById('cookie-decline').addEventListener('click', function () {
+        applyConsent('denied');
+      });
+
+      prefsBtn.addEventListener('click', function () {
+        try { localStorage.removeItem(CONSENT_KEY); } catch(_) {}
+        showBanner();
+      });
+
+      // Show banner only on first visit (no stored choice)
+      try {
+        if (!localStorage.getItem(CONSENT_KEY)) {
+          showBanner();
+        } else {
+          prefsBtn.style.display = '';
+        }
+      } catch(_) {
+        showBanner();
+      }
+    })();
+  </script>
 </body>
 </html>

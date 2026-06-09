@@ -16,12 +16,15 @@ const FitCalculator = {
     };
   },
 
-  // Stem base position, accounting for spacers stacked above HT top along steerer axis.
+  // Stem base position, accounting for spacers below the stem and the stem body height
+  // along the steerer. stemHeightMM is the distance from the bottom of the stem to the
+  // effective stem-length pivot (typically ~half the stem body height).
   // Steerer upward unit vector: (-cos(HTA), sin(HTA))
-  stemBase(htTop, htaRad, spacersMM) {
+  stemBase(htTop, htaRad, spacersMM, stemHeightMM = 0) {
+    const totalOffset = spacersMM + stemHeightMM;
     return {
-      x: htTop.x - Math.cos(htaRad) * spacersMM,
-      y: htTop.y + Math.sin(htaRad) * spacersMM,
+      x: htTop.x - Math.cos(htaRad) * totalOffset,
+      y: htTop.y + Math.sin(htaRad) * totalOffset,
     };
   },
 
@@ -38,10 +41,10 @@ const FitCalculator = {
   },
 
   // Hood position in bike mm coords
-  hoodPosition(size, htTop, stemLengthMM, stemAngleRelHTDeg, spacersMM, barReachMM = BAR_REACH) {
+  hoodPosition(size, htTop, stemLengthMM, stemAngleRelHTDeg, spacersMM, barReachMM = BAR_REACH, stemHeightMM = 0) {
     const hta = size.ht_angle * Math.PI / 180;
     const theta = stemAngleRelHTDeg * Math.PI / 180;
-    const base = this.stemBase(htTop, hta, spacersMM);
+    const base = this.stemBase(htTop, hta, spacersMM, stemHeightMM);
     const dir  = this.stemDirection(hta, theta);
     return {
       x: base.x + stemLengthMM * dir.x + barReachMM,
@@ -65,7 +68,7 @@ const FitCalculator = {
 
   // Solve for the stem length + angle (relative to HT) needed to achieve the user's
   // fit triangle. Returns { stemLength, stemAngleDeg, hoodPos } or null if unsolvable.
-  findStem(size, htTop, saddleHeightMM, targetSeatToHood, targetHoodToBB, spacersMM = 0, setbackMM = 0, barReachMM = BAR_REACH) {
+  findStem(size, htTop, saddleHeightMM, targetSeatToHood, targetHoodToBB, spacersMM = 0, setbackMM = 0, barReachMM = BAR_REACH, stemHeightMM = 0) {
     const hta = size.ht_angle * Math.PI / 180;
     const BB  = { x: 0, y: 0 };
     const saddle = this.saddlePosition(size, saddleHeightMM, setbackMM);
@@ -85,8 +88,8 @@ const FitCalculator = {
     // Bar clamp = hood - bar reach (horizontally)
     const barClamp = { x: hood.x - barReachMM, y: hood.y };
 
-    // Stem base (HT_top + spacers along steerer)
-    const base = this.stemBase(htTop, hta, spacersMM);
+    // Stem base (HT_top + spacers + stem body height along steerer)
+    const base = this.stemBase(htTop, hta, spacersMM, stemHeightMM);
 
     const dx = barClamp.x - base.x;
     const dy = barClamp.y - base.y;

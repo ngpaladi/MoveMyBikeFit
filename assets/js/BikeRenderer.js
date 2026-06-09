@@ -24,10 +24,13 @@ class BikeRenderer {
     this.svg = svgEl;
     this.bikes = [];   // [{id, geo, size, colorIdx, stemLength, stemAngle, spacers}]
     this.fit = null;   // {saddleHeight, seatToHood, hoodToBB}
+    this.showStackReach = false;
     this.padding = 55;
     this._resizeObs = new ResizeObserver(() => this.render());
     this._resizeObs.observe(svgEl);
   }
+
+  setShowStackReach(val) { this.showStackReach = val; this.render(); }
 
   destroy() { this._resizeObs.disconnect(); }
 
@@ -53,18 +56,22 @@ class BikeRenderer {
 
     const tr = this._calcTransform(allPoints, W, H);
 
-    // draw order: wheels → frames → recommended overlay (grey) → cockpit → fit overlay → hubs/BBs
-    const wheelGroup   = this._g(svg);
-    const frameGroup   = this._g(svg);
-    const recGroup     = this._g(svg);
-    const cockpitGroup = this._g(svg);
-    const fitGroup     = this._g(svg);
-    const topGroup     = this._g(svg);
+    // draw order: wheels → frames → stack/reach → recommended overlay → cockpit → fit overlay → hubs/BBs
+    const wheelGroup      = this._g(svg);
+    const frameGroup      = this._g(svg);
+    const stackReachGroup = this._g(svg);
+    const recGroup        = this._g(svg);
+    const cockpitGroup    = this._g(svg);
+    const fitGroup        = this._g(svg);
+    const topGroup        = this._g(svg);
 
-    allPoints.forEach(b => {
+    allPoints.forEach((b, bikeIdx) => {
       const color = BIKE_COLORS[b.colorIdx];
       this._drawWheels(wheelGroup, b.pts, tr, color);
       this._drawFrame(frameGroup, b.pts, tr, color, b);
+      if (this.showStackReach) {
+        this._drawStackReach(stackReachGroup, tr, color, b, bikeIdx, allPoints.length);
+      }
       if (this.fit && this.fit.saddleHeight && b.recommendedHood) {
         this._drawRecommendedOverlay(recGroup, b.pts, tr, b, this.fit);
       }
@@ -117,7 +124,7 @@ class BikeRenderer {
 
   _calcTransform(allBikes, W, H) {
     const pts = [];
-    allBikes.forEach(({ pts: p, size, stemLength, stemAngle, spacers, barReach, setback, recommendedHood }) => {
+    allBikes.forEach(({ pts: p, size, stemLength, stemAngle, spacers, stemHeight, barReach, setback, recommendedHood }) => {
       pts.push({ x: p.rear_axle.x  - WHEEL_RADIUS, y: p.rear_axle.y  - WHEEL_RADIUS });
       pts.push({ x: p.rear_axle.x  + WHEEL_RADIUS, y: p.rear_axle.y  + WHEEL_RADIUS });
       pts.push({ x: p.front_axle.x - WHEEL_RADIUS, y: p.front_axle.y - WHEEL_RADIUS });
@@ -139,12 +146,12 @@ class BikeRenderer {
 
       // Include actual hood position when cockpit is set (bars can extend past front wheel)
       if (stemLength) {
-        const hta   = size.ht_angle * Math.PI / 180;
-        const theta = (stemAngle || 0) * Math.PI / 180;
-        const sp    = spacers || 0;
-        const base  = {
-          x: p.HT_top.x - Math.cos(hta) * sp,
-          y: p.HT_top.y + Math.sin(hta) * sp,
+        const hta    = size.ht_angle * Math.PI / 180;
+        const theta  = (stemAngle || 0) * Math.PI / 180;
+        const offset = (spacers || 0) + (stemHeight || 0);
+        const base   = {
+          x: p.HT_top.x - Math.cos(hta) * offset,
+          y: p.HT_top.y + Math.sin(hta) * offset,
         };
         pts.push({
           x: base.x + stemLength * Math.sin(hta - theta) + (barReach || 80),
@@ -283,20 +290,26 @@ class BikeRenderer {
 
   _drawCockpit(g, pts, tr, color, b) {
     this._currentScale = tr.scale;
-    const hta       = b.size.ht_angle * Math.PI / 180;
-    const theta     = (b.stemAngle || 0) * Math.PI / 180;  // relative to HT
-    const stemLen   = b.stemLength || 100;
-    const spacers   = b.spacers || 0;
+    const hta        = b.size.ht_angle * Math.PI / 180;
+    const theta      = (b.stemAngle || 0) * Math.PI / 180;  // relative to HT
+    const stemLen    = b.stemLength || 100;
+    const spacers    = b.spacers || 0;
+    const stemHeight = b.stemHeight || 0;
 
     // Steerer upward direction: (-cos(HTA), sin(HTA))
-    const stemBase = {
+    // spacers sit below the stem; stemHeight is the rise through the stem body itself
+    const spacerTop = {
       x: pts.HT_top.x - Math.cos(hta) * spacers,
       y: pts.HT_top.y + Math.sin(hta) * spacers,
+    };
+    const stemBase = {
+      x: spacerTop.x - Math.cos(hta) * stemHeight,
+      y: spacerTop.y + Math.sin(hta) * stemHeight,
     };
 
     // Draw spacer stack (if any) as a thicker section on the steerer
     if (spacers > 2) {
-      this._tube(g, tr(pts.HT_top), tr(stemBase), color, 24, 0.55);
+      this._tube(g, tr(pts.HT_top), tr(spacerTop), color, 24, 0.55);
     }
 
     // Stem direction relative to HT: (sin(HTA - θ), cos(HTA - θ))
@@ -398,6 +411,51 @@ class BikeRenderer {
       stroke: color, 'stroke-width': 1.5 * tr.scale,
       opacity: 0.75,
     }));
+  }
+
+  // Draws a stack-and-reach "L" annotation for one bike.
+  // Vertical leg: BB (0,0) → corner (0, stack); horizontal leg: corner → HT_top (reach, stack).
+  // bikeIdx/totalBikes governs which side labels appear on when two bikes are shown.
+  _drawStackReach(g, tr, color, b, bikeIdx, totalBikes) {
+    const BB     = { x: 0,          y: 0           };
+    const corner = { x: 0,          y: b.size.stack };
+    const htTop  = { x: b.size.reach, y: b.size.stack };
+
+    const BB_svg     = tr(BB);
+    const corner_svg = tr(corner);
+    const htTop_svg  = tr(htTop);
+
+    const lw   = 1.5;
+    const dash = '5,3';
+    const tick = 6;
+
+    const line = (x1, y1, x2, y2, extraAttrs = {}) =>
+      this._el('line', { x1, y1, x2, y2, stroke: color, 'stroke-width': lw, opacity: 0.85, ...extraAttrs });
+
+    // Vertical stack leg
+    g.appendChild(line(BB_svg.x, BB_svg.y, corner_svg.x, corner_svg.y, { 'stroke-dasharray': dash }));
+    // Horizontal reach leg
+    g.appendChild(line(corner_svg.x, corner_svg.y, htTop_svg.x, htTop_svg.y, { 'stroke-dasharray': dash }));
+
+    // End ticks (solid, perpendicular)
+    g.appendChild(line(BB_svg.x - tick, BB_svg.y, BB_svg.x + tick, BB_svg.y));
+    g.appendChild(line(htTop_svg.x, htTop_svg.y - tick, htTop_svg.x, htTop_svg.y + tick));
+
+    // Corner dot
+    g.appendChild(this._el('circle', { cx: corner_svg.x, cy: corner_svg.y, r: 3, fill: color, opacity: 0.85 }));
+
+    // Label placement: bike 0 → left/above; bike 1 → right/below
+    const labelOffset = 5;
+    const fontSize    = 10;
+
+    const stackX      = corner_svg.x + (bikeIdx === 0 ? -labelOffset : labelOffset);
+    const stackAnchor = bikeIdx === 0 ? 'end' : 'start';
+    const stackY      = (BB_svg.y + corner_svg.y) / 2 + fontSize * 0.35;
+    this._text(g, `${b.size.stack}`, stackX, stackY, fontSize, color, stackAnchor);
+
+    const reachX = (corner_svg.x + htTop_svg.x) / 2;
+    const reachY = corner_svg.y + (bikeIdx === 0 ? -labelOffset : labelOffset + fontSize);
+    this._text(g, `${b.size.reach}`, reachX, reachY, fontSize, color, 'middle');
   }
 
   _drawSaddle(g, svgPos, color, scale, staRad) {
