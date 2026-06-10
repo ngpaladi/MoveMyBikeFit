@@ -555,6 +555,68 @@ function renderTable(bikes) {
 
 // ── Cockpit panel ─────────────────────────────────────────────────────────────
 
+const EXTRA_COCKPIT_KEYS = new Set(['stemHeight', 'barReach', 'hoodLength']);
+let cockpitExpanded = false;
+
+function _cockpitRow(field, bikes) {
+  const row = document.createElement('tr');
+
+  const td0 = document.createElement('td');
+  td0.innerHTML = field.label
+    + (field.unit ? ` <span style="color:var(--text-muted);font-size:10px">${field.unit}</span>` : '');
+  row.appendChild(td0);
+
+  bikes.forEach(b => {
+    const cockpit = state.selectedBikes.get(b.id).cockpit;
+    const td   = document.createElement('td');
+    const wrap = document.createElement('div');
+    wrap.className = 'cockpit-cell';
+
+    const inp = document.createElement('input');
+    inp.type  = 'number';
+    inp.id    = `c-${b.id}-${field.key}`;
+    inp.className = 'cockpit-input';
+    inp.min   = field.min;
+    inp.max   = field.max;
+    inp.step  = field.step;
+
+    const val = cockpit[field.key];
+    if (val != null)          inp.value       = val;
+    else if (!field.nullable) inp.value       = field.def ?? '';
+    else                      inp.placeholder = '—';
+
+    inp.addEventListener('input', () => {
+      const v = parseFloat(inp.value);
+      cockpit[field.key] = isNaN(v) ? (field.nullable ? null : (field.def ?? null)) : v;
+      renderComparison();
+      saveState();
+    });
+
+    wrap.appendChild(inp);
+
+    if (LOCKABLE_FIELDS.has(field.key)) {
+      if (!cockpit.locked) cockpit.locked = {};
+      const isLocked = !!cockpit.locked[field.key];
+      const lockBtn = document.createElement('button');
+      lockBtn.className = 'lock-btn' + (isLocked ? ' lock-active' : '');
+      lockBtn.title     = isLocked ? 'Fixed — click to unlock' : 'Click to fix this value in fit suggestions';
+      lockBtn.innerHTML = isLocked ? SVG_LOCK_CLOSED : SVG_LOCK_OPEN;
+      lockBtn.addEventListener('click', () => {
+        if (!cockpit.locked) cockpit.locked = {};
+        cockpit.locked[field.key] = !cockpit.locked[field.key];
+        renderComparison();
+        saveState();
+      });
+      wrap.appendChild(lockBtn);
+    }
+
+    td.appendChild(wrap);
+    row.appendChild(td);
+  });
+
+  return row;
+}
+
 function renderCockpitPanel(bikes) {
   const panel = $('#cockpit-inputs');
   if (!panel) return;
@@ -588,64 +650,30 @@ function renderCockpitPanel(bikes) {
   table.appendChild(thead);
 
   const tbody = document.createElement('tbody');
-  COCKPIT_FIELDS.forEach(field => {
-    const row = document.createElement('tr');
 
-    const td0 = document.createElement('td');
-    td0.innerHTML = field.label
-      + (field.unit ? ` <span style="color:var(--text-muted);font-size:10px">${field.unit}</span>` : '');
-    row.appendChild(td0);
+  COCKPIT_FIELDS.filter(f => !EXTRA_COCKPIT_KEYS.has(f.key))
+    .forEach(f => tbody.appendChild(_cockpitRow(f, bikes)));
 
-    bikes.forEach(b => {
-      const cockpit = state.selectedBikes.get(b.id).cockpit;
-      const td  = document.createElement('td');
-      const wrap = document.createElement('div');
-      wrap.className = 'cockpit-cell';
-
-      const inp = document.createElement('input');
-      inp.type  = 'number';
-      inp.id    = `c-${b.id}-${field.key}`;
-      inp.className = 'cockpit-input';
-      inp.min   = field.min;
-      inp.max   = field.max;
-      inp.step  = field.step;
-
-      const val = cockpit[field.key];
-      if (val != null)          inp.value       = val;
-      else if (!field.nullable) inp.value       = field.def ?? '';
-      else                      inp.placeholder = '—';
-
-      inp.addEventListener('input', () => {
-        const v = parseFloat(inp.value);
-        cockpit[field.key] = isNaN(v) ? (field.nullable ? null : (field.def ?? null)) : v;
-        renderComparison();
-        saveState();
-      });
-
-      wrap.appendChild(inp);
-
-      if (LOCKABLE_FIELDS.has(field.key)) {
-        if (!cockpit.locked) cockpit.locked = {};
-        const isLocked = !!cockpit.locked[field.key];
-        const lockBtn = document.createElement('button');
-        lockBtn.className = 'lock-btn' + (isLocked ? ' lock-active' : '');
-        lockBtn.title     = isLocked ? 'Fixed — click to unlock' : 'Click to fix this value in fit suggestions';
-        lockBtn.innerHTML = isLocked ? SVG_LOCK_CLOSED : SVG_LOCK_OPEN;
-        lockBtn.addEventListener('click', () => {
-          if (!cockpit.locked) cockpit.locked = {};
-          cockpit.locked[field.key] = !cockpit.locked[field.key];
-          renderComparison();
-          saveState();
-        });
-        wrap.appendChild(lockBtn);
-      }
-
-      td.appendChild(wrap);
-      row.appendChild(td);
-    });
-
-    tbody.appendChild(row);
+  // Show more / less toggle row
+  const toggleRow = document.createElement('tr');
+  const toggleTd  = document.createElement('td');
+  toggleTd.colSpan = bikes.length + 1;
+  toggleTd.style.padding = '4px 8px';
+  const toggleBtn = document.createElement('button');
+  toggleBtn.className = 'fit-expand-btn';
+  toggleBtn.textContent = cockpitExpanded ? 'Show less' : 'More…';
+  toggleBtn.addEventListener('click', () => {
+    cockpitExpanded = !cockpitExpanded;
+    renderComparison();
   });
+  toggleTd.appendChild(toggleBtn);
+  toggleRow.appendChild(toggleTd);
+  tbody.appendChild(toggleRow);
+
+  if (cockpitExpanded) {
+    COCKPIT_FIELDS.filter(f => EXTRA_COCKPIT_KEYS.has(f.key))
+      .forEach(f => tbody.appendChild(_cockpitRow(f, bikes)));
+  }
 
   table.appendChild(tbody);
   panel.appendChild(table);
@@ -1030,8 +1058,16 @@ function restoreFromLocalStorage() {
     if (s.colors) s.colors.forEach(([id, ci]) => state.colorMap.set(id, ci));
     if (Array.isArray(s.recentBikes)) state.recentBikes = s.recentBikes;
 
+    // Saves without a settings block used the old hardcoded defaults (stemHeight=0, hoodLength=0).
+    // Drop those so defaultCockpit() applies the new settings-based defaults instead.
+    const isLegacySave = !s.settings;
+
     if (s.bikes) s.bikes.forEach(({ id, sizeIdx, autoSize, cockpit }) => {
       if (!BikeStore.getById(id)) return;
+      if (isLegacySave && cockpit) {
+        if (cockpit.stemHeight  === 0) delete cockpit.stemHeight;
+        if (cockpit.hoodLength  === 0) delete cockpit.hoodLength;
+      }
       state.selectedBikes.set(id, {
         sizeIdx:  sizeIdx ?? 0,
         autoSize: autoSize ?? false,

@@ -374,6 +374,8 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   padding: 8px 12px;
 }
 
+#cockpit-inputs { padding-top: 0; }
+
 .fit-col-divider {
   width: 1px;
   background: var(--border);
