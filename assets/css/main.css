@@ -1025,7 +1025,7 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   align-items: center;
   justify-content: center;
   transition: color 0.1s, background 0.1s;
-  margin-left: 4px;
+  margin-left: auto;
 }
 .settings-btn:hover { color: var(--text); background: var(--surface2); }
 
@@ -1147,18 +1147,58 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
 }
 
-.settings-analytics-status {
-  font-size: 12px;
-  color: var(--text-muted);
+.settings-toggle-label {
+  font-size: 13px;
+  color: var(--text);
 }
 
-.settings-analytics-btns {
-  display: flex;
-  gap: 6px;
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  display: block;
+  width: 36px;
+  height: 20px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: background 0.15s, border-color 0.15s;
+  position: relative;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.toggle-switch input:checked + .toggle-track {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.toggle-switch input:checked + .toggle-track .toggle-thumb {
+  transform: translateX(16px);
+  background: #0d1117;
 }
 
 /* ── Lock buttons (cockpit panel + fit sidebar) ─────────────────────────────── */
@@ -1184,19 +1224,3 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
 }
 .lock-btn:hover { opacity: 1; }
 .lock-btn.lock-active { color: var(--accent); opacity: 1; }
-
-.fit-lock-btn {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 2px 3px;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  opacity: 0.4;
-  transition: opacity 0.1s, color 0.1s;
-  flex-shrink: 0;
-}
-.fit-lock-btn:hover { opacity: 1; }
-.fit-lock-btn.lock-active { color: var(--accent); opacity: 1; }

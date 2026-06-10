@@ -34,10 +34,10 @@
     <nav class="site-nav">
       <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Compare</a>
       <a href="{{ '/add.html' | relative_url }}" {% if page.url contains 'add' %}class="active"{% endif %}>Add Bike</a>
-      <button id="settings-btn" class="settings-btn" aria-label="Settings">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      </button>
     </nav>
+    <button id="settings-btn" class="settings-btn" aria-label="Settings">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
   </header>
   <main>
     {{ content }}
@@ -89,11 +89,11 @@
           <div class="settings-section-title">Analytics</div>
           <p class="settings-hint">This site uses Google Analytics to count page visits only. No advertising or cross-site tracking.</p>
           <div class="settings-analytics-row">
-            <span id="settings-analytics-status" class="settings-analytics-status"></span>
-            <div class="settings-analytics-btns">
-              <button id="settings-analytics-accept" class="cookie-btn cookie-btn-accept">Accept</button>
-              <button id="settings-analytics-decline" class="cookie-btn cookie-btn-decline">Decline</button>
-            </div>
+            <label class="settings-toggle-label" for="analytics-toggle">Allow analytics</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="analytics-toggle">
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            </label>
           </div>
         </div>
       </div>
@@ -109,11 +109,11 @@
       function hideBanner() { banner.style.display = 'none'; }
 
       function updateAnalyticsStatus() {
-        var statusEl = document.getElementById('settings-analytics-status');
-        if (!statusEl) return;
+        var cb = document.getElementById('analytics-toggle');
+        if (!cb) return;
         var c = '';
         try { c = localStorage.getItem(CONSENT_KEY) || ''; } catch(_) {}
-        statusEl.textContent = c === 'granted' ? 'Analytics: enabled' : c === 'denied' ? 'Analytics: disabled' : 'Not yet set';
+        cb.checked = (c === 'granted');
       }
 
       function applyConsent(choice) {
@@ -138,9 +138,10 @@
       document.getElementById('settings-overlay').addEventListener('click', function () { modal.style.display = 'none'; });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') modal.style.display = 'none'; });
 
-      // Settings modal analytics buttons
-      document.getElementById('settings-analytics-accept').addEventListener('click', function () { applyConsent('granted'); });
-      document.getElementById('settings-analytics-decline').addEventListener('click', function () { applyConsent('denied'); });
+      // Settings analytics toggle
+      document.getElementById('analytics-toggle').addEventListener('change', function () {
+        applyConsent(this.checked ? 'granted' : 'denied');
+      });
 
       // Show banner only on first visit
       try {

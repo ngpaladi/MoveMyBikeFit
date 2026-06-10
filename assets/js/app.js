@@ -68,8 +68,6 @@ const state = {
 
   unit: 'cm',  // 'cm' | 'in'
 
-  fitLocks: { saddleHeight: false },
-
   settings: {
     defaultStemHeight: 20,
     defaultBarReach:   80,
@@ -103,7 +101,6 @@ function loadPrefs() {
     if (!raw) return;
     const s = JSON.parse(raw);
     if (s.settings) Object.assign(state.settings, s.settings);
-    if (s.fitLocks) Object.assign(state.fitLocks, s.fitLocks);
   } catch (_) {}
 }
 
@@ -126,7 +123,6 @@ async function init() {
   bindMobileNav();
   bindResizeHandles();
   bindCanvasControls();
-  bindFitLockToggles();
   bindSettingsModal();
   restoreState();
 }
@@ -705,7 +701,7 @@ function _fitCombos(b, fit, cockpit = {}) {
   const out        = [];
 
   const locked  = cockpit.locked || {};
-  const shOffs  = state.fitLocks.saddleHeight ? [0]                                              : SH_OFFSETS;
+  const shOffs  = SH_OFFSETS;
   const setbArr = locked.setback    ? [cockpit.setback    || 0]                                  : SETBACKS;
   const spacerArr = locked.spacers  ? [cockpit.spacers    || 0]                                  : SPACER_STACKS;
   const lenArr  = (locked.stemLength && cockpit.stemLength != null) ? [cockpit.stemLength]       : STEM_LENGTHS;
@@ -958,7 +954,6 @@ function saveState() {
     colors:       [...state.colorMap.entries()],
     nextColorIdx: state.nextColorIdx,
     fit:          state.fit,
-    fitLocks:     state.fitLocks,
     settings:     state.settings,
     unit:         state.unit,
     recentBikes:  state.recentBikes,
@@ -1094,29 +1089,6 @@ function setInput(sel, val) {
 function showError(msg) {
   const el = $('#error-msg');
   if (el) { el.textContent = msg; el.style.display = 'block'; }
-}
-
-// ── Fit lock toggles ──────────────────────────────────────────────────────────
-
-function _updateSaddleLockBtn(btn) {
-  const locked = state.fitLocks.saddleHeight;
-  btn.classList.toggle('lock-active', locked);
-  btn.innerHTML = locked ? SVG_LOCK_CLOSED : SVG_LOCK_OPEN;
-  btn.title = locked
-    ? 'Saddle height fixed — click to allow ±10mm adjustment in suggestions'
-    : 'Click to fix saddle height (disable ±10mm offset search)';
-}
-
-function bindFitLockToggles() {
-  const btn = document.getElementById('fit-lock-saddle-height');
-  if (!btn) return;
-  _updateSaddleLockBtn(btn);
-  btn.addEventListener('click', () => {
-    state.fitLocks.saddleHeight = !state.fitLocks.saddleHeight;
-    _updateSaddleLockBtn(btn);
-    renderComparison();
-    saveState();
-  });
 }
 
 // ── Settings modal ────────────────────────────────────────────────────────────
