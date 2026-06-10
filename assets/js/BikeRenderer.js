@@ -1,6 +1,6 @@
 'use strict';
 
-const WHEEL_RADIUS = 330;    // mm, 700c + ~40mm gravel tire
+const RIM_RADIUS   = 311;    // mm, 700c ISO 622 bead seat radius
 const TIRE_WIDTH   = 38;     // mm visual stroke width
 const HUB_RADIUS   = 18;     // mm
 const BB_RADIUS    = 22;     // mm
@@ -23,14 +23,19 @@ class BikeRenderer {
   constructor(svgEl) {
     this.svg = svgEl;
     this.bikes = [];   // [{id, geo, size, colorIdx, stemLength, stemAngle, spacers}]
-    this.fit = null;   // {saddleHeight, seatToHood, hoodToBB}
+    this.fit = null;   // {saddleHeight, seatToHood, hoodToBB, inseam}
     this.showStackReach = false;
+    this.showInseam = false;
+    this.tireWidth = TIRE_WIDTH;
     this.padding = 55;
     this._resizeObs = new ResizeObserver(() => this.render());
     this._resizeObs.observe(svgEl);
   }
 
   setShowStackReach(val) { this.showStackReach = val; this.render(); }
+  setShowInseam(val)     { this.showInseam = val;     this.render(); }
+
+  setTireWidth(w) { this.tireWidth = w; this.render(); }
 
   destroy() { this._resizeObs.disconnect(); }
 
@@ -56,7 +61,8 @@ class BikeRenderer {
 
     const tr = this._calcTransform(allPoints, W, H);
 
-    // draw order: wheels → frames → stack/reach → recommended overlay → cockpit → fit overlay → hubs/BBs
+    // draw order: inseam guide → wheels → frames → stack/reach → recommended overlay → cockpit → fit overlay → hubs/BBs
+    const inseamGroup     = this._g(svg);
     const wheelGroup      = this._g(svg);
     const frameGroup      = this._g(svg);
     const stackReachGroup = this._g(svg);
@@ -64,6 +70,10 @@ class BikeRenderer {
     const cockpitGroup    = this._g(svg);
     const fitGroup        = this._g(svg);
     const topGroup        = this._g(svg);
+
+    if (this.showInseam && this.fit?.inseam) {
+      this._drawInseamLine(inseamGroup, allPoints, tr, W);
+    }
 
     allPoints.forEach((b, bikeIdx) => {
       const color = BIKE_COLORS[b.colorIdx];
@@ -125,10 +135,11 @@ class BikeRenderer {
   _calcTransform(allBikes, W, H) {
     const pts = [];
     allBikes.forEach(({ pts: p, size, stemLength, stemAngle, spacers, stemHeight, barReach, setback, recommendedHood }) => {
-      pts.push({ x: p.rear_axle.x  - WHEEL_RADIUS, y: p.rear_axle.y  - WHEEL_RADIUS });
-      pts.push({ x: p.rear_axle.x  + WHEEL_RADIUS, y: p.rear_axle.y  + WHEEL_RADIUS });
-      pts.push({ x: p.front_axle.x - WHEEL_RADIUS, y: p.front_axle.y - WHEEL_RADIUS });
-      pts.push({ x: p.front_axle.x + WHEEL_RADIUS, y: p.front_axle.y + WHEEL_RADIUS });
+      const wr = RIM_RADIUS + this.tireWidth;
+      pts.push({ x: p.rear_axle.x  - wr, y: p.rear_axle.y  - wr });
+      pts.push({ x: p.rear_axle.x  + wr, y: p.rear_axle.y  + wr });
+      pts.push({ x: p.front_axle.x - wr, y: p.front_axle.y - wr });
+      pts.push({ x: p.front_axle.x + wr, y: p.front_axle.y + wr });
       pts.push(p.HT_top);
       pts.push(p.ST_top);
 
@@ -141,24 +152,17 @@ class BikeRenderer {
         });
       }
 
-      // Include ideal hood position (always shown when fit is active)
-      if (recommendedHood) pts.push(recommendedHood);
-
-      // Include actual hood position when cockpit is set (bars can extend past front wheel)
-      if (stemLength) {
-        const hta    = size.ht_angle * Math.PI / 180;
-        const theta  = (stemAngle || 0) * Math.PI / 180;
-        const offset = (spacers || 0) + (stemHeight || 0);
-        const base   = {
-          x: p.HT_top.x - Math.cos(hta) * offset,
-          y: p.HT_top.y + Math.sin(hta) * offset,
-        };
-        pts.push({
-          x: base.x + stemLength * Math.sin(hta - theta) + (barReach || 80),
-          y: base.y + stemLength * Math.cos(hta - theta),
-        });
-      }
+      // Cockpit points are excluded from bounding box — they can extend far outside
+      // the frame geometry (e.g. when fit measurements are set) and would compress the scale.
     });
+
+    // Include inseam height in bounding box when the guide line is visible
+    if (this.showInseam && this.fit?.inseam) {
+      const b0   = allBikes[0];
+      const wr   = RIM_RADIUS + this.tireWidth;
+      const gndY = b0.pts.rear_axle.y - wr;
+      pts.push({ x: 0, y: gndY + this.fit.inseam });
+    }
 
     const xs = pts.map(p => p.x), ys = pts.map(p => p.y);
     const minX = Math.min(...xs), maxX = Math.max(...xs);
@@ -232,16 +236,17 @@ class BikeRenderer {
 
   _drawWheels(g, pts, tr, color) {
     this._currentScale = tr.scale;
-    const s = tr.scale;
+    const tw = this.tireWidth;
+    const wr = RIM_RADIUS + tw;
     const rear = tr(pts.rear_axle), front = tr(pts.front_axle);
 
     for (const center of [rear, front]) {
       // Tire
-      this._circle(g, center, WHEEL_RADIUS, 'none', 1, color, TIRE_WIDTH, 0.25);
+      this._circle(g, center, wr, 'none', 1, color, tw, 0.25);
       // Rim
-      this._circle(g, center, WHEEL_RADIUS - TIRE_WIDTH / 2, 'none', 1, color, 3, 0.45);
+      this._circle(g, center, wr - tw / 2, 'none', 1, color, 3, 0.45);
       // Inner rim
-      this._circle(g, center, WHEEL_RADIUS - TIRE_WIDTH - 2, 'none', 1, color, 1.5, 0.2);
+      this._circle(g, center, RIM_RADIUS - 2, 'none', 1, color, 1.5, 0.2);
     }
   }
 
@@ -471,12 +476,37 @@ class BikeRenderer {
     g.appendChild(rect);
   }
 
+  _drawInseamLine(g, allPoints, tr, W) {
+    const wr   = RIM_RADIUS + this.tireWidth;
+    // Average ground level across all bikes (different bb_drop → different ground)
+    const gndY = allPoints.reduce((sum, b) => sum + (b.pts.rear_axle.y - wr), 0) / allPoints.length;
+    const lineY = tr({ x: 0, y: gndY + this.fit.inseam }).y;
+
+    g.appendChild(this._el('line', {
+      x1: 0, y1: lineY, x2: W, y2: lineY,
+      stroke: '#8b949e', 'stroke-width': 1,
+      'stroke-dasharray': '8 5',
+      opacity: 0.65,
+    }));
+
+    const label = this._el('text', {
+      x: 8, y: lineY - 5,
+      fill: '#8b949e', 'font-size': '11px',
+      'font-family': '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    });
+    label.textContent = `Inseam ${Math.round(this.fit.inseam)} mm`;
+    g.appendChild(label);
+  }
+
   _drawLegend(svg, allBikes, W) {
     if (!allBikes.length) return;
     const g = this._g(svg);
     const pad = 10, lineH = 20, titleH = 16;
-    const w = 170, itemH = lineH * allBikes.length + titleH + pad * 2;
-    const x = W - w - 10, y = 10;
+    const maxLen = Math.max(...allBikes.map(b =>
+      `${b.geo.brand} ${b.geo.model} ${b.size.label}`.length));
+    const w = Math.max(180, maxLen * 6.8 + 46);
+    const itemH = lineH * allBikes.length + titleH + pad * 2;
+    const x = Math.max(10, W - w - 10), y = 10;
 
     g.appendChild(this._el('rect', {
       x, y, width: w, height: itemH,

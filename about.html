@@ -1,0 +1,83 @@
+---
+layout: default
+title: About
+---
+
+<div class="about-page">
+  <h1>About MoveMyBikeFit</h1>
+  <p>MoveMyBikeFit is an open-source gravel and road bike geometry comparison and fit tool. Select any two bikes to overlay their silhouettes at scale, enter your fit measurements to find stem and saddle combinations that match your position, and compare frame geometry side by side.</p>
+
+  <h2>How it works</h2>
+
+  <h3>Geometry overlay</h3>
+  <p>Bike frames are drawn from the published geometry table — stack, reach, head tube angle and length, seat tube angle and length, chainstay, BB drop, and wheelbase. All measurements are in the manufacturer's coordinate system with the bottom bracket at the origin.</p>
+
+  <h3>Fit triangle</h3>
+  <p>Three measurements define your riding position as a triangle between the bottom bracket, saddle, and hoods:</p>
+  <ul>
+    <li><strong>BB → Saddle</strong> — measured along the seat tube axis from the BB centre to the top of the saddle rails.</li>
+    <li><strong>Saddle → Hoods</strong> — straight-line distance from the saddle nose to the centre of the hoods.</li>
+    <li><strong>Hoods → BB</strong> — straight-line distance from the centre of the hoods back to the BB centre.</li>
+  </ul>
+  <p>The calculator solves for the stem length and angle that places the hoods at the intersection of the saddle-distance circle and the BB-distance circle, accounting for spacers, stem height, bar reach, and hood length.</p>
+
+  <h3>Fit suggestions</h3>
+  <p>For each bike, the tool searches across all combinations of stem length (40–140 mm), stem angle (±17°), spacer stack (0–30 mm), and saddle setback (−10 to +35 mm), scoring each by how closely the resulting hood position matches your triangle measurements. The best matches are shown as a ranked table; clicking a row applies those values to the bike.</p>
+
+  <h3>Measuring your inseam</h3>
+  <p>Inseam height (also called pubic bone height or PBH) is the vertical distance from the floor to your crotch. This is <em>not</em> a trouser inseam — it is measured standing flat-footed, without shoes.</p>
+  <ol>
+    <li>Stand with your back against a wall, feet about 15 cm apart and flat on the floor.</li>
+    <li>Slide a hardback book, spine upward, snugly between your legs — held level and pressed firmly up as a saddle would be.</li>
+    <li>Have someone mark the wall at the top of the book spine.</li>
+    <li>Measure from the floor to the mark. That is your inseam height.</li>
+  </ol>
+  <p>To account for cycling shoe soles (typically 10–20 mm), add that amount before entering the value. The "show" checkbox next to the inseam field draws a horizontal guide on the canvas at your inseam height above the ground plane.</p>
+
+  <h3>Standover clearance</h3>
+  <p>Clearance is <code>inseam − standover</code>. If you enter your inseam, each size is checked against its standover height. Sizes with negative clearance (standover taller than inseam) are excluded from auto-size selection, and sizes below the minimum comfort clearance (default 30 mm, adjustable in Settings) are penalised in the scoring. The Clearance row in the geometry table shows the gap in mm, coloured green, yellow, or red accordingly.</p>
+
+  <h3>Auto size</h3>
+  <p>When "Auto" is selected in the size dropdown, the tool picks the size whose optimal stem length and angle are closest to a neutral position (90 mm stem, 0° angle). If inseam is set, sizes with insufficient standover clearance are excluded first.</p>
+
+  <h3>BB height and trail</h3>
+  <p>BB height and trail are derived values, not read from the geometry table directly. They depend on tire size — changing the tire width in Settings updates both figures. The formula used is:</p>
+  <ul>
+    <li><strong>BB height</strong> = rim radius (311 mm for 700c ISO 622) + tire width − BB drop</li>
+    <li><strong>Trail</strong> = (wheel radius × cos(HTA) − fork offset) ÷ sin(HTA)</li>
+  </ul>
+
+  <h2>Adding a bike</h2>
+  <ol>
+    <li>Fork the <a href="https://github.com/ngpaladi/MoveMyBikeFit" target="_blank" rel="noopener">repository</a> on GitHub.</li>
+    <li>Use the <a href="{{ '/add.html' | relative_url }}">Add Bike</a> page to generate a YAML file from the official geometry table.</li>
+    <li>Drop the file in <code>_data/bikes/</code> and open a pull request. Include the source URL (manufacturer geometry page) in the PR description.</li>
+  </ol>
+  <p>All geometry values must come from official manufacturer pages. Community-sourced or estimated values are not accepted.</p>
+
+  <h2>YAML schema</h2>
+  <p>Each file in <code>_data/bikes/</code> follows this structure (angles in degrees from horizontal, lengths in mm):</p>
+  <pre><code>brand: Specialized
+model: Crux
+year: 2024
+type: gravel        # gravel | road | cx | adventure
+sizes:
+  - label: "54"
+    stack: 560
+    reach: 388
+    ht_length: 130
+    ht_angle: 71.0
+    st_length: 510
+    st_angle: 74.0
+    tt_length: 580   # effective top tube
+    cs_length: 420
+    bb_drop: 65
+    wheelbase: 1004
+    standover: 790   # optional but recommended
+    front_center: 589
+    fork_length: 374
+    fork_offset: 47</code></pre>
+
+  <h2>Open source</h2>
+  <p>MoveMyBikeFit is open source under the MIT licence. Contributions — new bikes, bug fixes, features — are welcome via pull request on <a href="https://github.com/ngpaladi/MoveMyBikeFit" target="_blank" rel="noopener">GitHub</a>.</p>
+</div>

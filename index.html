@@ -19,22 +19,50 @@ title: Compare
       </div>
     </div>
 
-    <!-- Size selectors for selected bikes -->
-    <div class="sidebar-section" id="size-section" style="min-height:0">
-      <div class="sidebar-section-title">Size</div>
-      <div id="size-selectors"></div>
+    <p id="error-msg" style="display:none;color:var(--accent2);font-size:12px;padding:4px 0;margin:0 14px"></p>
+  </aside>
+
+  <div class="resize-handle resize-handle-v" id="rh-sidebar"></div>
+
+  <div class="center-area">
+    <div class="canvas-area">
+      <svg id="bike-svg"></svg>
+      <div class="canvas-placeholder" id="canvas-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
+          <path d="M5.5 17.5L8.5 9.5h7l3 8M12 9.5V6M10 6h4"/>
+        </svg>
+        <p>Select bikes from the list to compare</p>
+      </div>
     </div>
 
-    <!-- Personal fit measurements -->
-    <div class="sidebar-section">
-      <div class="sidebar-section-title" style="display:flex;align-items:center;justify-content:space-between">
+    <div class="resize-handle resize-handle-h" id="rh-fit"></div>
+    <div class="fit-area">
+      <div class="geo-sidebar-header">Geometry</div>
+      <div class="geo-scroll">
+        <table class="geo-table">
+          <thead id="geo-thead"></thead>
+          <tbody id="geo-tbody">
+            <tr><td colspan="99" class="table-empty">Select bikes to compare</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="resize-handle resize-handle-v" id="rh-geo"></div>
+
+  <aside class="geo-sidebar">
+    <!-- Your Fit measurements -->
+    <div class="geo-sidebar-section">
+      <div class="geo-sidebar-subheader">
         Your Fit
         <div class="unit-toggle">
           <button class="unit-btn active" data-unit="cm">cm</button>
           <button class="unit-btn" data-unit="in">in</button>
         </div>
       </div>
-      <div class="input-group">
+      <div class="input-group geo-fit-inputs">
         <div class="input-row">
           <label for="saddle-height">BB → Saddle</label>
           <input type="number" id="saddle-height" min="50" max="90" step="0.5" placeholder="—">
@@ -50,65 +78,21 @@ title: Compare
           <input type="number" id="hood-to-bb" min="50" max="90" step="0.5" placeholder="—">
           <span class="unit fit-unit-label">cm</span>
         </div>
-      </div>
-      <p class="fit-note">Measure in the plane of the frame — the calculator is 2D and does not account for handlebar width.</p>
-    </div>
-
-    <p id="error-msg" style="display:none;color:var(--accent2);font-size:12px;padding:4px 0;margin:0 14px"></p>
-  </aside>
-
-  <div class="resize-handle resize-handle-v" id="rh-sidebar"></div>
-
-  <div class="center-area">
-    <div class="canvas-area">
-      <svg id="bike-svg"></svg>
-      <div class="canvas-controls" id="canvas-controls" style="display:none">
-        <button id="btn-stack-reach" class="canvas-overlay-btn" title="Overlay stack &amp; reach reference lines">Stack &amp; Reach</button>
-      </div>
-      <div class="canvas-placeholder" id="canvas-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/>
-          <path d="M5.5 17.5L8.5 9.5h7l3 8M12 9.5V6M10 6h4"/>
-        </svg>
-        <p>Select bikes from the list to compare</p>
+        <div class="input-row">
+          <label for="inseam">Inseam</label>
+          <input type="number" id="inseam" min="60" max="105" step="0.5" placeholder="—">
+          <span class="unit fit-unit-label">cm</span>
+          <label class="show-inseam-label" title="Draw inseam height on canvas">
+            <input type="checkbox" id="show-inseam">
+            <span>show</span>
+          </label>
+        </div>
       </div>
     </div>
-
-    <div class="resize-handle resize-handle-h" id="rh-fit"></div>
-    <div class="fit-area">
-      <div class="fit-col">
-        <div class="fit-col-header">Components</div>
-        <div id="cockpit-inputs" class="fit-col-body"></div>
-      </div>
-      <div class="fit-col-divider"></div>
-      <div class="fit-col">
-        <div class="fit-col-header">Fit Adjustments</div>
-        <div id="fit-results" class="fit-col-body"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="resize-handle resize-handle-v" id="rh-geo"></div>
-
-  <aside class="geo-sidebar">
-    <div class="geo-sidebar-header">Geometry</div>
-    <div class="geo-scroll">
-      <table class="geo-table">
-        <thead id="geo-thead"></thead>
-        <tbody id="geo-tbody">
-          <tr><td colspan="99" class="table-empty">Select bikes to compare</td></tr>
-        </tbody>
-      </table>
-      <div class="geo-about-header">About</div>
-      <div class="geo-about">
-        <p>MoveMyBikeFit is an open-source gravel bike geometry comparison and fit tool. Select any two bikes to overlay their silhouettes, enter your fit measurements to find stem and saddle combinations, and compare frame geometry side by side.</p>
-        <p class="geo-about-subhead">Adding a bike</p>
-        <ol>
-          <li>Fork the <a href="https://github.com/ngpaladi/MoveMyBikeFit" target="_blank" rel="noopener">repository</a> on GitHub.</li>
-          <li>Use <strong>Add Bike</strong> above to generate a YAML file from official geometry data.</li>
-          <li>Drop the file in <code>_data/bikes/</code> and open a pull request. Include the source URL in the PR description.</li>
-        </ol>
-      </div>
+    <!-- Components + Fit Adjustments -->
+    <div class="geo-scroll" id="right-scroll">
+      <div id="cockpit-inputs"></div>
+      <div id="fit-results"></div>
     </div>
   </aside>
 </div>
@@ -116,8 +100,9 @@ title: Compare
 <nav class="mobile-nav">
   <button class="mobile-tab active" data-panel="canvas">Compare</button>
   <button class="mobile-tab" data-panel="bikes">Bikes</button>
-  <button class="mobile-tab" data-panel="geo">Data</button>
+  <button class="mobile-tab" data-panel="geo">Fit</button>
 </nav>
+
 
 <script src="{{ '/assets/js/BikeStore.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/FitCalculator.js' | relative_url }}"></script>

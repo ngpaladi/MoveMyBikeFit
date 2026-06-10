@@ -9,9 +9,10 @@ const UNIT_CFG = {
     step: 0.5,
     suffix: 'cm',
     fitRanges: {
-      saddleHeight: { min: 50,   max: 90  },
-      seatToHood:   { min: 40,   max: 80  },
-      hoodToBB:     { min: 50,   max: 90  },
+      saddleHeight: { min: 50,   max: 90   },
+      seatToHood:   { min: 40,   max: 80   },
+      hoodToBB:     { min: 50,   max: 90   },
+      inseam:       { min: 60,   max: 105  },
     },
   },
   in: {
@@ -23,6 +24,7 @@ const UNIT_CFG = {
       saddleHeight: { min: 19.7, max: 35.4 },
       seatToHood:   { min: 15.7, max: 31.5 },
       hoodToBB:     { min: 19.7, max: 35.4 },
+      inseam:       { min: 23.6, max: 41.3 },
     },
   },
 };
@@ -64,14 +66,17 @@ const state = {
   recentBikes:   [],        // [bikeId, ...] most-recent-first
 
   // Personal fit measurements — stored internally in mm
-  fit: { saddleHeight: null, seatToHood: null, hoodToBB: null },
+  fit: { saddleHeight: null, seatToHood: null, hoodToBB: null, inseam: null },
 
   unit: 'cm',  // 'cm' | 'in'
 
   settings: {
-    defaultStemHeight: 20,
-    defaultBarReach:   80,
-    defaultHoodLength: 10,
+    defaultStemHeight:   20,
+    defaultBarReach:     80,
+    defaultHoodLength:   10,
+    tireWidth:           38,
+    standoverClearance:  30,
+    showInseam:          false,
   },
 };
 
@@ -108,6 +113,8 @@ async function init() {
   loadPrefs();
   const svgEl = $('#bike-svg');
   window._renderer = new BikeRenderer(svgEl);
+  window._renderer.setTireWidth(state.settings.tireWidth);
+  window._renderer.setShowInseam(state.settings.showInseam);
 
   try {
     await BikeStore.load(BASE_URL);
@@ -122,7 +129,6 @@ async function init() {
   bindUnitToggle();
   bindMobileNav();
   bindResizeHandles();
-  bindCanvasControls();
   bindSettingsModal();
   restoreState();
 }
@@ -204,6 +210,14 @@ function _addToRecent(id) {
   state.recentBikes = [id, ...state.recentBikes.filter(r => r !== id)].slice(0, MAX_RECENT);
 }
 
+function _pickColorIdx() {
+  const used = new Set(state.colorMap.values());
+  for (let i = 0; i < BIKE_COLORS.length; i++) {
+    if (!used.has(i)) return i;
+  }
+  return state.nextColorIdx++ % BIKE_COLORS.length;
+}
+
 function toggleBike(bike, selected) {
   if (selected) {
     if (state.selectedBikes.size >= MAX_SELECTED) {
@@ -212,79 +226,17 @@ function toggleBike(bike, selected) {
       state.selectedBikes.delete(oldestId);
       state.colorMap.delete(oldestId);
     }
-    state.colorMap.set(bike.id, state.nextColorIdx++ % BIKE_COLORS.length);
+    state.colorMap.set(bike.id, _pickColorIdx());
     state.selectedBikes.set(bike.id, { sizeIdx: 0, autoSize: false, cockpit: defaultCockpit() });
   } else {
     _addToRecent(bike.id);
     state.selectedBikes.delete(bike.id);
     state.colorMap.delete(bike.id);
+    cockpitExpandedMap.delete(bike.id);
   }
   renderBikeList(BikeStore.search($('#search-box')?.value ?? ''));
-  renderSizeSelectors();
   renderComparison();
   saveState();
-}
-
-// ── Size selectors ────────────────────────────────────────────────────────────
-
-function renderSizeSelectors() {
-  const container = $('#size-selectors');
-  container.innerHTML = '';
-  const colors = BIKE_COLORS;
-
-  state.selectedBikes.forEach((bs, bikeId) => {
-    const bike = BikeStore.getById(bikeId);
-    if (!bike) return;
-    const color = colors[state.colorMap.get(bikeId) ?? 0];
-
-    const row = document.createElement('div');
-    row.className = 'size-row';
-    row.style.borderLeftColor = color;
-
-    const label = document.createElement('label');
-    label.textContent = `${bike.brand} ${bike.model}`;
-    label.style.color = color;
-
-    const sel = document.createElement('select');
-    sel.dataset.bikeId = bikeId;
-
-    const autoOpt = document.createElement('option');
-    autoOpt.value = 'auto';
-    autoOpt.textContent = bs.autoSize
-      ? `Auto (${bike.sizes[bs.sizeIdx]?.label ?? '…'})`
-      : 'Auto';
-    if (bs.autoSize) autoOpt.selected = true;
-    sel.appendChild(autoOpt);
-
-    bike.sizes.forEach((s, idx) => {
-      const opt = document.createElement('option');
-      opt.value = idx; opt.textContent = s.label;
-      if (!bs.autoSize && idx === bs.sizeIdx) opt.selected = true;
-      sel.appendChild(opt);
-    });
-
-    sel.addEventListener('change', () => {
-      if (sel.value === 'auto') {
-        bs.autoSize = true;
-        const best = bestSizeIdx(bike, state.fit);
-        if (best !== null) bs.sizeIdx = best;
-      } else {
-        bs.autoSize = false;
-        bs.sizeIdx  = Number(sel.value);
-      }
-      renderComparison();
-      saveState();
-    });
-
-    const removeBtn = document.createElement('button');
-    removeBtn.className = 'size-remove-btn';
-    removeBtn.title = `Remove ${bike.brand} ${bike.model}`;
-    removeBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
-    removeBtn.addEventListener('click', () => toggleBike(bike, false));
-
-    row.appendChild(label); row.appendChild(sel); row.appendChild(removeBtn);
-    container.appendChild(row);
-  });
 }
 
 // ── Fit inputs ────────────────────────────────────────────────────────────────
@@ -302,24 +254,25 @@ function bindFitInputs() {
       renderComparison(); saveState();
     });
   });
+  const inseamEl     = $('#inseam');
+  const showInseamCb = $('#show-inseam');
+  if (inseamEl) {
+    inseamEl.addEventListener('input', () => {
+      const raw = parseFloat(inseamEl.value);
+      state.fit.inseam = isNaN(raw) ? null : UNIT_CFG[state.unit].toMM(raw);
+      renderComparison(); saveState();
+    });
+  }
+  if (showInseamCb) {
+    showInseamCb.checked = state.settings.showInseam;
+    showInseamCb.addEventListener('change', () => {
+      state.settings.showInseam = showInseamCb.checked;
+      if (window._renderer) window._renderer.setShowInseam(state.settings.showInseam);
+      saveState();
+    });
+  }
 }
 
-// ── Canvas overlay controls ───────────────────────────────────────────────────
-
-function bindCanvasControls() {
-  const btn = $('#btn-stack-reach');
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    const active = btn.classList.toggle('active');
-    window._renderer.setShowStackReach(active);
-  });
-}
-
-// Show/hide the canvas controls bar depending on whether bikes are selected.
-function updateCanvasControls() {
-  const el = $('#canvas-controls');
-  if (el) el.style.display = state.selectedBikes.size ? '' : 'none';
-}
 
 // ── Unit toggle ───────────────────────────────────────────────────────────────
 
@@ -344,6 +297,10 @@ function switchUnit(newUnit) {
     const mm = oldCfg.toMM(parseFloat(el.value));
     el.value = newCfg.fromMM(mm);
   });
+  const inseamEl = $('#inseam');
+  if (inseamEl?.value) {
+    inseamEl.value = newCfg.fromMM(oldCfg.toMM(parseFloat(inseamEl.value)));
+  }
 
   updateFitInputAttrs();
 
@@ -367,6 +324,13 @@ function updateFitInputAttrs() {
     el.min  = range.min;
     el.max  = range.max;
   });
+  const inseamEl = $('#inseam');
+  if (inseamEl) {
+    const r = cfg.fitRanges.inseam;
+    inseamEl.step = cfg.step;
+    inseamEl.min  = r.min;
+    inseamEl.max  = r.max;
+  }
 }
 
 // ── Best-size picker ──────────────────────────────────────────────────────────
@@ -388,7 +352,16 @@ function bestSizeIdx(bike, fit) {
     if (Math.abs(stemAngleDeg) > 17) return;
 
     // Prefer stem near 90 mm and angle near 0°
-    const score = Math.abs(stemLength - 90) + Math.abs(stemAngleDeg) * 3;
+    let score = Math.abs(stemLength - 90) + Math.abs(stemAngleDeg) * 3;
+
+    // Standover: disqualify if negative clearance; penalise below comfort threshold
+    if (fit.inseam && size.standover) {
+      const clearance  = fit.inseam - size.standover;
+      const minClear   = state.settings.standoverClearance;
+      if (clearance < 0) return;
+      if (clearance < minClear) score += (minClear - clearance) * 1.5;
+    }
+
     if (score < bestScore) { bestScore = score; bestIdx = idx; }
   });
 
@@ -451,15 +424,13 @@ function renderComparison() {
   });
 
   window._renderer.setBikes(bikeList);
-  window._renderer.setFit(state.fit.saddleHeight ? state.fit : null);
+  window._renderer.setFit((state.fit.saddleHeight || state.fit.inseam) ? state.fit : null);
 
   renderTable(bikeList);
-  renderFitPanel(bikeList);
-  renderCockpitPanel(bikeList);
+  renderRightPanel(bikeList);
 
   const ph = $('#canvas-placeholder');
   if (ph) ph.style.display = bikeList.length ? 'none' : 'flex';
-  updateCanvasControls();
 }
 
 // ── Comparison table ──────────────────────────────────────────────────────────
@@ -473,6 +444,7 @@ const GEO_COLS = [
   { key: 'tt_length',    label: 'ETT',          unit: 'mm', fmt: v => Math.round(v) },
   { key: 'cs_length',    label: 'Chainstay',    unit: 'mm', fmt: v => Math.round(v) },
   { key: 'bb_drop',      label: 'BB Drop',      unit: 'mm', fmt: v => Math.round(v) },
+  { key: 'standover',    label: 'Standover',    unit: 'mm', fmt: v => Math.round(v) },
   { key: 'wheelbase',    label: 'Wheelbase',    unit: 'mm', fmt: v => Math.round(v) },
   { key: 'front_center', label: 'Front Center', unit: 'mm', fmt: v => Math.round(v) },
   { key: 'fork_offset',  label: 'Fork Offset',  unit: 'mm', fmt: v => Math.round(v) },
@@ -538,23 +510,43 @@ function renderTable(bikes) {
   _addDerivedRow(tbody, 'Stack/Reach', '', bikes, b =>
     (b.size.stack && b.size.reach) ? (b.size.stack / b.size.reach).toFixed(3) : null
   );
+  const wr = 311 + state.settings.tireWidth;
   _addDerivedRow(tbody, 'BB Height', 'mm', bikes, b =>
-    b.size.bb_drop != null ? Math.round(330 - b.size.bb_drop) : null,
-    '(est. 700c/40mm)'
+    b.size.bb_drop != null ? Math.round(wr - b.size.bb_drop) : null,
+    `(700c/${state.settings.tireWidth}mm)`
   );
   _addDerivedRow(tbody, 'Trail', 'mm', bikes, b => {
     if (b.size.ht_angle == null || b.size.fork_offset == null) return null;
     const hta = b.size.ht_angle * Math.PI / 180;
-    return Math.round((330 * Math.cos(hta) - b.size.fork_offset) / Math.sin(hta));
+    return Math.round((wr * Math.cos(hta) - b.size.fork_offset) / Math.sin(hta));
   });
+
+  if (state.fit.inseam) {
+    const row = document.createElement('tr');
+    row.appendChild(_tableLabelCell('Clearance', 'mm', '(inseam − standover)'));
+    bikes.forEach(b => {
+      const td = document.createElement('td');
+      if (b.size.standover != null) {
+        const cl       = Math.round(state.fit.inseam - b.size.standover);
+        const minClear = state.settings.standoverClearance;
+        td.textContent = cl >= 0 ? `+${cl}` : cl;
+        td.style.color = cl < 0 ? 'var(--accent2)' : cl < minClear ? '#e3b341' : 'var(--success)';
+      } else {
+        td.textContent = '—';
+      }
+      row.appendChild(td);
+    });
+    tbody.appendChild(row);
+  }
 }
 
-// ── Cockpit panel ─────────────────────────────────────────────────────────────
+// ── Right panel (per-bike components + fit suggestions) ───────────────────────
 
 const EXTRA_COCKPIT_KEYS = new Set(['stemHeight', 'barReach', 'hoodLength']);
-let cockpitExpanded = false;
+const cockpitExpandedMap = new Map(); // bikeId → boolean
 
-function _cockpitRow(field, bikes) {
+function _cockpitRowSingle(field, b) {
+  const cockpit = state.selectedBikes.get(b.id).cockpit;
   const row = document.createElement('tr');
 
   const td0 = document.createElement('td');
@@ -562,117 +554,254 @@ function _cockpitRow(field, bikes) {
     + (field.unit ? ` <span style="color:var(--text-muted);font-size:10px">${field.unit}</span>` : '');
   row.appendChild(td0);
 
-  bikes.forEach(b => {
-    const cockpit = state.selectedBikes.get(b.id).cockpit;
-    const td   = document.createElement('td');
-    const wrap = document.createElement('div');
-    wrap.className = 'cockpit-cell';
+  const td1   = document.createElement('td');
+  const wrap  = document.createElement('div');
+  wrap.className = 'cockpit-cell';
 
-    const inp = document.createElement('input');
-    inp.type  = 'number';
-    inp.id    = `c-${b.id}-${field.key}`;
-    inp.className = 'cockpit-input';
-    inp.min   = field.min;
-    inp.max   = field.max;
-    inp.step  = field.step;
+  const inp = document.createElement('input');
+  inp.type      = 'number';
+  inp.id        = `c-${b.id}-${field.key}`;
+  inp.className = 'cockpit-input';
+  inp.min       = field.min;
+  inp.max       = field.max;
+  inp.step      = field.step;
 
-    const val = cockpit[field.key];
-    if (val != null)          inp.value       = val;
-    else if (!field.nullable) inp.value       = field.def ?? '';
-    else                      inp.placeholder = '—';
+  const val = cockpit[field.key];
+  if (val != null)          inp.value       = val;
+  else if (!field.nullable) inp.value       = field.def ?? '';
+  else                      inp.placeholder = '—';
 
-    inp.addEventListener('input', () => {
-      const v = parseFloat(inp.value);
-      cockpit[field.key] = isNaN(v) ? (field.nullable ? null : (field.def ?? null)) : v;
+  inp.addEventListener('input', () => {
+    const v = parseFloat(inp.value);
+    cockpit[field.key] = isNaN(v) ? (field.nullable ? null : (field.def ?? null)) : v;
+    renderComparison();
+    saveState();
+  });
+
+  wrap.appendChild(inp);
+
+  if (LOCKABLE_FIELDS.has(field.key)) {
+    if (!cockpit.locked) cockpit.locked = {};
+    const isLocked = !!cockpit.locked[field.key];
+    const lockBtn = document.createElement('button');
+    lockBtn.className = 'lock-btn' + (isLocked ? ' lock-active' : '');
+    lockBtn.title     = isLocked ? 'Fixed — click to unlock' : 'Click to fix this value in fit suggestions';
+    lockBtn.innerHTML = isLocked ? SVG_LOCK_CLOSED : SVG_LOCK_OPEN;
+    lockBtn.addEventListener('click', () => {
+      if (!cockpit.locked) cockpit.locked = {};
+      cockpit.locked[field.key] = !cockpit.locked[field.key];
       renderComparison();
       saveState();
     });
+    wrap.appendChild(lockBtn);
+  }
 
-    wrap.appendChild(inp);
-
-    if (LOCKABLE_FIELDS.has(field.key)) {
-      if (!cockpit.locked) cockpit.locked = {};
-      const isLocked = !!cockpit.locked[field.key];
-      const lockBtn = document.createElement('button');
-      lockBtn.className = 'lock-btn' + (isLocked ? ' lock-active' : '');
-      lockBtn.title     = isLocked ? 'Fixed — click to unlock' : 'Click to fix this value in fit suggestions';
-      lockBtn.innerHTML = isLocked ? SVG_LOCK_CLOSED : SVG_LOCK_OPEN;
-      lockBtn.addEventListener('click', () => {
-        if (!cockpit.locked) cockpit.locked = {};
-        cockpit.locked[field.key] = !cockpit.locked[field.key];
-        renderComparison();
-        saveState();
-      });
-      wrap.appendChild(lockBtn);
-    }
-
-    td.appendChild(wrap);
-    row.appendChild(td);
-  });
-
+  td1.appendChild(wrap);
+  row.appendChild(td1);
   return row;
 }
 
-function renderCockpitPanel(bikes) {
+function renderRightPanel(bikes) {
   const panel = $('#cockpit-inputs');
   if (!panel) return;
 
-  // Don't rebuild while a cockpit input has keyboard focus — would disrupt typing
+  // Don't rebuild while a cockpit input has keyboard focus
   if (document.activeElement?.id?.startsWith('c-')) return;
+
+  const fitPanel = $('#fit-results');
+  if (fitPanel) fitPanel.innerHTML = '';
 
   if (!bikes.length) {
     panel.innerHTML = '<div class="table-empty">Select bikes to configure components</div>';
     return;
   }
 
-  const colors = BIKE_COLORS;
+  const hasFit = !!(state.fit.saddleHeight && state.fit.seatToHood && state.fit.hoodToBB);
   panel.innerHTML = '';
 
-  const table = document.createElement('table');
-  table.className = 'geo-table';
-
-  const thead = document.createElement('thead');
-  const hr    = document.createElement('tr');
-  const th0   = document.createElement('th');
-  th0.textContent = 'Component';
-  hr.appendChild(th0);
   bikes.forEach(b => {
-    const th = document.createElement('th');
-    const ci = state.colorMap.get(b.id) ?? 0;
-    th.innerHTML = `<span class="bike-label"><span class="color-dot" style="background:${colors[ci]}"></span>${b.geo.brand} ${b.geo.model} ${b.size.label}</span>`;
-    hr.appendChild(th);
+    const bs      = state.selectedBikes.get(b.id);
+    const cockpit = bs.cockpit;
+    const color   = BIKE_COLORS[state.colorMap.get(b.id) ?? 0];
+
+    const card = document.createElement('div');
+    card.className = 'bike-card';
+    card.style.borderLeftColor = color;
+
+    // Header: dot + name + size selector + remove
+    const hdr = document.createElement('div');
+    hdr.className = 'bike-card-header';
+
+    const dot = document.createElement('span');
+    dot.className = 'color-dot';
+    dot.style.background = color;
+
+    const nameEl = document.createElement('span');
+    nameEl.className = 'bike-card-name';
+    nameEl.textContent = `${b.geo.brand} ${b.geo.model}`;
+
+    const sel = document.createElement('select');
+    sel.className = 'bike-card-size-select';
+    const autoOpt = document.createElement('option');
+    autoOpt.value = 'auto';
+    autoOpt.textContent = bs.autoSize ? `Auto (${b.geo.sizes[bs.sizeIdx]?.label ?? '…'})` : 'Auto';
+    if (bs.autoSize) autoOpt.selected = true;
+    sel.appendChild(autoOpt);
+    b.geo.sizes.forEach((s, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx; opt.textContent = s.label;
+      if (!bs.autoSize && idx === bs.sizeIdx) opt.selected = true;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener('change', () => {
+      if (sel.value === 'auto') {
+        bs.autoSize = true;
+        const best = bestSizeIdx(b.geo, state.fit);
+        if (best !== null) bs.sizeIdx = best;
+      } else {
+        bs.autoSize = false;
+        bs.sizeIdx  = Number(sel.value);
+      }
+      renderComparison();
+      saveState();
+    });
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'size-remove-btn';
+    removeBtn.title = `Remove ${b.geo.brand} ${b.geo.model}`;
+    removeBtn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+    removeBtn.addEventListener('click', () => toggleBike(b.geo, false));
+
+    hdr.append(dot, nameEl, sel, removeBtn);
+    card.appendChild(hdr);
+
+    // Component inputs table
+    const table  = document.createElement('table');
+    table.className = 'cockpit-table';
+    const tbody  = document.createElement('tbody');
+
+    COCKPIT_FIELDS.filter(f => !EXTRA_COCKPIT_KEYS.has(f.key))
+      .forEach(f => tbody.appendChild(_cockpitRowSingle(f, b)));
+
+    const expanded = !!cockpitExpandedMap.get(b.id);
+    if (expanded) {
+      COCKPIT_FIELDS.filter(f => EXTRA_COCKPIT_KEYS.has(f.key))
+        .forEach(f => tbody.appendChild(_cockpitRowSingle(f, b)));
+    }
+
+    const toggleRow = document.createElement('tr');
+    const toggleTd  = document.createElement('td');
+    toggleTd.colSpan = 2;
+    toggleTd.style.padding = '3px 8px';
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'fit-expand-btn';
+    toggleBtn.textContent = expanded ? 'Show less' : 'More…';
+    toggleBtn.addEventListener('click', () => {
+      cockpitExpandedMap.set(b.id, !cockpitExpandedMap.get(b.id));
+      renderComparison();
+    });
+    toggleTd.appendChild(toggleBtn);
+    toggleRow.appendChild(toggleTd);
+    tbody.appendChild(toggleRow);
+
+    table.appendChild(tbody);
+    card.appendChild(table);
+
+    // Fit suggestions — inline below components
+    if (hasFit) {
+      const effectiveReach = (cockpit.barReach || 80) + (cockpit.hoodLength || 0);
+      const fit    = { ...state.fit, barReach: effectiveReach, stemHeight: cockpit.stemHeight || 0 };
+      const combos = _fitCombos(b, fit, cockpit);
+
+      const fitSec = document.createElement('div');
+      fitSec.className = 'bike-card-fit';
+
+      const fitTable = document.createElement('table');
+      fitTable.className = 'stem-table';
+
+      const thS = 'padding:3px 6px;text-align:center;font-weight:500;color:var(--text-muted);white-space:nowrap;border-bottom:1px solid var(--border)';
+      fitTable.innerHTML = `<thead><tr>
+        <th style="${thS}">S.adj</th>
+        <th style="${thS}">Setback</th>
+        <th style="${thS}">Stem</th>
+        <th style="${thS}">Angle</th>
+        <th style="${thS}" class="fit-adj-spacers">Spacers</th>
+        <th style="${thS}">Front%</th>
+        <th style="${thS}">Δ</th>
+      </tr></thead>`;
+
+      const tdS     = 'padding:2px 6px;text-align:center;white-space:nowrap;';
+      const fitTbody = document.createElement('tbody');
+      const SHOW_DEFAULT = 3;
+      let expanded = false;
+
+      const renderRows = () => {
+        fitTbody.innerHTML = '';
+        const visible = expanded ? combos : combos.slice(0, SHOW_DEFAULT);
+        visible.forEach(c => {
+          const isActive = cockpit.stemLength === c.len &&
+                           cockpit.stemAngle  === c.ang &&
+                           cockpit.spacers    === c.sp  &&
+                           (cockpit.setback || 0) === c.setback;
+          const tr = document.createElement('tr');
+          tr.style.cursor = 'pointer';
+          if (isActive) tr.style.background = 'rgba(88,166,255,0.10)';
+
+          const angStr     = `${c.ang >= 0 ? '+' : ''}${c.ang}°`;
+          const setbackStr = `${c.setback >= 0 ? '+' : ''}${c.setback}`;
+          const shOffStr   = c.shOff === 0 ? '—' : `${c.shOff > 0 ? '+' : ''}${c.shOff}`;
+          const shColor    = c.shOff === 0 ? 'var(--text-muted)' : Math.abs(c.shOff) <= 5 ? '#e3b341' : 'var(--accent2)';
+          const totalDelta = Math.sqrt(c.dSth * c.dSth + c.dHtb * c.dHtb);
+          const deltaColor = _dColor(totalDelta);
+          const deltaStr   = totalDelta < 0.5 ? '✓' : `±${totalDelta.toFixed(1)}`;
+          const frontColor = c.frontPct < 38 ? 'var(--accent2)' : c.frontPct > 52 ? '#e3b341' : 'var(--text-muted)';
+
+          tr.innerHTML = `
+            <td style="${tdS}color:${shColor}">${shOffStr}</td>
+            <td style="${tdS}color:var(--text)">${setbackStr}</td>
+            <td style="${tdS}color:var(--text)">${c.len}mm</td>
+            <td style="${tdS}color:var(--text)">${angStr}</td>
+            <td class="fit-adj-spacers" style="${tdS}color:var(--text-muted)">${c.sp}mm</td>
+            <td style="${tdS}color:${frontColor}">${c.frontPct}%</td>
+            <td style="${tdS}color:${deltaColor}">${deltaStr}</td>`;
+
+          tr.addEventListener('click', () => {
+            cockpit.stemLength = c.len;
+            cockpit.stemAngle  = c.ang;
+            cockpit.spacers    = c.sp;
+            cockpit.setback    = c.setback;
+            syncCockpitInputs();
+            renderComparison();
+            saveState();
+          });
+          tr.addEventListener('mouseenter', () => { if (!isActive) tr.style.background = 'var(--surface2)'; });
+          tr.addEventListener('mouseleave', () => { tr.style.background = isActive ? 'rgba(88,166,255,0.10)' : ''; });
+
+          fitTbody.appendChild(tr);
+        });
+      };
+
+      renderRows();
+      fitTable.appendChild(fitTbody);
+      fitSec.appendChild(fitTable);
+
+      if (combos.length > SHOW_DEFAULT) {
+        const toggle = document.createElement('button');
+        toggle.className = 'fit-expand-btn';
+        toggle.textContent = `Show ${combos.length - SHOW_DEFAULT} more`;
+        toggle.addEventListener('click', () => {
+          expanded = !expanded;
+          toggle.textContent = expanded ? 'Show less' : `Show ${combos.length - SHOW_DEFAULT} more`;
+          renderRows();
+        });
+        fitSec.appendChild(toggle);
+      }
+
+      card.appendChild(fitSec);
+    }
+
+    panel.appendChild(card);
   });
-  thead.appendChild(hr);
-  table.appendChild(thead);
-
-  const tbody = document.createElement('tbody');
-
-  COCKPIT_FIELDS.filter(f => !EXTRA_COCKPIT_KEYS.has(f.key))
-    .forEach(f => tbody.appendChild(_cockpitRow(f, bikes)));
-
-  // Show more / less toggle row
-  const toggleRow = document.createElement('tr');
-  const toggleTd  = document.createElement('td');
-  toggleTd.colSpan = bikes.length + 1;
-  toggleTd.style.padding = '4px 8px';
-  const toggleBtn = document.createElement('button');
-  toggleBtn.className = 'fit-expand-btn';
-  toggleBtn.textContent = cockpitExpanded ? 'Show less' : 'More…';
-  toggleBtn.addEventListener('click', () => {
-    cockpitExpanded = !cockpitExpanded;
-    renderComparison();
-  });
-  toggleTd.appendChild(toggleBtn);
-  toggleRow.appendChild(toggleTd);
-  tbody.appendChild(toggleRow);
-
-  if (cockpitExpanded) {
-    COCKPIT_FIELDS.filter(f => EXTRA_COCKPIT_KEYS.has(f.key))
-      .forEach(f => tbody.appendChild(_cockpitRow(f, bikes)));
-  }
-
-  table.appendChild(tbody);
-  panel.appendChild(table);
 }
 
 function syncCockpitInputs() {
@@ -686,7 +815,7 @@ function syncCockpitInputs() {
   });
 }
 
-// ── Fit panel ─────────────────────────────────────────────────────────────────
+// ── Fit combos ────────────────────────────────────────────────────────────────
 
 const STEM_LENGTHS  = [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140];
 const STEM_ANGLES   = [-17, -10, -6, 0, 6, 10, 17];
@@ -745,128 +874,6 @@ function _dStr(mm) {
   return (mm >= 0 ? '+' : '') + Math.round(mm);
 }
 
-function renderFitPanel(bikes) {
-  const panel = $('#fit-results');
-  if (!panel) return;
-
-  const hasFit = state.fit.saddleHeight && state.fit.seatToHood && state.fit.hoodToBB;
-  if (!hasFit || !bikes.length) { panel.innerHTML = ''; return; }
-
-  const colors = BIKE_COLORS;
-  panel.innerHTML = '';
-
-  bikes.forEach(b => {
-    const cockpit = state.selectedBikes.get(b.id).cockpit;
-    const effectiveReach = (cockpit.barReach || 80) + (cockpit.hoodLength || 0);
-    const fit    = { ...state.fit, barReach: effectiveReach, stemHeight: cockpit.stemHeight || 0 };
-    const color  = colors[state.colorMap.get(b.id) ?? 0];
-    const name   = `${b.geo.brand} ${b.geo.model} ${b.size.label}`;
-    const combos = _fitCombos(b, fit, cockpit);
-
-    const card = document.createElement('div');
-    card.style.cssText = `border-left:3px solid ${color};padding:8px 10px;margin-bottom:8px;background:var(--surface);border-radius:4px;`;
-
-    const titleEl = document.createElement('div');
-    titleEl.style.cssText = `font-weight:600;margin-bottom:6px;color:${color};font-size:12px`;
-    titleEl.textContent = name;
-    card.appendChild(titleEl);
-
-    const wrap = document.createElement('div');
-    wrap.style.cssText = 'overflow-x:auto';
-
-    const table = document.createElement('table');
-    table.className = 'stem-table';
-    table.style.cssText = 'width:100%;border-collapse:collapse;font-size:11px';
-
-    const thS = 'padding:2px 5px;text-align:right;font-weight:500;color:var(--text-muted);white-space:nowrap';
-    table.innerHTML = `<thead><tr>
-      <th style="${thS}">Saddle</th>
-      <th style="${thS}">Setback</th>
-      <th style="${thS}">Stem</th>
-      <th style="${thS}">Angle</th>
-      <th style="${thS}" class="fit-adj-spacers">Spacers</th>
-      <th style="${thS}">Front%</th>
-      <th style="${thS}">Δ</th>
-    </tr></thead>`;
-
-    const tdS = 'padding:2px 5px;text-align:right;white-space:nowrap;';
-    const tbody = document.createElement('tbody');
-    const SHOW_DEFAULT = 3;
-    let expanded = false;
-
-    const renderRows = () => {
-      tbody.innerHTML = '';
-      const visible = expanded ? combos : combos.slice(0, SHOW_DEFAULT);
-
-      visible.forEach(c => {
-        const isActive = cockpit.stemLength === c.len   &&
-                         cockpit.stemAngle  === c.ang   &&
-                         cockpit.spacers    === c.sp    &&
-                         (cockpit.setback || 0) === c.setback;
-        const tr = document.createElement('tr');
-        tr.style.cursor = 'pointer';
-        if (isActive) tr.style.background = 'rgba(88,166,255,0.10)';
-
-        const angStr     = `${c.ang >= 0 ? '+' : ''}${c.ang}°`;
-        const setbackStr = `${c.setback >= 0 ? '+' : ''}${c.setback}`;
-        const shColor    = c.shOff === 0 ? 'var(--text)' : Math.abs(c.shOff) <= 5 ? '#e3b341' : 'var(--accent2)';
-        const totalDelta = Math.sqrt(c.dSth * c.dSth + c.dHtb * c.dHtb);
-        const deltaColor = _dColor(totalDelta);
-        const deltaStr   = totalDelta < 0.5 ? '✓' : `±${totalDelta.toFixed(1)}`;
-
-        const frontColor = c.frontPct < 38 ? 'var(--accent2)' : c.frontPct > 52 ? '#e3b341' : 'var(--text-muted)';
-        tr.innerHTML = `
-          <td style="${tdS}color:${shColor}">${Math.round(c.sh)}</td>
-          <td style="${tdS}color:var(--text)">${setbackStr}</td>
-          <td style="${tdS}color:var(--text)">${c.len}mm</td>
-          <td style="${tdS}color:var(--text)">${angStr}</td>
-          <td class="fit-adj-spacers" style="${tdS}color:var(--text-muted)">${c.sp}mm</td>
-          <td style="${tdS}color:${frontColor}">${c.frontPct}%</td>
-          <td style="${tdS}color:${deltaColor}">${deltaStr}</td>`;
-
-        tr.addEventListener('click', () => {
-          cockpit.stemLength = c.len;
-          cockpit.stemAngle  = c.ang;
-          cockpit.spacers    = c.sp;
-          cockpit.setback    = c.setback;
-          syncCockpitInputs();
-          renderComparison();
-          saveState();
-        });
-        tr.addEventListener('mouseenter', () => { if (!isActive) tr.style.background = 'var(--surface2)'; });
-        tr.addEventListener('mouseleave', () => { tr.style.background = isActive ? 'rgba(88,166,255,0.10)' : ''; });
-
-        tbody.appendChild(tr);
-      });
-    };
-
-    renderRows();
-    table.appendChild(tbody);
-    wrap.appendChild(table);
-    card.appendChild(wrap);
-
-    // Show more / show less toggle
-    if (combos.length > SHOW_DEFAULT) {
-      const toggle = document.createElement('button');
-      toggle.className = 'fit-expand-btn';
-      toggle.textContent = `Show ${combos.length - SHOW_DEFAULT} more`;
-      toggle.addEventListener('click', () => {
-        expanded = !expanded;
-        toggle.textContent = expanded ? 'Show less' : `Show ${combos.length - SHOW_DEFAULT} more`;
-        renderRows();
-      });
-      card.appendChild(toggle);
-    }
-
-    const foot = document.createElement('div');
-    foot.style.cssText = 'margin-top:4px;font-size:10px;color:var(--text-muted)';
-    foot.textContent = 'Saddle & setback in mm from BB · yellow/red saddle = height adjustment · click row to apply';
-    card.appendChild(foot);
-
-    panel.appendChild(card);
-  });
-
-}
 
 // ── Resize handles ────────────────────────────────────────────────────────────
 
@@ -961,9 +968,10 @@ function saveState() {
   try { localStorage.setItem('mmbf-state', JSON.stringify(s)); } catch (_) {}
 
   const p = new URLSearchParams();
-  if (state.fit.saddleHeight) p.set('sh',  state.fit.saddleHeight);
+  if (state.fit.saddleHeight) p.set('stb', state.fit.saddleHeight);
   if (state.fit.seatToHood)   p.set('sth', state.fit.seatToHood);
   if (state.fit.hoodToBB)     p.set('htb', state.fit.hoodToBB);
+  if (state.fit.inseam)       p.set('ins', state.fit.inseam);
   p.set('unit', state.unit);
   if (state.selectedBikes.size) {
     const ids = [...state.selectedBikes.keys()];
@@ -978,7 +986,7 @@ function saveState() {
 
 function restoreState() {
   const params = new URLSearchParams(location.search);
-  if (params.has('sh') || params.has('bikes')) {
+  if (params.has('stb') || params.has('sh') || params.has('ins') || params.has('bikes')) {
     restoreFromURL(params);
   } else {
     restoreFromLocalStorage();
@@ -992,12 +1000,16 @@ function restoreFromURL(params) {
   state.unit = params.get('unit') === 'in' ? 'in' : 'cm';
   const cfg  = UNIT_CFG[state.unit];
 
-  ['sh', 'sth', 'htb'].forEach((key, i) => {
+  ['stb', 'sth', 'htb'].forEach((key, i) => {
     if (!params.has(key)) return;
     const mm = parseFloat(params.get(key));
     state.fit[FIT_KEYS[i]] = mm;
     setInput(`#${FIT_FIELDS[i]}`, cfg.fromMM(mm));
   });
+  if (params.has('ins')) {
+    state.fit.inseam = parseFloat(params.get('ins'));
+    setInput('#inseam', cfg.fromMM(state.fit.inseam));
+  }
 
   if (params.has('bikes')) {
     const ids  = params.get('bikes').split(',');
@@ -1023,13 +1035,12 @@ function restoreFromURL(params) {
   if (params.has('sb'))  legacyCockpit.setback    = +params.get('sb');
   if (params.has('br'))  legacyCockpit.barReach   = +params.get('br');
   if (params.has('hl'))  legacyCockpit.hoodLength = +params.get('hl');
-  if (params.has('sth')) legacyCockpit.stemHeight = +params.get('sth');
+  if (params.has('sh')) legacyCockpit.stemHeight = +params.get('sh');
   if (Object.keys(legacyCockpit).length) {
     state.selectedBikes.forEach(bs => Object.assign(bs.cockpit, legacyCockpit));
   }
 
   renderBikeList(BikeStore.getAll());
-  renderSizeSelectors();
   renderComparison();
 }
 
@@ -1076,7 +1087,6 @@ function restoreFromLocalStorage() {
     }
 
     renderBikeList(BikeStore.getAll());
-    renderSizeSelectors();
     renderComparison();
   } catch (_) {}
 }
@@ -1095,26 +1105,42 @@ function showError(msg) {
 
 function bindSettingsModal() {
   const sec     = document.getElementById('settings-components');
+  const secRend = document.getElementById('settings-rendering');
   const shInput = document.getElementById('default-stem-height');
   const brInput = document.getElementById('default-bar-reach');
   const hlInput = document.getElementById('default-hood-length');
+  const twSel   = document.getElementById('tire-width');
+  const scInput = document.getElementById('standover-clearance');
 
-  if (sec) sec.style.display = '';
+  if (sec)     sec.style.display = '';
+  if (secRend) secRend.style.display = '';
 
   if (shInput) shInput.value = state.settings.defaultStemHeight;
   if (brInput) brInput.value = state.settings.defaultBarReach;
   if (hlInput) hlInput.value = state.settings.defaultHoodLength;
+  if (twSel)   twSel.value   = state.settings.tireWidth;
+  if (scInput) scInput.value = state.settings.standoverClearance;
 
-  function bindSetting(el, key) {
+  function bindSetting(el, key, callback) {
     if (!el) return;
     el.addEventListener('input', () => {
       const v = parseFloat(el.value);
-      if (!isNaN(v)) { state.settings[key] = v; saveState(); }
+      if (!isNaN(v)) { state.settings[key] = v; saveState(); if (callback) callback(); }
     });
   }
   bindSetting(shInput, 'defaultStemHeight');
   bindSetting(brInput, 'defaultBarReach');
   bindSetting(hlInput, 'defaultHoodLength');
+  bindSetting(scInput, 'standoverClearance', renderComparison);
+
+  if (twSel) {
+    twSel.addEventListener('change', () => {
+      const v = parseInt(twSel.value, 10);
+      state.settings.tireWidth = v;
+      if (window._renderer) window._renderer.setTireWidth(v);
+      saveState();
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init);

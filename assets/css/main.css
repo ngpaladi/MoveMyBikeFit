@@ -89,7 +89,7 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
 /* Sidebar sections */
 .sidebar-section {
   border-bottom: 1px solid var(--border);
-  padding: 12px 14px;
+  padding: 8px 12px;
 }
 
 .sidebar-section-title {
@@ -98,7 +98,7 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   text-transform: uppercase;
   letter-spacing: 0.6px;
   color: var(--text-muted);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .bike-list {
@@ -208,7 +208,14 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   border-left: 3px solid transparent;
 }
 
-.size-row label { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
+.size-row label { font-size: 12px; color: var(--text); flex-shrink: 0; }
+
+.size-row-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 
 .size-remove-btn {
   background: none;
@@ -268,6 +275,21 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
 }
 .input-row input[type="number"]:focus { border-color: var(--accent); }
 .input-row .unit { font-size: 11px; color: var(--text-muted); }
+
+.show-inseam-label {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+.show-inseam-label input[type="checkbox"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
 
 .fit-note {
   margin-top: 8px;
@@ -337,54 +359,98 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   gap: 8px;
 }
 
+.canvas-size-bar {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  pointer-events: none;
+}
+.canvas-size-bar #size-selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  pointer-events: all;
+}
+.canvas-size-bar .size-row {
+  margin: 0 0 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+.canvas-size-bar .size-row:last-child { margin-bottom: 0; }
+
+/* Fit measurement toolbar (above Components / Fit Adjustments) */
+.fit-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  height: 44px;
+  border-top: 2px solid var(--accent);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+.fit-toolbar-heading {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+.fit-toolbar-fields {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.fit-toolbar-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.fit-toolbar input[type="number"] {
+  width: 58px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 3px 6px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  outline: none;
+  text-align: right;
+}
+.fit-toolbar input[type="number"]:focus { border-color: var(--accent); }
+.fit-toolbar .unit { font-size: 11px; color: var(--text-muted); }
+.fit-toolbar-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--border);
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
 .canvas-placeholder svg { opacity: 0.3; }
 .canvas-placeholder p { font-size: 13px; }
 
 /* Fit / components area */
 .fit-area {
-  height: 240px;
+  height: 260px;
   flex-shrink: 0;
-  display: flex;
-  overflow: hidden;
-}
-
-.fit-col {
-  flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  min-width: 0;
 }
 
-.fit-col-header {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  color: var(--text-muted);
-  padding: 5px 12px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-  flex-shrink: 0;
-}
-
-.fit-col-body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 8px 12px;
-}
-
-#cockpit-inputs { padding-top: 0; }
-
-.fit-col-divider {
-  width: 1px;
-  background: var(--border);
-  flex-shrink: 0;
-}
+#cockpit-inputs { padding: 0; }
+#fit-results { padding: 8px 10px; }
 
 /* Geometry sidebar */
 .geo-sidebar {
-  width: var(--sidebar-width);
+  width: max-content;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -403,6 +469,28 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   flex-shrink: 0;
 }
 
+.geo-sidebar-section {
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.geo-sidebar-subheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+}
+
+.geo-fit-inputs {
+  padding: 6px 12px 10px;
+}
+
+
 .geo-scroll {
   flex: 1;
   overflow: auto;
@@ -418,7 +506,15 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: var(--surface);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
+.geo-about-header:hover { color: var(--text); }
+.geo-about-arrow { font-size: 10px; }
 
 .geo-about {
   padding: 12px 14px;
@@ -516,7 +612,7 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
 .mobile-tab.active { color: var(--accent); border-top-color: var(--accent); }
 
 .geo-table {
-  width: auto;
+  width: 100%;
   border-collapse: collapse;
   font-size: 12px;
 }
@@ -551,6 +647,7 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
 .geo-table .bike-label {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
 }
 
@@ -558,6 +655,47 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   width: 8px; height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+/* Per-bike cards in right panel */
+.bike-card {
+  border-left: 3px solid transparent;
+  border-bottom: 1px solid var(--border);
+}
+.bike-card:last-child { border-bottom: none; }
+
+.bike-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.bike-card-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+  white-space: nowrap;
+}
+.bike-card-size-select {
+  font-size: 11px;
+  padding: 2px 4px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 3px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.bike-card-fit {
+  padding: 2px 0 4px;
+}
+.stem-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
 }
 
 /* Empty table message */
@@ -805,9 +943,51 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   flex-wrap: wrap;
 }
 
+/* Cockpit / Components table */
+.cockpit-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+.cockpit-table thead tr {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.cockpit-table thead th {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--text);
+  padding: 7px 10px;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 1;
+  text-align: center;
+}
+.cockpit-table thead th:first-child { text-align: left; }
+.cockpit-title-cell {
+  color: var(--text);
+}
+.cockpit-table tbody td {
+  padding: 4px 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+}
+.cockpit-table tbody td:first-child { padding-left: 10px; text-align: left; }
+.cockpit-table tbody td:not(:first-child) { width: 1%; }
+.cockpit-table tbody tr:last-child td { border-bottom: none; }
+.cockpit-table tbody tr:hover td { background: var(--surface2); }
+
 /* Cockpit inputs in the Components panel */
 .cockpit-input {
-  width: 72px;
+  width: 100%;
+  min-width: 50px;
   padding: 3px 6px;
   background: var(--surface2);
   border: 1px solid var(--border);
@@ -816,6 +996,7 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   font-size: 12px;
   text-align: right;
   outline: none;
+  box-sizing: border-box;
 }
 .cockpit-input:focus { border-color: var(--accent); }
 
@@ -876,7 +1057,7 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   /* Handles not needed on mobile (panels don't sit side-by-side) */
   .resize-handle { display: none; }
 
-  /* ── Compare panel: small canvas + fit area, one unified scroll ── */
+  /* ── Compare panel: small canvas + geo table, one unified scroll ── */
   .app-wrap[data-panel="canvas"] .center-area {
     display: flex;
     flex-direction: column;
@@ -884,20 +1065,15 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
   }
   .app-wrap[data-panel="canvas"] .canvas-area {
     height: 220px;
-    flex: none;          /* fixed height, don't grow */
+    flex: none;
   }
   .app-wrap[data-panel="canvas"] .fit-area {
     height: auto;
-    flex-shrink: 0;      /* grows with content, no inner scroll */
-    flex-direction: column;
-    border-top: 1px solid var(--border);  /* restore: handle is hidden on mobile */
+    flex-shrink: 0;
+    border-top: 1px solid var(--border);
   }
-  .app-wrap[data-panel="canvas"] .fit-col-body {
+  .app-wrap[data-panel="canvas"] .fit-area .geo-scroll {
     overflow: visible;   /* defer scrolling to parent .center-area */
-  }
-  .app-wrap[data-panel="canvas"] .fit-col-divider {
-    width: auto;
-    height: 1px;
   }
 
   /* ── Bikes panel ── */
@@ -916,20 +1092,20 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
     border-left: none;
   }
 
-  /* Compact sidebar on mobile */
-  .sidebar-section { padding: 8px 12px; }
-  .sidebar-section-title { margin-bottom: 6px; }
   .input-row label { width: 100px; font-size: 11px; }
   .input-row input[type="number"] { width: 62px; padding: 4px 6px; font-size: 12px; }
   .size-row { padding: 3px 10px; }
   .size-row label { font-size: 11px; }
+  .fit-toolbar { height: auto; padding: 6px 10px; flex-wrap: wrap; }
+  .fit-toolbar-divider { display: none; }
+  .fit-toolbar-fields { gap: 5px; }
+  .fit-toolbar input[type="number"] { width: 54px; }
 
-  /* Compact fit cards on mobile */
-  .fit-col-header { padding: 4px 10px; }
-  .fit-col-body { padding: 6px 10px; }
-
-  /* Cockpit inputs full-width on mobile */
-  .cockpit-input { width: 100%; }
+  /* Compact cockpit table on mobile */
+  #cockpit-inputs { padding: 0; }
+  .cockpit-table thead th { padding: 5px 8px; }
+  .cockpit-table tbody td { padding: 3px 6px; }
+  .cockpit-table tbody td:first-child { padding-left: 8px; }
 
   /* Geo table: allow horizontal scroll within the panel */
   .geo-scroll { overflow: auto; }
@@ -1224,3 +1400,86 @@ main { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
 }
 .lock-btn:hover { opacity: 1; }
 .lock-btn.lock-active { color: var(--accent); opacity: 1; }
+
+/* About page */
+body:has(.about-page),
+main:has(.about-page) {
+  overflow: auto;
+  height: auto;
+}
+
+.about-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  line-height: 1.7;
+}
+
+.about-page h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.about-page h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-page h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 18px;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.about-page p {
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.about-page ul,
+.about-page ol {
+  color: var(--text-muted);
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.about-page li {
+  margin-bottom: 4px;
+}
+
+.about-page pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin: 10px 0 16px;
+}
+
+.about-page code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.about-page p code,
+.about-page li code {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 12px;
+}
+
+.about-page a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.about-page a:hover { text-decoration: underline; }
