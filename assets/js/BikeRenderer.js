@@ -10,7 +10,7 @@ const TUBE_W = {
   downTube:   18,
   topTube:    13,
   seatTube:   13,
-  headTube:   22,
+  headTube:   15,
   chainstay:  10,
   seatstay:    8,
   fork:       10,
