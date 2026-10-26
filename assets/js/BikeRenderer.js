@@ -4,6 +4,7 @@ const RIM_RADIUS   = 311;    // mm, 700c ISO 622 bead seat radius
 const TIRE_WIDTH   = 38;     // mm visual stroke width
 const HUB_RADIUS   = 18;     // mm
 const BB_RADIUS    = 22;     // mm
+const DEFAULT_FORK_AC = 390;  // mm, typical 700c fork axle-to-crown incl. lower headset, used when ht_length is missing
 
 const TUBE_W = {
   downTube:   18,
@@ -106,12 +107,6 @@ class BikeRenderer {
 
     const HT_top = { x: size.reach, y: size.stack };
 
-    // Head tube bottom: forward by cos(hta)*len, down by sin(hta)*len
-    const HT_bottom = {
-      x: HT_top.x + Math.cos(hta) * size.ht_length,
-      y: HT_top.y - Math.sin(hta) * size.ht_length,
-    };
-
     // Seat tube top: backward/upward from BB at seat tube angle
     const ST_top = {
       x: -Math.cos(sta) * size.st_length,
@@ -128,6 +123,19 @@ class BikeRenderer {
 
     // Front axle: wheelbase from rear axle
     const front_axle = { x: rear_axle.x + size.wheelbase, y: bbd };
+
+    // Head tube bottom: forward by cos(hta)*len, down by sin(hta)*len.
+    // When ht_length isn't published, estimate it for drawing only: project the
+    // front axle onto the steering axis and back off by the fork axle-to-crown.
+    let htLen = size.ht_length;
+    if (htLen == null) {
+      const alongAxis = (front_axle.x - HT_top.x) * Math.cos(hta) - (front_axle.y - HT_top.y) * Math.sin(hta);
+      htLen = Math.max(80, alongAxis - (size.fork_length ?? DEFAULT_FORK_AC));
+    }
+    const HT_bottom = {
+      x: HT_top.x + Math.cos(hta) * htLen,
+      y: HT_top.y - Math.sin(hta) * htLen,
+    };
 
     return { BB, HT_top, HT_bottom, ST_top, rear_axle, front_axle };
   }

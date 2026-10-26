@@ -71,7 +71,7 @@ sizes:
   - label: "54"
     stack: 560       # BB center → HT top, vertical
     reach: 388       # BB center → HT top, horizontal
-    ht_length: 130   # head tube length
+    ht_length: 130   # head tube length (optional; drawing estimates it from the fork if missing)
     ht_angle: 71.0   # head tube angle from horizontal
     st_length: 510   # seat tube length, C-T
     st_angle: 74.0   # seat tube angle from horizontal (effective)

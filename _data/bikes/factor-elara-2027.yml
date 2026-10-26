@@ -1,0 +1,88 @@
+brand: Factor
+model: Elara
+year: 2027
+type: gravel
+sizes:
+  - label: "49"
+    stack: 515
+    reach: 382
+    ht_angle: 71.3
+    st_length: 450
+    st_angle: 75.0
+    tt_length: 520
+    cs_length: 420
+    bb_drop: 82
+    wheelbase: 1001
+    front_center: 591
+    fork_length: 395
+    fork_offset: 56
+
+  - label: "52"
+    stack: 535
+    reach: 390
+    ht_angle: 71.3
+    st_length: 468
+    st_angle: 74.5
+    tt_length: 538
+    cs_length: 420
+    bb_drop: 82
+    wheelbase: 1015
+    front_center: 602
+    fork_length: 395
+    fork_offset: 56
+
+  - label: "54"
+    stack: 555
+    reach: 399
+    ht_angle: 72.2
+    st_length: 483
+    st_angle: 74.5
+    tt_length: 553
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 1017
+    front_center: 605
+    fork_length: 395
+    fork_offset: 51
+
+  - label: "56"
+    stack: 580
+    reach: 407
+    ht_angle: 72.3
+    st_length: 500
+    st_angle: 74.5
+    tt_length: 568
+    cs_length: 423
+    bb_drop: 80
+    wheelbase: 1035
+    front_center: 620
+    fork_length: 395
+    fork_offset: 51
+
+  - label: "58"
+    stack: 605
+    reach: 417
+    ht_angle: 72.3
+    st_length: 523
+    st_angle: 74.0
+    tt_length: 590
+    cs_length: 425
+    bb_drop: 80
+    wheelbase: 1055
+    front_center: 638
+    fork_length: 395
+    fork_offset: 51
+
+  - label: "61"
+    stack: 625
+    reach: 427
+    ht_angle: 72.5
+    st_length: 545
+    st_angle: 74.0
+    tt_length: 606
+    cs_length: 425
+    bb_drop: 80
+    wheelbase: 1072
+    front_center: 654
+    fork_length: 395
+    fork_offset: 51

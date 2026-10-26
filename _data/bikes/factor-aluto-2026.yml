@@ -1,0 +1,82 @@
+brand: Factor
+model: Aluto
+year: 2026
+type: gravel
+sizes:
+  - label: "49"
+    stack: 530
+    reach: 377
+    ht_angle: 71.5
+    st_length: 455
+    st_angle: 74.5
+    tt_length: 524
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 992.6
+    fork_offset: 50
+    standover: 749.5
+
+  - label: "52"
+    stack: 547
+    reach: 385
+    ht_angle: 71.9
+    st_length: 480
+    st_angle: 74.0
+    tt_length: 542
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 1002.5
+    fork_offset: 50
+    standover: 770
+
+  - label: "54"
+    stack: 565
+    reach: 393
+    ht_angle: 72.0
+    st_length: 505
+    st_angle: 74.0
+    tt_length: 555
+    cs_length: 420
+    bb_drop: 78
+    wheelbase: 1016.5
+    fork_offset: 50
+    standover: 793
+
+  - label: "56"
+    stack: 585
+    reach: 402
+    ht_angle: 72.0
+    st_length: 525
+    st_angle: 73.5
+    tt_length: 575
+    cs_length: 423
+    bb_drop: 78
+    wheelbase: 1035
+    fork_offset: 50
+    standover: 812
+
+  - label: "58"
+    stack: 605
+    reach: 412
+    ht_angle: 72.0
+    st_length: 549
+    st_angle: 73.5
+    tt_length: 591
+    cs_length: 425
+    bb_drop: 78
+    wheelbase: 1053
+    fork_offset: 50
+    standover: 833
+
+  - label: "61"
+    stack: 625
+    reach: 422
+    ht_angle: 73.0
+    st_length: 549
+    st_angle: 73.5
+    tt_length: 607
+    cs_length: 425
+    bb_drop: 78
+    wheelbase: 1070
+    fork_offset: 50
+    standover: 850.5
