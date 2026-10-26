@@ -4,6 +4,8 @@ const RIM_RADIUS   = 311;    // mm, 700c ISO 622 bead seat radius
 const TIRE_WIDTH   = 38;     // mm visual stroke width
 const HUB_RADIUS   = 18;     // mm
 const BB_RADIUS    = 22;     // mm
+const DT_JOIN_UP   = 35;     // mm, down tube junction above head tube bottom
+const CROWN_LEN    = 22;     // mm, fork crown height below head tube
 const DEFAULT_FORK_AC = 390;  // mm, typical 700c fork axle-to-crown incl. lower headset, used when ht_length is missing
 
 const TUBE_W = {
@@ -13,7 +15,8 @@ const TUBE_W = {
   headTube:   15,
   chainstay:  10,
   seatstay:    8,
-  fork:       10,
+  fork:       20,
+  forkCrown:  24,
   seatpost:   20,
   stem:       12,
 };
@@ -137,7 +140,20 @@ class BikeRenderer {
       y: HT_top.y - Math.sin(hta) * htLen,
     };
 
-    return { BB, HT_top, HT_bottom, ST_top, rear_axle, front_axle };
+    // Down tube meets the head tube above the lower headset cup, not at its bottom edge
+    const dtUp = Math.min(DT_JOIN_UP, htLen * 0.4);
+    const DT_head = {
+      x: HT_bottom.x - Math.cos(hta) * dtUp,
+      y: HT_bottom.y + Math.sin(hta) * dtUp,
+    };
+
+    // Fork crown continues down the steering axis below the head tube
+    const crown = {
+      x: HT_bottom.x + Math.cos(hta) * CROWN_LEN,
+      y: HT_bottom.y - Math.sin(hta) * CROWN_LEN,
+    };
+
+    return { BB, HT_top, HT_bottom, DT_head, crown, ST_top, rear_axle, front_axle };
   }
 
   _calcTransform(allBikes, W, H) {
@@ -293,12 +309,21 @@ class BikeRenderer {
 
     // Main tubes
     this._tube(g, t(BB), t(ST_top),    color, TUBE_W.seatTube,  0.85);
-    this._tube(g, t(BB), t(HT_bottom), color, TUBE_W.downTube,  0.85);
+    this._tube(g, t(BB), t(pts.DT_head), color, TUBE_W.downTube,  0.85);
     this._tube(g, t(ST_top), t(HT_top), color, TUBE_W.topTube,  0.85);
     this._tube(g, t(HT_top), t(HT_bottom), color, TUBE_W.headTube, 0.9);
 
-    // Fork
-    this._tube(g, t(HT_bottom), t(pts.front_axle), color, TUBE_W.fork, 0.8);
+    // Fork: crown block on the steering axis, then a blade tapering to the axle
+    const { crown, front_axle } = pts;
+    const c = t(crown), a = t(front_axle);
+    const len = Math.hypot(a.x - c.x, a.y - c.y) || 1;
+    const nx = -(a.y - c.y) / len, ny = (a.x - c.x) / len;
+    const s = tr.scale, wTop = TUBE_W.fork * 0.75 * s, wEnd = TUBE_W.fork * 0.3 * s;
+    this._path(g,
+      `M${c.x + nx * wTop},${c.y + ny * wTop} L${a.x + nx * wEnd},${a.y + ny * wEnd} ` +
+      `L${a.x - nx * wEnd},${a.y - ny * wEnd} L${c.x - nx * wTop},${c.y - ny * wTop} Z`,
+      color, 0.8);
+    this._tube(g, t(HT_bottom), t(crown), color, TUBE_W.forkCrown, 0.9);
   }
 
   _drawCockpit(g, pts, tr, color, b) {
