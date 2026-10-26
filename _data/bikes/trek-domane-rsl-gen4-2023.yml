@@ -1,0 +1,74 @@
+brand: Trek
+model: Domane RSL Gen 4
+year: 2023
+type: road
+sizes:
+  - label: "52"
+    stack: 518
+    reach: 388
+    ht_length: 95
+    ht_angle: 72.6
+    st_length: 483
+    st_angle: 74.2
+    tt_length: 534
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 993
+    fork_offset: 53
+    standover: 727
+
+  - label: "54"
+    stack: 527
+    reach: 390
+    ht_length: 104
+    ht_angle: 72.6
+    st_length: 501
+    st_angle: 73.7
+    tt_length: 544
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 998
+    fork_offset: 53
+    standover: 740
+
+  - label: "56"
+    stack: 548
+    reach: 395
+    ht_length: 129
+    ht_angle: 72.8
+    st_length: 525
+    st_angle: 73.3
+    tt_length: 560
+    cs_length: 420
+    bb_drop: 78
+    wheelbase: 1010
+    fork_offset: 53
+    standover: 764
+
+  - label: "58"
+    stack: 567
+    reach: 400
+    ht_length: 148
+    ht_angle: 72.8
+    st_length: 553
+    st_angle: 73.0
+    tt_length: 573
+    cs_length: 425
+    bb_drop: 78
+    wheelbase: 1025
+    fork_offset: 53
+    standover: 787
+
+  - label: "60"
+    stack: 586
+    reach: 404
+    ht_length: 171
+    ht_angle: 72.8
+    st_length: 573
+    st_angle: 72.8
+    tt_length: 585
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1036
+    fork_offset: 53
+    standover: 807

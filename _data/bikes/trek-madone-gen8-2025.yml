@@ -1,0 +1,94 @@
+brand: Trek
+model: Madone SL/SLR Gen 8
+year: 2025
+type: road
+sizes:
+  - label: "XS"
+    stack: 507
+    reach: 370
+    ht_length: 100
+    ht_angle: 71.6
+    st_length: 404
+    st_angle: 73.8
+    tt_length: 517
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 971
+    front_center: 572
+    fork_offset: 50
+    standover: 704
+
+  - label: "S"
+    stack: 530
+    reach: 378
+    ht_length: 121
+    ht_angle: 72.2
+    st_length: 440
+    st_angle: 73.8
+    tt_length: 532
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 976
+    front_center: 577
+    fork_offset: 45
+    standover: 734
+
+  - label: "M"
+    stack: 546
+    reach: 384
+    ht_length: 136
+    ht_angle: 72.9
+    st_length: 476
+    st_angle: 73.6
+    tt_length: 545
+    cs_length: 410
+    bb_drop: 70
+    wheelbase: 981
+    front_center: 582
+    fork_offset: 45
+    standover: 762
+
+  - label: "ML"
+    stack: 562
+    reach: 389
+    ht_length: 150
+    ht_angle: 73.5
+    st_length: 512
+    st_angle: 73.4
+    tt_length: 557
+    cs_length: 410
+    bb_drop: 70
+    wheelbase: 980
+    front_center: 581
+    fork_offset: 40
+    standover: 790
+
+  - label: "L"
+    stack: 582
+    reach: 394
+    ht_length: 172
+    ht_angle: 73.8
+    st_length: 548
+    st_angle: 73.4
+    tt_length: 568
+    cs_length: 411
+    bb_drop: 68
+    wheelbase: 990
+    front_center: 589
+    fork_offset: 40
+    standover: 820
+
+  - label: "XL"
+    stack: 610
+    reach: 402
+    ht_length: 201
+    ht_angle: 73.9
+    st_length: 609
+    st_angle: 73.4
+    tt_length: 584
+    cs_length: 412
+    bb_drop: 68
+    wheelbase: 1007
+    front_center: 604
+    fork_offset: 40
+    standover: 863

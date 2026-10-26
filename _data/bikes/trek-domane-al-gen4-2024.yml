@@ -1,0 +1,102 @@
+brand: Trek
+model: Domane AL Gen 4
+year: 2024
+type: road
+sizes:
+  - label: "44"
+    stack: 510
+    reach: 360
+    ht_length: 95
+    ht_angle: 70.3
+    st_length: 390
+    st_angle: 74.6
+    tt_length: 507
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 983
+    fork_offset: 53
+    standover: 657
+
+  - label: "49"
+    stack: 540
+    reach: 368
+    ht_length: 123
+    ht_angle: 70.8
+    st_length: 440
+    st_angle: 74.6
+    tt_length: 516
+    cs_length: 425
+    bb_drop: 80
+    wheelbase: 1001
+    fork_offset: 53
+    standover: 717
+
+  - label: "52"
+    stack: 561
+    reach: 371
+    ht_length: 145
+    ht_angle: 71.3
+    st_length: 475
+    st_angle: 74.2
+    tt_length: 530
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 1003
+    fork_offset: 53
+    standover: 735
+
+  - label: "54"
+    stack: 575
+    reach: 374
+    ht_length: 160
+    ht_angle: 71.3
+    st_length: 500
+    st_angle: 73.7
+    tt_length: 542
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 1010
+    fork_offset: 53
+    standover: 754
+
+  - label: "56"
+    stack: 591
+    reach: 377
+    ht_length: 175
+    ht_angle: 71.9
+    st_length: 525
+    st_angle: 73.3
+    tt_length: 554
+    cs_length: 420
+    bb_drop: 78
+    wheelbase: 1008
+    fork_offset: 48
+    standover: 776
+
+  - label: "58"
+    stack: 611
+    reach: 380
+    ht_length: 195
+    ht_angle: 72.0
+    st_length: 548
+    st_angle: 73.0
+    tt_length: 567
+    cs_length: 425
+    bb_drop: 78
+    wheelbase: 1022
+    fork_offset: 48
+    standover: 796
+
+  - label: "61"
+    stack: 646
+    reach: 385
+    ht_length: 235
+    ht_angle: 72.1
+    st_length: 576
+    st_angle: 72.7
+    tt_length: 586
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1038
+    fork_offset: 48
+    standover: 842

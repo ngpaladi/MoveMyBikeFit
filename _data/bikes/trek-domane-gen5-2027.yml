@@ -1,0 +1,94 @@
+brand: Trek
+model: Domane SL/SLR Gen 5
+year: 2027
+type: road
+sizes:
+  - label: "XS"
+    stack: 524
+    reach: 368
+    ht_length: 106
+    ht_angle: 71.3
+    st_length: 444
+    st_angle: 73.5
+    tt_length: 520
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 987
+    front_center: 580
+    fork_offset: 53
+    standover: 721
+
+  - label: "S"
+    stack: 555
+    reach: 371
+    ht_length: 139
+    ht_angle: 71.1
+    st_length: 476
+    st_angle: 73.7
+    tt_length: 530
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 1002
+    front_center: 595
+    fork_offset: 53
+    standover: 753
+
+  - label: "M"
+    stack: 575
+    reach: 374
+    ht_length: 159
+    ht_angle: 71.2
+    st_length: 500
+    st_angle: 73.5
+    tt_length: 541
+    cs_length: 420
+    bb_drop: 80
+    wheelbase: 1011
+    front_center: 604
+    fork_offset: 53
+    standover: 775
+
+  - label: "ML"
+    stack: 596
+    reach: 377
+    ht_length: 170
+    ht_angle: 71.9
+    st_length: 533
+    st_angle: 73.3
+    tt_length: 553
+    cs_length: 420
+    bb_drop: 78
+    wheelbase: 1010
+    front_center: 602
+    fork_offset: 48
+    standover: 805
+
+  - label: "L"
+    stack: 618
+    reach: 380
+    ht_length: 192
+    ht_angle: 72.0
+    st_length: 553
+    st_angle: 73.3
+    tt_length: 562
+    cs_length: 420
+    bb_drop: 78
+    wheelbase: 1019
+    front_center: 611
+    fork_offset: 48
+    standover: 826
+
+  - label: "XL"
+    stack: 648
+    reach: 384
+    ht_length: 226
+    ht_angle: 72.1
+    st_length: 593
+    st_angle: 73.3
+    tt_length: 575
+    cs_length: 420
+    bb_drop: 75
+    wheelbase: 1033
+    front_center: 624
+    fork_offset: 48
+    standover: 863

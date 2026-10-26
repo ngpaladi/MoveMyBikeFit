@@ -1,0 +1,88 @@
+brand: Trek
+model: Checkpoint ALR Gen 3
+year: 2026
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 545
+    reach: 380
+    ht_length: 96
+    ht_angle: 71.2
+    st_length: 490
+    st_angle: 74.1
+    tt_length: 536
+    cs_length: 435
+    bb_drop: 78
+    wheelbase: 1025
+    fork_offset: 49
+    standover: 735
+
+  - label: "S"
+    stack: 566
+    reach: 385
+    ht_length: 117
+    ht_angle: 71.6
+    st_length: 520
+    st_angle: 73.7
+    tt_length: 548
+    cs_length: 435
+    bb_drop: 78
+    wheelbase: 1033
+    fork_offset: 49
+    standover: 765
+
+  - label: "M"
+    stack: 589
+    reach: 391
+    ht_length: 140
+    ht_angle: 71.8
+    st_length: 540
+    st_angle: 73.2
+    tt_length: 568
+    cs_length: 435
+    bb_drop: 76
+    wheelbase: 1041
+    fork_offset: 49
+    standover: 789
+
+  - label: "ML"
+    stack: 611
+    reach: 397
+    ht_length: 162
+    ht_angle: 72.2
+    st_length: 560
+    st_angle: 72.8
+    tt_length: 580
+    cs_length: 435
+    bb_drop: 76
+    wheelbase: 1048
+    fork_offset: 49
+    standover: 809
+
+  - label: "L"
+    stack: 630
+    reach: 402
+    ht_length: 181
+    ht_angle: 72.3
+    st_length: 580
+    st_angle: 72.5
+    tt_length: 592
+    cs_length: 435
+    bb_drop: 74
+    wheelbase: 1058
+    fork_offset: 49
+    standover: 829
+
+  - label: "XL"
+    stack: 650
+    reach: 408
+    ht_length: 201
+    ht_angle: 72.6
+    st_length: 610
+    st_angle: 72.1
+    tt_length: 604
+    cs_length: 435
+    bb_drop: 74
+    wheelbase: 1070
+    fork_offset: 49
+    standover: 859

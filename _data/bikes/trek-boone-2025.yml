@@ -1,0 +1,88 @@
+brand: Trek
+model: Boone
+year: 2025
+type: cx
+sizes:
+  - label: "49"
+    stack: 534
+    reach: 375
+    ht_length: 110
+    ht_angle: 71.0
+    st_length: 476
+    st_angle: 75.0
+    tt_length: 518
+    cs_length: 425
+    bb_drop: 70
+    wheelbase: 1001
+    fork_offset: 45
+    standover: 747
+
+  - label: "52"
+    stack: 547
+    reach: 379
+    ht_length: 123
+    ht_angle: 71.5
+    st_length: 493
+    st_angle: 74.5
+    tt_length: 531
+    cs_length: 425
+    bb_drop: 70
+    wheelbase: 1005
+    fork_offset: 45
+    standover: 761
+
+  - label: "54"
+    stack: 562
+    reach: 383
+    ht_length: 138
+    ht_angle: 72.0
+    st_length: 513
+    st_angle: 74.0
+    tt_length: 544
+    cs_length: 425
+    bb_drop: 68
+    wheelbase: 1010
+    fork_offset: 45
+    standover: 779
+
+  - label: "56"
+    stack: 580
+    reach: 387
+    ht_length: 157
+    ht_angle: 72.0
+    st_length: 533
+    st_angle: 73.6
+    tt_length: 558
+    cs_length: 425
+    bb_drop: 68
+    wheelbase: 1020
+    fork_offset: 45
+    standover: 796
+
+  - label: "58"
+    stack: 597
+    reach: 391
+    ht_length: 176
+    ht_angle: 72.3
+    st_length: 553
+    st_angle: 73.3
+    tt_length: 570
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1028
+    fork_offset: 45
+    standover: 816
+
+  - label: "61"
+    stack: 624
+    reach: 397
+    ht_length: 205
+    ht_angle: 72.3
+    st_length: 583
+    st_angle: 73.0
+    tt_length: 588
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1043
+    fork_offset: 45
+    standover: 843

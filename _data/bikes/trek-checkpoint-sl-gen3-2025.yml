@@ -1,0 +1,88 @@
+brand: Trek
+model: Checkpoint SL/SLR Gen 3
+year: 2025
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 535
+    reach: 380
+    ht_length: 86
+    ht_angle: 71.0
+    st_length: 445
+    st_angle: 74.0
+    tt_length: 536
+    cs_length: 430
+    bb_drop: 76
+    wheelbase: 1013
+    fork_offset: 49
+    standover: 746
+
+  - label: "S"
+    stack: 556
+    reach: 386
+    ht_length: 106
+    ht_angle: 71.4
+    st_length: 480
+    st_angle: 74.0
+    tt_length: 547
+    cs_length: 430
+    bb_drop: 76
+    wheelbase: 1022
+    fork_offset: 49
+    standover: 772
+
+  - label: "M"
+    stack: 579
+    reach: 391
+    ht_length: 130
+    ht_angle: 71.6
+    st_length: 505
+    st_angle: 73.3
+    tt_length: 566
+    cs_length: 430
+    bb_drop: 76
+    wheelbase: 1034
+    fork_offset: 49
+    standover: 799
+
+  - label: "ML"
+    stack: 601
+    reach: 397
+    ht_length: 151
+    ht_angle: 72.0
+    st_length: 530
+    st_angle: 73.3
+    tt_length: 578
+    cs_length: 430
+    bb_drop: 76
+    wheelbase: 1042
+    fork_offset: 49
+    standover: 813
+
+  - label: "L"
+    stack: 620
+    reach: 402
+    ht_length: 171
+    ht_angle: 72.1
+    st_length: 550
+    st_angle: 73.3
+    tt_length: 589
+    cs_length: 430
+    bb_drop: 76
+    wheelbase: 1052
+    fork_offset: 49
+    standover: 837
+
+  - label: "XL"
+    stack: 640
+    reach: 408
+    ht_length: 191
+    ht_angle: 72.4
+    st_length: 575
+    st_angle: 73.3
+    tt_length: 601
+    cs_length: 430
+    bb_drop: 76
+    wheelbase: 1062
+    fork_offset: 49
+    standover: 861

@@ -1,0 +1,60 @@
+brand: Trek
+model: Speed Concept SLR
+year: 2022
+type: road
+sizes:
+  - label: "S"
+    stack: 492
+    reach: 390
+    ht_length: 65
+    ht_angle: 72.2
+    st_length: 499
+    st_angle: 78.0
+    tt_length: 495
+    cs_length: 410
+    bb_drop: 80
+    wheelbase: 967
+    fork_offset: 45
+    standover: 760
+
+  - label: "M"
+    stack: 517
+    reach: 416
+    ht_length: 90
+    ht_angle: 72.5
+    st_length: 525
+    st_angle: 78.0
+    tt_length: 518
+    cs_length: 410
+    bb_drop: 80
+    wheelbase: 995
+    fork_offset: 45
+    standover: 785
+
+  - label: "L"
+    stack: 541
+    reach: 426
+    ht_length: 115
+    ht_angle: 72.5
+    st_length: 549
+    st_angle: 78.0
+    tt_length: 541
+    cs_length: 410
+    bb_drop: 80
+    wheelbase: 1020
+    fork_offset: 45
+    standover: 808
+
+  - label: "XL"
+    stack: 565
+    reach: 445
+    ht_length: 140
+    ht_angle: 72.5
+    st_length: 574
+    st_angle: 78.0
+    tt_length: 565
+    cs_length: 410
+    bb_drop: 80
+    wheelbase: 1047
+    fork_offset: 45
+    standover: 831

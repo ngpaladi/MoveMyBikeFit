@@ -1,0 +1,116 @@
+brand: Factor
+model: O2 VAM
+year: 2026
+type: road
+sizes:
+  - label: "45"
+    stack: 502
+    reach: 360
+    ht_length: 109
+    ht_angle: 71.1
+    st_length: 560
+    st_angle: 75.5
+    tt_length: 493
+    cs_length: 405
+    bb_drop: 72
+    wheelbase: 970
+    front_center: 574
+    fork_length: 368
+    fork_offset: 57
+    standover: 713
+
+  - label: "49"
+    stack: 514
+    reach: 367
+    ht_length: 117
+    ht_angle: 71.7
+    st_length: 580
+    st_angle: 74.5
+    tt_length: 510
+    cs_length: 405
+    bb_drop: 72
+    wheelbase: 969
+    front_center: 573
+    fork_length: 368
+    fork_offset: 53
+    standover: 728
+
+  - label: "52"
+    stack: 535
+    reach: 373
+    ht_length: 134
+    ht_angle: 72.5
+    st_length: 620
+    st_angle: 74.0
+    tt_length: 527
+    cs_length: 405
+    bb_drop: 72
+    wheelbase: 971
+    front_center: 573
+    fork_length: 368
+    fork_offset: 48
+    standover: 759
+
+  - label: "54"
+    stack: 552
+    reach: 381
+    ht_length: 154
+    ht_angle: 72.5
+    st_length: 650
+    st_angle: 74.0
+    tt_length: 539
+    cs_length: 405
+    bb_drop: 70
+    wheelbase: 985
+    front_center: 587
+    fork_length: 368
+    fork_offset: 48
+    standover: 784
+
+  - label: "56"
+    stack: 574
+    reach: 389
+    ht_length: 172
+    ht_angle: 73.3
+    st_length: 680
+    st_angle: 73.5
+    tt_length: 557
+    cs_length: 405
+    bb_drop: 70
+    wheelbase: 987
+    front_center: 587
+    fork_length: 368
+    fork_offset: 43
+    standover: 809
+
+  - label: "58"
+    stack: 597
+    reach: 401
+    ht_length: 196
+    ht_angle: 73.3
+    st_length: 700
+    st_angle: 73.5
+    tt_length: 578
+    cs_length: 408
+    bb_drop: 70
+    wheelbase: 1006
+    front_center: 608
+    fork_length: 368
+    fork_offset: 43
+    standover: 830
+
+  - label: "61"
+    stack: 611
+    reach: 410
+    ht_length: 211
+    ht_angle: 73.3
+    st_length: 720
+    st_angle: 73.5
+    tt_length: 591
+    cs_length: 410
+    bb_drop: 70
+    wheelbase: 1022
+    front_center: 621
+    fork_length: 368
+    fork_offset: 43
+    standover: 848

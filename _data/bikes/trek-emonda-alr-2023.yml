@@ -1,0 +1,116 @@
+brand: Trek
+model: Émonda ALR
+year: 2023
+type: road
+sizes:
+  - label: "47"
+    stack: 507
+    reach: 373
+    ht_length: 100
+    ht_angle: 72.1
+    st_length: 424
+    st_angle: 74.6
+    tt_length: 512
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 972
+    fork_offset: 45
+    standover: 692
+
+  - label: "50"
+    stack: 521
+    reach: 378
+    ht_length: 111
+    ht_angle: 72.1
+    st_length: 453
+    st_angle: 74.6
+    tt_length: 521
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 974
+    fork_offset: 45
+    standover: 711
+
+  - label: "52"
+    stack: 533
+    reach: 383
+    ht_length: 121
+    ht_angle: 72.8
+    st_length: 483
+    st_angle: 74.2
+    tt_length: 534
+    cs_length: 410
+    bb_drop: 72
+    wheelbase: 977
+    fork_offset: 45
+    standover: 732
+
+  - label: "54"
+    stack: 541
+    reach: 386
+    ht_length: 131
+    ht_angle: 73.0
+    st_length: 496
+    st_angle: 73.7
+    tt_length: 543
+    cs_length: 410
+    bb_drop: 70
+    wheelbase: 981
+    fork_offset: 45
+    standover: 744
+
+  - label: "56"
+    stack: 563
+    reach: 391
+    ht_length: 151
+    ht_angle: 73.5
+    st_length: 525
+    st_angle: 73.3
+    tt_length: 559
+    cs_length: 410
+    bb_drop: 70
+    wheelbase: 983
+    fork_offset: 40
+    standover: 768
+
+  - label: "58"
+    stack: 581
+    reach: 396
+    ht_length: 171
+    ht_angle: 73.8
+    st_length: 553
+    st_angle: 73.0
+    tt_length: 574
+    cs_length: 411
+    bb_drop: 68
+    wheelbase: 992
+    fork_offset: 40
+    standover: 793
+
+  - label: "60"
+    stack: 601
+    reach: 399
+    ht_length: 191
+    ht_angle: 73.9
+    st_length: 573
+    st_angle: 72.8
+    tt_length: 586
+    cs_length: 411
+    bb_drop: 68
+    wheelbase: 1001
+    fork_offset: 40
+    standover: 811
+
+  - label: "62"
+    stack: 620
+    reach: 403
+    ht_length: 211
+    ht_angle: 73.9
+    st_length: 593
+    st_angle: 72.5
+    tt_length: 598
+    cs_length: 412
+    bb_drop: 68
+    wheelbase: 1010
+    fork_offset: 40
+    standover: 829
