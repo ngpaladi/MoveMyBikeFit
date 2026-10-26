@@ -1,0 +1,52 @@
+brand: Factor
+model: Hanzō
+year: 2026
+type: road
+sizes:
+  - label: "S"
+    stack: 501
+    reach: 390
+    ht_angle: 72.0
+    st_length: 491
+    st_angle: 78.0
+    tt_length: 499
+    cs_length: 405
+    bb_drop: 72
+    wheelbase: 975
+    fork_offset: 45
+
+  - label: "M"
+    stack: 516
+    reach: 405
+    ht_angle: 72.5
+    st_length: 510
+    st_angle: 78.0
+    tt_length: 518
+    cs_length: 405
+    bb_drop: 72
+    wheelbase: 991
+    fork_offset: 45
+
+  - label: "L"
+    stack: 541
+    reach: 419
+    ht_angle: 72.5
+    st_length: 535
+    st_angle: 78.0
+    tt_length: 537
+    cs_length: 405
+    bb_drop: 72
+    wheelbase: 1012
+    fork_offset: 45
+
+  - label: "XL"
+    stack: 566
+    reach: 440
+    ht_angle: 72.5
+    st_length: 560
+    st_angle: 78.0
+    tt_length: 563
+    cs_length: 405
+    bb_drop: 72
+    wheelbase: 1041
+    fork_offset: 45
