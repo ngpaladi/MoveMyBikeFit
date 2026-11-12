@@ -1,0 +1,69 @@
+brand: Ridley
+model: Noah Fast 3.0
+year: 2025
+type: road
+sizes:
+  - label: "XXS"
+    stack: 497
+    reach: 386
+    ht_length: 95
+    ht_angle: 71.5
+    st_length: 480
+    st_angle: 76.5
+    tt_length: 505
+    cs_length: 407
+    bb_drop: 72
+    wheelbase: 981
+    standover: 768
+
+  - label: "XS"
+    stack: 504
+    reach: 399
+    ht_length: 100
+    ht_angle: 72.0
+    st_length: 485
+    st_angle: 76.0
+    tt_length: 525
+    cs_length: 407
+    bb_drop: 72
+    wheelbase: 993
+    standover: 775
+
+  - label: "S"
+    stack: 521
+    reach: 410
+    ht_length: 115
+    ht_angle: 73.0
+    st_length: 510
+    st_angle: 75.5
+    tt_length: 545
+    cs_length: 407
+    bb_drop: 70
+    wheelbase: 996
+    standover: 794
+
+  - label: "M"
+    stack: 541
+    reach: 420
+    ht_length: 135
+    ht_angle: 73.5
+    st_length: 540
+    st_angle: 75.0
+    tt_length: 565
+    cs_length: 407
+    bb_drop: 70
+    wheelbase: 1007
+    standover: 814
+
+  - label: "L"
+    stack: 565
+    reach: 428
+    ht_length: 160
+    ht_angle: 73.5
+    st_length: 560
+    st_angle: 74.5
+    tt_length: 585
+    cs_length: 407
+    bb_drop: 70
+    wheelbase: 1023
+    standover: 838

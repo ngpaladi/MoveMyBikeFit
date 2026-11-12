@@ -1,0 +1,82 @@
+brand: Ridley
+model: Kanzo Adventure Alu
+year: 2026
+type: adventure
+sizes:
+  - label: "XXS"
+    stack: 522
+    reach: 365
+    ht_length: 90
+    ht_angle: 70.75
+    st_length: 450
+    st_angle: 74.5
+    tt_length: 510
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1003
+    standover: 767
+
+  - label: "XS"
+    stack: 536
+    reach: 381
+    ht_length: 105
+    ht_angle: 70.75
+    st_length: 480
+    st_angle: 74.5
+    tt_length: 530
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1024
+    standover: 781
+
+  - label: "S"
+    stack: 560
+    reach: 390
+    ht_length: 130
+    ht_angle: 70.75
+    st_length: 505
+    st_angle: 74.0
+    tt_length: 550
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1024
+    standover: 805
+
+  - label: "M"
+    stack: 582
+    reach: 403
+    ht_length: 155
+    ht_angle: 70.75
+    st_length: 530
+    st_angle: 74.0
+    tt_length: 570
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1064
+    standover: 827
+
+  - label: "L"
+    stack: 608
+    reach: 418
+    ht_length: 182
+    ht_angle: 70.75
+    st_length: 555
+    st_angle: 74.0
+    tt_length: 592
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1088
+    standover: 835
+
+  - label: "XL"
+    stack: 630
+    reach: 429
+    ht_length: 205
+    ht_angle: 70.75
+    st_length: 580
+    st_angle: 73.5
+    tt_length: 615
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1106
+    standover: 875

@@ -1,0 +1,69 @@
+brand: Ridley
+model: Falcn RS 2.0
+year: 2027
+type: road
+sizes:
+  - label: "XXS"
+    stack: 500
+    reach: 375
+    ht_length: 85
+    ht_angle: 73.0
+    st_length: 460
+    st_angle: 76.0
+    tt_length: 500
+    cs_length: 410
+    bb_drop: 78
+    wheelbase: 954
+    standover: 734
+
+  - label: "XS"
+    stack: 514
+    reach: 392
+    ht_length: 100
+    ht_angle: 73.0
+    st_length: 480
+    st_angle: 76.0
+    tt_length: 520
+    cs_length: 410
+    bb_drop: 78
+    wheelbase: 975
+    standover: 748
+
+  - label: "S"
+    stack: 538
+    reach: 411
+    ht_length: 125
+    ht_angle: 73.0
+    st_length: 495
+    st_angle: 76.0
+    tt_length: 545
+    cs_length: 410
+    bb_drop: 78
+    wheelbase: 1000
+    standover: 772
+
+  - label: "M"
+    stack: 562
+    reach: 425
+    ht_length: 150
+    ht_angle: 73.0
+    st_length: 515
+    st_angle: 76.0
+    tt_length: 565
+    cs_length: 410
+    bb_drop: 78
+    wheelbase: 1022
+    standover: 796
+
+  - label: "L"
+    stack: 576
+    reach: 446
+    ht_length: 165
+    ht_angle: 73.0
+    st_length: 540
+    st_angle: 76.0
+    tt_length: 590
+    cs_length: 410
+    bb_drop: 78
+    wheelbase: 1048
+    standover: 810

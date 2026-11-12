@@ -1,0 +1,52 @@
+brand: Ridley
+model: Kanzo Fast 2.0
+year: 2026
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 541
+    reach: 375
+    ht_length: 105
+    ht_angle: 71.0
+    st_length: 475
+    st_angle: 74.5
+    tt_length: 525
+    cs_length: 425
+    bb_drop: 80
+    wheelbase: 1006
+
+  - label: "S"
+    stack: 561
+    reach: 394
+    ht_length: 125
+    ht_angle: 71.5
+    st_length: 500
+    st_angle: 74.5
+    tt_length: 550
+    cs_length: 425
+    bb_drop: 80
+    wheelbase: 1028
+
+  - label: "M"
+    stack: 585
+    reach: 408
+    ht_length: 150
+    ht_angle: 71.5
+    st_length: 520
+    st_angle: 74.5
+    tt_length: 570
+    cs_length: 425
+    bb_drop: 80
+    wheelbase: 1049
+
+  - label: "L"
+    stack: 609
+    reach: 427
+    ht_length: 175
+    ht_angle: 71.5
+    st_length: 550
+    st_angle: 75.0
+    tt_length: 590
+    cs_length: 425
+    bb_drop: 80
+    wheelbase: 1076

@@ -1,0 +1,69 @@
+brand: Ridley
+model: Astr/Astr RS
+year: 2026
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 536
+    reach: 376
+    ht_length: 115
+    ht_angle: 71.0
+    st_length: 475
+    st_angle: 74.5
+    tt_length: 525
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1006
+    fork_offset: 50
+
+  - label: "S"
+    stack: 550
+    reach: 392
+    ht_length: 130
+    ht_angle: 71.0
+    st_length: 500
+    st_angle: 74.0
+    tt_length: 550
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1027
+    fork_offset: 50
+
+  - label: "M"
+    stack: 571
+    reach: 406
+    ht_length: 150
+    ht_angle: 71.5
+    st_length: 520
+    st_angle: 74.0
+    tt_length: 570
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1043
+    fork_offset: 50
+
+  - label: "L"
+    stack: 595
+    reach: 419
+    ht_length: 175
+    ht_angle: 71.5
+    st_length: 550
+    st_angle: 74.0
+    tt_length: 590
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1064
+    fork_offset: 50
+
+  - label: "XL"
+    stack: 619
+    reach: 432
+    ht_length: 200
+    ht_angle: 71.5
+    st_length: 575
+    st_angle: 73.5
+    tt_length: 615
+    cs_length: 425
+    bb_drop: 75
+    wheelbase: 1085
+    fork_offset: 50

@@ -1,0 +1,88 @@
+brand: Ridley
+model: Helium Disc
+year: 2024
+type: road
+sizes:
+  - label: "XXS"
+    stack: 507
+    reach: 379
+    ht_length: 110
+    ht_angle: 71.8
+    st_length: 450
+    st_angle: 75.0
+    tt_length: 515
+    cs_length: 405
+    bb_drop: 68
+    wheelbase: 970
+    fork_offset: 45
+    standover: 721
+
+  - label: "XS"
+    stack: 527
+    reach: 374
+    ht_length: 130
+    ht_angle: 72.0
+    st_length: 480
+    st_angle: 74.0
+    tt_length: 525
+    cs_length: 405
+    bb_drop: 68
+    wheelbase: 970
+    fork_offset: 45
+    standover: 755
+
+  - label: "S"
+    stack: 542
+    reach: 384
+    ht_length: 145
+    ht_angle: 73.0
+    st_length: 510
+    st_angle: 73.5
+    tt_length: 545
+    cs_length: 405
+    bb_drop: 66
+    wheelbase: 977
+    fork_offset: 45
+    standover: 775
+
+  - label: "M"
+    stack: 573
+    reach: 390
+    ht_length: 175
+    ht_angle: 73.5
+    st_length: 540
+    st_angle: 73.0
+    tt_length: 565
+    cs_length: 405
+    bb_drop: 66
+    wheelbase: 987
+    fork_offset: 45
+    standover: 804
+
+  - label: "L"
+    stack: 599
+    reach: 396
+    ht_length: 205
+    ht_angle: 73.5
+    st_length: 570
+    st_angle: 72.5
+    tt_length: 585
+    cs_length: 408
+    bb_drop: 63
+    wheelbase: 1005
+    fork_offset: 45
+    standover: 834
+
+  - label: "XL"
+    stack: 624
+    reach: 403
+    ht_length: 230
+    ht_angle: 74.0
+    st_length: 600
+    st_angle: 72.5
+    tt_length: 600
+    cs_length: 408
+    bb_drop: 63
+    wheelbase: 1014
+    fork_offset: 45
+    standover: 861

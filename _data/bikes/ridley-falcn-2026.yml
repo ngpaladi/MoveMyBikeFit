@@ -1,0 +1,69 @@
+brand: Ridley
+model: Falcn
+year: 2026
+type: road
+sizes:
+  - label: "XS"
+    stack: 513
+    reach: 378
+    ht_length: 115
+    ht_angle: 72.0
+    st_length: 455
+    st_angle: 74.0
+    tt_length: 525
+    cs_length: 407
+    bb_drop: 75
+    wheelbase: 974
+    standover: 753
+
+  - label: "S"
+    stack: 530
+    reach: 388
+    ht_length: 130
+    ht_angle: 73.0
+    st_length: 480
+    st_angle: 73.5
+    tt_length: 545
+    cs_length: 407
+    bb_drop: 70
+    wheelbase: 977
+    standover: 772
+
+  - label: "M"
+    stack: 551
+    reach: 397
+    ht_length: 150
+    ht_angle: 73.5
+    st_length: 499
+    st_angle: 73.0
+    tt_length: 565
+    cs_length: 407
+    bb_drop: 70
+    wheelbase: 987
+    standover: 793
+
+  - label: "L"
+    stack: 573
+    reach: 404
+    ht_length: 175
+    ht_angle: 73.5
+    st_length: 530
+    st_angle: 72.5
+    tt_length: 585
+    cs_length: 407
+    bb_drop: 68
+    wheelbase: 1002
+    standover: 817
+
+  - label: "XL"
+    stack: 599
+    reach: 411
+    ht_length: 200
+    ht_angle: 74.0
+    st_length: 555
+    st_angle: 72.5
+    tt_length: 600
+    cs_length: 407
+    bb_drop: 68
+    wheelbase: 1012
+    standover: 843

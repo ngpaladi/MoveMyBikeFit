@@ -1,0 +1,69 @@
+brand: Ridley
+model: Kanzo Adventure
+year: 2026
+type: adventure
+sizes:
+  - label: "XS"
+    stack: 546
+    reach: 379
+    ht_length: 115
+    ht_angle: 70.8
+    st_length: 470
+    st_angle: 74.5
+    tt_length: 530
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1024
+    standover: 791
+
+  - label: "S"
+    stack: 569
+    reach: 387
+    ht_length: 140
+    ht_angle: 70.8
+    st_length: 495
+    st_angle: 74.0
+    tt_length: 550
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1041
+    standover: 814
+
+  - label: "M"
+    stack: 591
+    reach: 401
+    ht_length: 165
+    ht_angle: 70.5
+    st_length: 520
+    st_angle: 74.0
+    tt_length: 570
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1065
+    standover: 836
+
+  - label: "L"
+    stack: 617
+    reach: 415
+    ht_length: 192
+    ht_angle: 70.5
+    st_length: 545
+    st_angle: 74.0
+    tt_length: 592
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1088
+    standover: 862
+
+  - label: "XL"
+    stack: 639
+    reach: 426
+    ht_length: 215
+    ht_angle: 70.5
+    st_length: 570
+    st_angle: 73.5
+    tt_length: 615
+    cs_length: 435
+    bb_drop: 75
+    wheelbase: 1107
+    standover: 884

@@ -1,0 +1,52 @@
+brand: Ridley
+model: X-Night RS
+year: 2026
+type: cx
+sizes:
+  - label: "XS"
+    stack: 497
+    reach: 382
+    ht_length: 90
+    ht_angle: 71.5
+    st_length: 475
+    st_angle: 74.5
+    tt_length: 520
+    cs_length: 425
+    bb_drop: 53
+    wheelbase: 1000
+
+  - label: "S"
+    stack: 526
+    reach: 384
+    ht_length: 115
+    ht_angle: 72.0
+    st_length: 495
+    st_angle: 74.0
+    tt_length: 535
+    cs_length: 425
+    bb_drop: 60
+    wheelbase: 1006
+
+  - label: "M"
+    stack: 552
+    reach: 391
+    ht_length: 140
+    ht_angle: 72.0
+    st_length: 535
+    st_angle: 73.5
+    tt_length: 555
+    cs_length: 425
+    bb_drop: 62
+    wheelbase: 1020
+
+  - label: "L"
+    stack: 573
+    reach: 405
+    ht_length: 160
+    ht_angle: 72.0
+    st_length: 550
+    st_angle: 73.5
+    tt_length: 575
+    cs_length: 425
+    bb_drop: 64
+    wheelbase: 1040

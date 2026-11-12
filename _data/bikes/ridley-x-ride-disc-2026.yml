@@ -1,0 +1,82 @@
+brand: Ridley
+model: X-Ride Disc
+year: 2026
+type: cx
+sizes:
+  - label: "XXS"
+    stack: 496
+    reach: 382
+    ht_length: 89
+    ht_angle: 71.5
+    st_length: 450
+    st_angle: 75.0
+    tt_length: 515
+    cs_length: 425
+    bb_drop: 53
+    wheelbase: 1000
+    standover: 743
+
+  - label: "XS"
+    stack: 512
+    reach: 383
+    ht_length: 100
+    ht_angle: 72.0
+    st_length: 475
+    st_angle: 74.5
+    tt_length: 525
+    cs_length: 425
+    bb_drop: 57
+    wheelbase: 1000
+    standover: 759
+
+  - label: "S"
+    stack: 529
+    reach: 383
+    ht_length: 115
+    ht_angle: 72.0
+    st_length: 500
+    st_angle: 74.0
+    tt_length: 535
+    cs_length: 425
+    bb_drop: 60
+    wheelbase: 1004
+    standover: 776
+
+  - label: "M"
+    stack: 550
+    reach: 382
+    ht_length: 135
+    ht_angle: 72.0
+    st_length: 525
+    st_angle: 73.5
+    tt_length: 545
+    cs_length: 425
+    bb_drop: 62
+    wheelbase: 1009
+    standover: 797
+
+  - label: "L"
+    stack: 571
+    reach: 391
+    ht_length: 155
+    ht_angle: 72.0
+    st_length: 550
+    st_angle: 73.5
+    tt_length: 560
+    cs_length: 425
+    bb_drop: 64
+    wheelbase: 1023
+    standover: 817
+
+  - label: "XL"
+    stack: 595
+    reach: 399
+    ht_length: 180
+    ht_angle: 72.0
+    st_length: 575
+    st_angle: 73.5
+    tt_length: 575
+    cs_length: 425
+    bb_drop: 64
+    wheelbase: 1039
+    standover: 841

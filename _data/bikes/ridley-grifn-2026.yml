@@ -1,0 +1,82 @@
+brand: Ridley
+model: Grifn
+year: 2026
+type: gravel
+sizes:
+  - label: "XXS"
+    stack: 524
+    reach: 375
+    ht_length: 100
+    ht_angle: 71.0
+    st_length: 440
+    st_angle: 75.0
+    tt_length: 515
+    cs_length: 420
+    bb_drop: 75
+    wheelbase: 992
+    standover: 749
+
+  - label: "XS"
+    stack: 540
+    reach: 375
+    ht_length: 115
+    ht_angle: 71.5
+    st_length: 470
+    st_angle: 74.5
+    tt_length: 525
+    cs_length: 420
+    bb_drop: 75
+    wheelbase: 993
+    standover: 784
+
+  - label: "S"
+    stack: 563
+    reach: 383
+    ht_length: 140
+    ht_angle: 72.0
+    st_length: 500
+    st_angle: 74.0
+    tt_length: 545
+    cs_length: 420
+    bb_drop: 73
+    wheelbase: 1005
+    standover: 810
+
+  - label: "M"
+    stack: 587
+    reach: 391
+    ht_length: 165
+    ht_angle: 72.0
+    st_length: 520
+    st_angle: 73.5
+    tt_length: 565
+    cs_length: 420
+    bb_drop: 73
+    wheelbase: 1021
+    standover: 834
+
+  - label: "L"
+    stack: 614
+    reach: 403
+    ht_length: 195
+    ht_angle: 72.0
+    st_length: 545
+    st_angle: 73.5
+    tt_length: 585
+    cs_length: 420
+    bb_drop: 71
+    wheelbase: 1043
+    standover: 862
+
+  - label: "XL"
+    stack: 633
+    reach: 412
+    ht_length: 215
+    ht_angle: 72.0
+    st_length: 570
+    st_angle: 73.0
+    tt_length: 605
+    cs_length: 420
+    bb_drop: 71
+    wheelbase: 1058
+    standover: 881

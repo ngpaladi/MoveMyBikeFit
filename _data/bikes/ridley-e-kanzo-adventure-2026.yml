@@ -1,0 +1,43 @@
+brand: Ridley
+model: E-Kanzo Adventure
+year: 2026
+type: adventure
+sizes:
+  - label: "S"
+    stack: 591
+    reach: 381
+    ht_length: 130
+    ht_angle: 70.5
+    st_length: 460
+    st_angle: 74.0
+    tt_length: 550
+    cs_length: 440
+    bb_drop: 75
+    wheelbase: 1050
+    standover: 836
+
+  - label: "M"
+    stack: 610
+    reach: 405
+    ht_length: 150
+    ht_angle: 70.5
+    st_length: 500
+    st_angle: 74.0
+    tt_length: 580
+    cs_length: 440
+    bb_drop: 75
+    wheelbase: 1081
+    standover: 855
+
+  - label: "L"
+    stack: 629
+    reach: 430
+    ht_length: 170
+    ht_angle: 70.5
+    st_length: 540
+    st_angle: 74.0
+    tt_length: 610
+    cs_length: 440
+    bb_drop: 75
+    wheelbase: 1112
+    standover: 874

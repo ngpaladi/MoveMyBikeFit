@@ -1,0 +1,56 @@
+brand: Ridley
+model: Triton Fast
+year: 2025
+type: road
+sizes:
+  - label: "XS"
+    stack: 476
+    reach: 406
+    ht_length: 70
+    ht_angle: 71.0
+    st_length: 490
+    st_angle: 80.0
+    tt_length: 490
+    cs_length: 410
+    bb_drop: 78
+    wheelbase: 1004
+    standover: 738
+
+  - label: "S"
+    stack: 508
+    reach: 420
+    ht_length: 100
+    ht_angle: 71.5
+    st_length: 510
+    st_angle: 80.0
+    tt_length: 510
+    cs_length: 410
+    bb_drop: 78
+    wheelbase: 1020
+    standover: 770
+
+  - label: "M"
+    stack: 538
+    reach: 450
+    ht_length: 130
+    ht_angle: 72.0
+    st_length: 540
+    st_angle: 81.0
+    tt_length: 535
+    cs_length: 410
+    bb_drop: 78
+    wheelbase: 1054
+    standover: 800
+
+  - label: "L"
+    stack: 568
+    reach: 480
+    ht_length: 160
+    ht_angle: 72.0
+    st_length: 570
+    st_angle: 82.0
+    tt_length: 560
+    cs_length: 410
+    bb_drop: 78
+    wheelbase: 1089
+    standover: 830

@@ -1,0 +1,43 @@
+brand: Ridley
+model: Dean Fast Disc
+year: 2024
+type: road
+sizes:
+  - label: "S"
+    stack: 495
+    reach: 373
+    ht_length: 90
+    ht_angle: 71.5
+    st_length: 500
+    st_angle: 74.5
+    tt_length: 510
+    cs_length: 405
+    bb_drop: 75
+    wheelbase: 964
+    standover: 763
+
+  - label: "M"
+    stack: 499
+    reach: 394
+    ht_length: 90
+    ht_angle: 72.0
+    st_length: 500
+    st_angle: 74.5
+    tt_length: 532
+    cs_length: 405
+    bb_drop: 75
+    wheelbase: 977
+    standover: 767
+
+  - label: "L"
+    stack: 518
+    reach: 411
+    ht_length: 110
+    ht_angle: 72.0
+    st_length: 540
+    st_angle: 74.5
+    tt_length: 555
+    cs_length: 405
+    bb_drop: 75
+    wheelbase: 1001
+    standover: 786

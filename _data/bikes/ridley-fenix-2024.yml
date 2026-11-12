@@ -1,0 +1,74 @@
+brand: Ridley
+model: Fenix
+year: 2024
+type: road
+sizes:
+  - label: "XS"
+    stack: 517
+    reach: 377
+    ht_length: 117
+    ht_angle: 72.0
+    st_length: 464
+    st_angle: 74.0
+    tt_length: 525
+    cs_length: 410
+    bb_drop: 68
+    wheelbase: 975
+    fork_offset: 45
+    standover: 768
+
+  - label: "S"
+    stack: 541
+    reach: 385
+    ht_length: 140
+    ht_angle: 73.0
+    st_length: 492
+    st_angle: 73.5
+    tt_length: 545
+    cs_length: 410
+    bb_drop: 66
+    wheelbase: 982
+    fork_offset: 45
+    standover: 795
+
+  - label: "M"
+    stack: 565
+    reach: 392
+    ht_length: 164
+    ht_angle: 73.5
+    st_length: 522
+    st_angle: 73.0
+    tt_length: 565
+    cs_length: 410
+    bb_drop: 66
+    wheelbase: 992
+    fork_offset: 45
+    standover: 823
+
+  - label: "L"
+    stack: 591
+    reach: 401
+    ht_length: 194
+    ht_angle: 73.5
+    st_length: 549
+    st_angle: 72.5
+    tt_length: 587
+    cs_length: 413
+    bb_drop: 63
+    wheelbase: 1012
+    fork_offset: 45
+    standover: 853
+
+  - label: "XL"
+    stack: 615
+    reach: 409
+    ht_length: 218
+    ht_angle: 74.0
+    st_length: 579
+    st_angle: 72.5
+    tt_length: 603
+    cs_length: 413
+    bb_drop: 63
+    wheelbase: 1022
+    fork_offset: 45
+    standover: 880
