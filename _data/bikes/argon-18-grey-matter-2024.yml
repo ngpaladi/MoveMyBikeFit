@@ -1,0 +1,82 @@
+brand: Argon 18
+model: Grey Matter
+year: 2024
+type: gravel
+sizes:
+  - label: "XXS"
+    stack: 525
+    reach: 358
+    ht_length: 104
+    ht_angle: 69.5
+    st_length: 420
+    st_angle: 75.5
+    tt_length: 496
+    cs_length: 428
+    bb_drop: 80
+    wheelbase: 1003
+    standover: 689
+
+  - label: "XS"
+    stack: 545
+    reach: 368
+    ht_length: 119
+    ht_angle: 71.0
+    st_length: 450
+    st_angle: 74.9
+    tt_length: 517
+    cs_length: 428
+    bb_drop: 80
+    wheelbase: 1006
+    standover: 716
+
+  - label: "S"
+    stack: 565
+    reach: 378
+    ht_length: 144
+    ht_angle: 71.4
+    st_length: 485
+    st_angle: 74.3
+    tt_length: 538
+    cs_length: 428
+    bb_drop: 75
+    wheelbase: 1021
+    standover: 753
+
+  - label: "M"
+    stack: 585
+    reach: 388
+    ht_length: 160
+    ht_angle: 72.0
+    st_length: 520
+    st_angle: 73.7
+    tt_length: 560
+    cs_length: 428
+    bb_drop: 75
+    wheelbase: 1027
+    standover: 783
+
+  - label: "L"
+    stack: 605
+    reach: 398
+    ht_length: 187
+    ht_angle: 72.0
+    st_length: 555
+    st_angle: 73.1
+    tt_length: 582
+    cs_length: 430
+    bb_drop: 70
+    wheelbase: 1048
+    standover: 818
+
+  - label: "XL"
+    stack: 630
+    reach: 408
+    ht_length: 211
+    ht_angle: 72.5  # Argon lists 75.5; typo — 72.5 fits wheelbase/fork geometry
+    st_length: 590
+    st_angle: 72.5
+    tt_length: 607
+    cs_length: 432
+    bb_drop: 70
+    wheelbase: 1062
+    standover: 849
