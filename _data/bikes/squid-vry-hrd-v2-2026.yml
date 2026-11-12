@@ -1,0 +1,88 @@
+brand: Squid
+model: VRY HRD V2
+year: 2026
+type: cx
+sizes:
+  - label: "XS"
+    stack: 517
+    reach: 355
+    ht_length: 85
+    ht_angle: 71.0
+    st_length: 485
+    st_angle: 74.0
+    tt_length: 505
+    cs_length: 425
+    bb_drop: 60
+    wheelbase: 983
+    front_center: 565
+    standover: 771
+
+  - label: "S"
+    stack: 517
+    reach: 370
+    ht_length: 90
+    ht_angle: 71.0
+    st_length: 505
+    st_angle: 74.0
+    tt_length: 520
+    cs_length: 425
+    bb_drop: 60
+    wheelbase: 998
+    front_center: 580
+    standover: 781
+
+  - label: "MED"
+    stack: 533
+    reach: 381
+    ht_length: 105
+    ht_angle: 71.5
+    st_length: 530
+    st_angle: 73.5
+    tt_length: 540
+    cs_length: 425
+    bb_drop: 60
+    wheelbase: 1009
+    front_center: 591
+    standover: 801
+
+  - label: "LRG"
+    stack: 574
+    reach: 384
+    ht_length: 142
+    ht_angle: 72.0
+    st_length: 560
+    st_angle: 73.0
+    tt_length: 560
+    cs_length: 425
+    bb_drop: 60
+    wheelbase: 1021
+    front_center: 603
+    standover: 828
+
+  - label: "XL"
+    stack: 596
+    reach: 397
+    ht_length: 162
+    ht_angle: 72.5
+    st_length: 580
+    st_angle: 73.0
+    tt_length: 580
+    cs_length: 425
+    bb_drop: 60
+    wheelbase: 1037
+    front_center: 619
+    standover: 849
+
+  - label: "2XL"
+    stack: 617
+    reach: 411
+    ht_length: 185
+    ht_angle: 72.5
+    st_length: 605
+    st_angle: 73.0
+    tt_length: 600
+    cs_length: 425
+    bb_drop: 60
+    wheelbase: 1057
+    front_center: 639
+    standover: 860

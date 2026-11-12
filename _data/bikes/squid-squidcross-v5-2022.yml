@@ -1,0 +1,82 @@
+brand: Squid
+model: Squidcross V5
+year: 2022
+type: cx
+sizes:
+  - label: "XS"
+    stack: 537
+    reach: 361
+    ht_length: 95
+    ht_angle: 69.5
+    st_length: 420
+    st_angle: 75.0
+    tt_length: 505
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1008
+    standover: 718
+
+  - label: "S"
+    stack: 547
+    reach: 368
+    ht_length: 105
+    ht_angle: 70.0
+    st_length: 470
+    st_angle: 74.5
+    tt_length: 519
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1013
+    standover: 750
+
+  - label: "MED"
+    stack: 563
+    reach: 372
+    ht_length: 120
+    ht_angle: 70.5
+    st_length: 490
+    st_angle: 74.0
+    tt_length: 534
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1018
+    standover: 764
+
+  - label: "LRG"
+    stack: 579
+    reach: 377
+    ht_length: 135
+    ht_angle: 71.0
+    st_length: 530
+    st_angle: 73.5
+    tt_length: 549
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1024
+    standover: 791
+
+  - label: "XL"
+    stack: 597
+    reach: 388
+    ht_length: 155
+    ht_angle: 71.5
+    st_length: 560
+    st_angle: 73.0
+    tt_length: 564
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1036
+    standover: 818
+
+  - label: "XXL"
+    stack: 618
+    reach: 396
+    ht_length: 175
+    ht_angle: 72.0
+    st_length: 590
+    st_angle: 73.0
+    tt_length: 585
+    cs_length: 425
+    bb_drop: 65
+    wheelbase: 1045
+    standover: 838

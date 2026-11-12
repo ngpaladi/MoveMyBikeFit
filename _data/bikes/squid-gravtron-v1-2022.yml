@@ -1,0 +1,88 @@
+brand: Squid
+model: Gravtron V1
+year: 2022
+type: gravel
+sizes:
+  - label: "XS"
+    stack: 526
+    reach: 359
+    ht_length: 80
+    ht_angle: 69.0
+    st_length: 420
+    st_angle: 74.5
+    tt_length: 505
+    cs_length: 420
+    bb_drop: 70
+    wheelbase: 1002
+    front_center: 592
+    standover: 718
+
+  - label: "S"
+    stack: 533
+    reach: 366
+    ht_length: 85
+    ht_angle: 69.5
+    st_length: 475
+    st_angle: 74.0
+    tt_length: 519
+    cs_length: 420
+    bb_drop: 70
+    wheelbase: 1007
+    front_center: 597
+    standover: 750
+
+  - label: "MED"
+    stack: 550
+    reach: 372
+    ht_length: 101
+    ht_angle: 70.0
+    st_length: 490
+    st_angle: 73.5
+    tt_length: 535
+    cs_length: 420
+    bb_drop: 70
+    wheelbase: 1014
+    front_center: 604
+    standover: 764
+
+  - label: "LRG"
+    stack: 570
+    reach: 376
+    ht_length: 120
+    ht_angle: 70.5
+    st_length: 530
+    st_angle: 73.0
+    tt_length: 550
+    cs_length: 420
+    bb_drop: 70
+    wheelbase: 1020
+    front_center: 610
+    standover: 791
+
+  - label: "XL"
+    stack: 591
+    reach: 379
+    ht_length: 140
+    ht_angle: 71.0
+    st_length: 560
+    st_angle: 72.5
+    tt_length: 565
+    cs_length: 420
+    bb_drop: 70
+    wheelbase: 1025
+    front_center: 615
+    standover: 818
+
+  - label: "XXL"
+    stack: 611
+    reach: 392
+    ht_length: 159
+    ht_angle: 71.5
+    st_length: 580
+    st_angle: 72.5
+    tt_length: 585
+    cs_length: 420
+    bb_drop: 70
+    wheelbase: 1040
+    front_center: 630
+    standover: 838

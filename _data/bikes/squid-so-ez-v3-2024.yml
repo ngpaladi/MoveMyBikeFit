@@ -1,0 +1,82 @@
+brand: Squid
+model: SO-EZ V3
+year: 2024
+type: cx
+sizes:
+  - label: "XS"
+    stack: 535
+    reach: 347
+    ht_length: 90
+    ht_angle: 71.0
+    st_length: 465
+    st_angle: 74.0
+    tt_length: 500
+    cs_length: 415
+    bb_drop: 64
+    wheelbase: 967
+    standover: 741
+
+  - label: "S"
+    stack: 543
+    reach: 363
+    ht_length: 90
+    ht_angle: 71.0
+    st_length: 495
+    st_angle: 74.0
+    tt_length: 519
+    cs_length: 415
+    bb_drop: 64
+    wheelbase: 986
+    standover: 760
+
+  - label: "MED"
+    stack: 571
+    reach: 371
+    ht_length: 126
+    ht_angle: 71.5
+    st_length: 535
+    st_angle: 73.5
+    tt_length: 540
+    cs_length: 415
+    bb_drop: 64
+    wheelbase: 998
+    standover: 801
+
+  - label: "LRG"
+    stack: 596
+    reach: 378
+    ht_length: 150
+    ht_angle: 72.0
+    st_length: 575
+    st_angle: 73.0
+    tt_length: 560
+    cs_length: 415
+    bb_drop: 64
+    wheelbase: 1008
+    standover: 828
+
+  - label: "XL"
+    stack: 616
+    reach: 392
+    ht_length: 169
+    ht_angle: 72.5
+    st_length: 595
+    st_angle: 73.0
+    tt_length: 580
+    cs_length: 415
+    bb_drop: 64
+    wheelbase: 1023
+    standover: 849
+
+  - label: "2XL"
+    stack: 636
+    reach: 416
+    ht_length: 190
+    ht_angle: 72.5
+    st_length: 625
+    st_angle: 73.0
+    tt_length: 610
+    cs_length: 415
+    bb_drop: 64
+    wheelbase: 1054
+    standover: 860
