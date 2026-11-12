@@ -1,0 +1,94 @@
+brand: Argon 18
+model: Dark Matter
+year: 2025
+type: gravel
+sizes:
+  - label: "XXS"
+    stack: 520
+    reach: 370
+    ht_length: 72
+    ht_angle: 68.5
+    st_length: 420
+    st_angle: 75.5
+    tt_length: 507
+    cs_length: 436
+    bb_drop: 80
+    wheelbase: 1030
+    fork_length: 425
+    fork_offset: 54
+    standover: 713
+
+  - label: "XS"
+    stack: 540
+    reach: 382
+    ht_length: 87
+    ht_angle: 70.0
+    st_length: 435
+    st_angle: 74.9
+    tt_length: 530
+    cs_length: 436
+    bb_drop: 80
+    wheelbase: 1036
+    fork_length: 425
+    fork_offset: 54
+    standover: 729
+
+  - label: "S"
+    stack: 561
+    reach: 394
+    ht_length: 106
+    ht_angle: 70.5
+    st_length: 460
+    st_angle: 74.3
+    tt_length: 553
+    cs_length: 436
+    bb_drop: 78
+    wheelbase: 1045
+    fork_length: 425
+    fork_offset: 48
+    standover: 755
+
+  - label: "M"
+    stack: 582
+    reach: 406
+    ht_length: 126
+    ht_angle: 71.0
+    st_length: 495
+    st_angle: 73.7
+    tt_length: 577
+    cs_length: 436
+    bb_drop: 78
+    wheelbase: 1059
+    fork_length: 425
+    fork_offset: 48
+    standover: 786
+
+  - label: "L"
+    stack: 603
+    reach: 418
+    ht_length: 151
+    ht_angle: 71.0
+    st_length: 540
+    st_angle: 73.1
+    tt_length: 602
+    cs_length: 436
+    bb_drop: 76
+    wheelbase: 1080
+    fork_length: 425
+    fork_offset: 48
+    standover: 825
+
+  - label: "XL"
+    stack: 629
+    reach: 430
+    ht_length: 178
+    ht_angle: 71.0
+    st_length: 585
+    st_angle: 72.5
+    tt_length: 629
+    cs_length: 436
+    bb_drop: 76
+    wheelbase: 1101
+    fork_length: 425
+    fork_offset: 48
+    standover: 863
